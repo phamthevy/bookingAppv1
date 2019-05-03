@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
                             selectedFragment = getCartFragment();
                             break;
                         default:
-                            selectedFragment = getHomeFragment();
+                            selectedFragment =  getHomeFragment();
                             break;
                     }
 
