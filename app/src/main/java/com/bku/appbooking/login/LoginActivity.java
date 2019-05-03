@@ -1,4 +1,4 @@
-package com.bku.appbooking;
+package com.bku.appbooking.login;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +7,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.bku.appbooking.R;
+import com.bku.appbooking.register.RegisterActivity;
+import com.bku.appbooking.main.BookingActivity;
 
 public class LoginActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package com.bku.appbooking;
+package com.bku.appbooking.register;
 
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.bku.appbooking.R;
 
 public class RegisterActivity extends AppCompatActivity {
 

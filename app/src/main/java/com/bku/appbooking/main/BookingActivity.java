@@ -1,4 +1,4 @@
-package com.bku.appbooking;
+package com.bku.appbooking.main;
 
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -6,6 +6,12 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+
+import com.bku.appbooking.main.fragment.CartFragment;
+import com.bku.appbooking.main.fragment.HistoryFragment;
+import com.bku.appbooking.main.fragment.HomeFragment;
+import com.bku.appbooking.main.fragment.PersonFragment;
+import com.bku.appbooking.R;
 
 public class BookingActivity extends AppCompatActivity {
     @Override

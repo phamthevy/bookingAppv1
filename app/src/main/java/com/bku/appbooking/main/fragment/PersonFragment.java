@@ -1,4 +1,4 @@
-package com.bku.appbooking;
+package com.bku.appbooking.main.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import com.bku.appbooking.login.LoginActivity;
+import com.bku.appbooking.R;
 
 public class PersonFragment extends Fragment implements View.OnClickListener {
 
