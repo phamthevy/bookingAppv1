@@ -5,19 +5,58 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
+import com.bku.appbooking.R;
 import com.bku.appbooking.main.fragment.CartFragment;
 import com.bku.appbooking.main.fragment.HistoryFragment;
 import com.bku.appbooking.main.fragment.HomeFragment;
 import com.bku.appbooking.main.fragment.PersonFragment;
-import com.bku.appbooking.R;
 
 public class MainActivity extends AppCompatActivity {
+    CartFragment cartFragment;
+    HistoryFragment historyFragment;
+    HomeFragment homeFragment;
+    PersonFragment personFragment;
+
+    private Fragment getCartFragment(){
+        if (cartFragment == null){
+            cartFragment = new CartFragment();
+        }
+        return cartFragment;
+    }
+
+    private Fragment getHistoryFragment(){
+        if (historyFragment == null){
+            historyFragment = new HistoryFragment();
+        }
+        return historyFragment;
+    }
+
+    private Fragment getHomeFragment(){
+        if (homeFragment == null){
+            homeFragment = new HomeFragment();
+        }
+        return homeFragment;
+    }
+
+    private Fragment getPersonFragment(){
+        if (personFragment == null){
+            personFragment = new PersonFragment();
+        }
+        return personFragment;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_booking);
+        setContentView(R.layout.activity_main);
+
+        cartFragment = null;
+        historyFragment = null;
+        homeFragment = null;
+        personFragment = null;
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
 
@@ -38,19 +77,19 @@ public class MainActivity extends AppCompatActivity {
 
                     switch (item.getItemId()) {
                         case R.id.nav_home:
-                            selectedFragment = new HomeFragment();
+                            selectedFragment = getHomeFragment();
                             break;
                         case R.id.nav_history:
-                            selectedFragment = new HistoryFragment();
+                            selectedFragment = getHistoryFragment();
                             break;
                         case R.id.nav_person:
-                            selectedFragment = new PersonFragment();
+                            selectedFragment = getPersonFragment();
                             break;
                         case R.id.nav_cart:
-                            selectedFragment = new CartFragment();
+                            selectedFragment = getCartFragment();
                             break;
                         default:
-                            selectedFragment = new HomeFragment();
+                            selectedFragment = getHomeFragment();
                             break;
                     }
 

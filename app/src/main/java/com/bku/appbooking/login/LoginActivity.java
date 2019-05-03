@@ -29,6 +29,8 @@ public class LoginActivity extends AppCompatActivity {
                 onLogin(txEmail.getText().toString(), txPassword.getText().toString());
             }
         });
+        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+        startActivity(intent);
 
     }
 
