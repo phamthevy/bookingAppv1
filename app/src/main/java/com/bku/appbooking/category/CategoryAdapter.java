@@ -22,9 +22,9 @@ public class CategoryAdapter extends BaseAdapter {
     // 1
     public CategoryAdapter(Context context, CategoryDataReceiver categoryDataReceiver) {
         this.categoryDataReceiver = categoryDataReceiver;
+        categoryDataReceiver.setLinkedAdapter(this);
         this.context = context;
         this.products = categoryDataReceiver.getProducts();
-        categoryDataReceiver.setLinkedAdapter(this);
     }
 
     // 2

@@ -22,8 +22,8 @@ public class CategoryActivity extends AppCompatActivity {
     }
 
     private void setupGridview(){
-        CategoryDataReceiver categoryDataReceiver = new CategoryDataReceiver(this, 1);
-        final CategoryAdapter categoryAdapter = new CategoryAdapter(this, categoryDataReceiver);
+        CategoryDataReceiver categoryDataReceiver = new CategoryDataReceiver(this, categoryId);
+        CategoryAdapter categoryAdapter = new CategoryAdapter(this, categoryDataReceiver);
         categoryAdapter.updateNextPage();
         gridView.setAdapter(categoryAdapter);
     }
