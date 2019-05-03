@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">AppBooking</string>
+
+    <!--textsize-->
+    <string name="textSizeSmall">10sp</string>
+    <string name="textSizeMedium">12sp</string>
+    <string name="textSizeLarge">14sp</string>
 </resources>

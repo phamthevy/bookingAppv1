@@ -1,12 +1,14 @@
 package com.bku.appbooking.common;
 
 public class Product {
+    private long id;
     private String title;
     private String price;
     private String imageUrl;
     private String description;
 
-    public Product(String title, String price, String imageUrl, String description) {
+    public Product(long id, String title, String price, String imageUrl, String description) {
+        this.id = id;
         this.title = title;
         this.price = price;
         this.imageUrl = imageUrl;
@@ -30,6 +32,6 @@ public class Product {
     }
 
     public long getId() {
-        return -1;
+        return id;
     }
 }
