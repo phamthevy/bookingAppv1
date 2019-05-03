@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import com.bku.appbooking.R;
 import com.bku.appbooking.register.RegisterActivity;
-import com.bku.appbooking.main.BookingActivity;
+import com.bku.appbooking.main.MainActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -45,7 +45,7 @@ public class LoginActivity extends AppCompatActivity {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
 
         if (true){  //TODO: gui den server- tra ve true-false
-            Intent intent = new Intent(this, BookingActivity.class);
+            Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         }
     }
