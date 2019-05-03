@@ -18,10 +18,10 @@ public class CategoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_category);
         categoryId = Integer.valueOf(getIntent().getStringExtra("categoryId"));
         gridView = findViewById(R.id.gridview);
-        setupGriview();
+        setupGridview();
     }
 
-    private void setupGriview(){
+    private void setupGridview(){
         CategoryDataReceiver categoryDataReceiver = new CategoryDataReceiver(this, 1);
         final CategoryAdapter categoryAdapter = new CategoryAdapter(this, categoryDataReceiver);
         categoryAdapter.updateNextPage();
