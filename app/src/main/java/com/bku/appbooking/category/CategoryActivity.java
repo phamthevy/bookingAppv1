@@ -1,5 +1,6 @@
 package com.bku.appbooking.category;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.AbsListView;
@@ -10,6 +11,15 @@ import com.bku.appbooking.R;
 import com.bku.appbooking.common.Category;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.GridView;
+import android.widget.Toast;
+
+import com.bku.appbooking.R;
+import com.bku.appbooking.common.Product;
+import com.bku.appbooking.detail.DetailActivity;
 
 
 public class CategoryActivity extends AppCompatActivity {
@@ -26,6 +36,16 @@ public class CategoryActivity extends AppCompatActivity {
         categoryId = category.getId();
         gridView = findViewById(R.id.gridview );
         setupGridview();
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Object o = gridView.getItemAtPosition(position);
+                Product product = (Product) o;
+                Intent intent = new Intent(getApplicationContext(), DetailActivity.class);
+                intent.putExtra("productId", String.valueOf(product.getId()));
+                startActivity(intent);
+            }
+        });
     }
 
     private void setupGridview(){
