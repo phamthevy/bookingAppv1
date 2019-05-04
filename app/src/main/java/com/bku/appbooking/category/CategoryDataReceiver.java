@@ -79,7 +79,7 @@ public class CategoryDataReceiver {
                     }
                     Toast.makeText(context,"got " + (products.size() - startCount) + " new item",Toast.LENGTH_SHORT).show();
                     linkedAdapter.notifyDataSetChanged();
-                } catch (JSONException e) {
+                } catch (Exception e) {
 
                 }
             }
