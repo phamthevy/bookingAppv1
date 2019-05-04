@@ -77,7 +77,7 @@ public class CategoryDataReceiver {
                             String price = product_json.optString("price");
                             String imgUrl = product_json.optString("image");
                             long id = Long.valueOf(key);
-                            products.add(new Product(id, tilte, price, imgUrl, ""));
+                            products.add(new Product(id, tilte, price, imgUrl, "", ""));
                         } else if (object.get(key) instanceof String){
                             String value = object.getString("type");
                             Log.v("key = type", "value = " + value);

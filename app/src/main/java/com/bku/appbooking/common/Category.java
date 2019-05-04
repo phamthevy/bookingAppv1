@@ -28,4 +28,5 @@ public class Category {
     public String getImageUrl() {
         return imageUrl;
     }
+
 }
