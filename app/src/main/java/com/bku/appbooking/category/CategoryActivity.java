@@ -29,10 +29,12 @@ public class CategoryActivity extends AppCompatActivity {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Object o = gridView.getItemAtPosition(position);
-                Product product = (Product) o;
+//                Object o = gridView.getItemAtPosition(position);
+//                Product product = (Product) o;
+//                Log.d("abcd1", String.valueOf(id));
+//                Log.d("abcd2", String.valueOf(product.getId()));
                 Intent intent = new Intent(getApplicationContext(), DetailActivity.class);
-                intent.putExtra("productId", String.valueOf(product.getId()));
+                intent.putExtra("productId", String.valueOf(id));
                 startActivity(intent);
             }
         });
