@@ -11,6 +11,8 @@ import android.widget.Button;
 
 import com.bku.appbooking.R;
 import com.bku.appbooking.category.CategoryActivity;
+import com.bku.appbooking.common.Category;
+import com.google.gson.Gson;
 
 public class HomeFragment extends Fragment {
     Button button;
@@ -29,7 +31,10 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), CategoryActivity.class);
-                intent.putExtra("categoryId", String.valueOf(1));
+                Gson gson = new Gson();
+                String data = gson.toJson(this);
+                Category category = new Category(1, "tit", "des", "xxx");
+                intent.putExtra("category", gson.toJson(category));
                 startActivity(intent);
             }
         });

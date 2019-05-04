@@ -7,6 +7,8 @@ import android.widget.GridView;
 import android.widget.ImageView;
 
 import com.bku.appbooking.R;
+import com.bku.appbooking.common.Category;
+import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
 
@@ -19,7 +21,9 @@ public class CategoryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category);
-        categoryId = Integer.valueOf(getIntent().getStringExtra("categoryId"));
+        Gson gson = new Gson();
+        Category category = gson.fromJson(getIntent().getStringExtra("category"), Category.class);
+        categoryId = category.getId();
         gridView = findViewById(R.id.gridview);
         setupGridview();
     }
