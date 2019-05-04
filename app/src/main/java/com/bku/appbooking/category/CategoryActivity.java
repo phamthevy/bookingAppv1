@@ -24,7 +24,7 @@ public class CategoryActivity extends AppCompatActivity {
         Gson gson = new Gson();
         Category category = gson.fromJson(getIntent().getStringExtra("category"), Category.class);
         categoryId = category.getId();
-        gridView = findViewById(R.id.gridview);
+        gridView = findViewById(R.id.gridview );
         setupGridview();
     }
 
