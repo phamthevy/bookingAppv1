@@ -85,7 +85,7 @@ public class CategoryDataReceiver {
                         }
                     }
                     linkedAdapter.notifyDataSetChanged();
-                } catch (JSONException e) {
+                } catch (Exception e) {
 
                 }
             }
