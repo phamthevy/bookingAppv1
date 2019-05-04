@@ -29,6 +29,7 @@ public class CategoryDataReceiver {
     private int responseCount = 0;
 
     private int currentPage = -1;
+    private long lastRequestTime;
 
     public CategoryDataReceiver(Context context, String dataBaseURL, int categoryId) {
         this.context = context;
@@ -36,6 +37,7 @@ public class CategoryDataReceiver {
         products = new ArrayList<Product>();
         categoryRequestFormat = dataBaseURL + "/category.php?id=" + categoryId;
         productRequestFormat = dataBaseURL + "/product.php?id=%d";
+        lastRequestTime = 0;
     }
 
     public CategoryDataReceiver(Context context, int categoryId) {
@@ -51,6 +53,8 @@ public class CategoryDataReceiver {
     }
 
     public void updateNextPage(){
+        if (System.currentTimeMillis() - lastRequestTime < 1000)
+            return;
         String requestStr = categoryRequestFormat;
         final int startCount = products.size();
         Log.e(CategoryDataReceiver.class.getName(), "send request: " + requestStr);
@@ -87,12 +91,9 @@ public class CategoryDataReceiver {
 //                Toast.makeText(context, "Some error occurred!!", Toast.LENGTH_SHORT).show();
             }
         });
-        request.setRetryPolicy(new DefaultRetryPolicy(
-                3000,
-                2,
-                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         RequestQueue rQueue = Volley.newRequestQueue(context);
         rQueue.add(request);
+        lastRequestTime = System.currentTimeMillis();
     }
 
 

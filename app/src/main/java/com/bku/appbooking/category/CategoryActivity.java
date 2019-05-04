@@ -2,6 +2,7 @@ package com.bku.appbooking.category;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.AbsListView;
 import android.widget.GridView;
 
 import com.bku.appbooking.R;
@@ -23,8 +24,21 @@ public class CategoryActivity extends AppCompatActivity {
 
     private void setupGridview(){
         CategoryDataReceiver categoryDataReceiver = new CategoryDataReceiver(this, categoryId);
-        CategoryAdapter categoryAdapter = new CategoryAdapter(this, categoryDataReceiver);
+        final CategoryAdapter categoryAdapter = new CategoryAdapter(this, categoryDataReceiver);
         categoryAdapter.updateNextPage();
         gridView.setAdapter(categoryAdapter);
+        gridView.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                if (firstVisibleItem + visibleItemCount >= totalItemCount - 2) {
+                    categoryAdapter.updateNextPage();
+                }
+            }
+
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+            }
+        });
     }
 }
