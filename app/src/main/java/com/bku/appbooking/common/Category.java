@@ -7,7 +7,7 @@ public class Category {
     private String imageUrl;
 
     public Category(int id, String title, String description, String imageUrl) {
-        this.id = id;
+        this.id =  id;
         this.title = title;
         this.description = description;
         this.imageUrl = imageUrl;
