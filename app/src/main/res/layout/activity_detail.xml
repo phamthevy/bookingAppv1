@@ -26,24 +26,45 @@
             <TextView
                 android:id="@+id/tvTitle"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:textSize="18dp"/>
 
             <TextView
                 android:id="@+id/tvPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                />
+                android:textSize="18dp"
+                android:layout_marginBottom="8dp"
+                android:textColor="#FF0000"/>
 
             <TextView
                 android:id="@+id/tvShortDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:textSize="14dp"
+                />
+
+            <TextView
+                android:id="@+id/tvInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14dp"
+                android:layout_marginBottom="8dp"
+                android:text="Thông tin chi tiết"
+                android:textStyle="italic"
+                android:layout_margin="5dp"
                 />
 
             <TextView
                 android:id="@+id/tvLongDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:textSize="14dp"
                 />
 
         </LinearLayout>

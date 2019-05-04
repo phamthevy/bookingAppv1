@@ -84,7 +84,7 @@ public class DetailActivity extends AppCompatActivity {
 
     private void setTextView(String title, String price, String imgUrl, String shortDescription, String longDescription) {
         ((TextView) findViewById(R.id.tvTitle)).setText(title);
-        ((TextView) findViewById(R.id.tvPrice)).setText(price);
+        ((TextView) findViewById(R.id.tvPrice)).setText(price+" VND");
         ((TextView) findViewById(R.id.tvShortDescription)).setText(shortDescription);
         ((TextView) findViewById(R.id.tvLongDescription)).setText(longDescription);
 
