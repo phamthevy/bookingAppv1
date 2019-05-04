@@ -4,8 +4,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.AbsListView;
 import android.widget.GridView;
+import android.widget.ImageView;
 
 import com.bku.appbooking.R;
+import com.squareup.picasso.Picasso;
 
 
 public class CategoryActivity extends AppCompatActivity {

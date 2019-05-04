@@ -12,6 +12,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bku.appbooking.common.Product;
+import com.bku.appbooking.ultis.CentralRequestQueue;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -26,6 +27,7 @@ public class CategoryDataReceiver {
 
     private ArrayList<Product> products;
     private BaseAdapter linkedAdapter;
+    private CentralRequestQueue rQueue;
     private int responseCount = 0;
 
     private int currentPage = -1;
@@ -37,6 +39,7 @@ public class CategoryDataReceiver {
         products = new ArrayList<Product>();
         categoryRequestFormat = dataBaseURL + "/category.php?id=" + categoryId;
         productRequestFormat = dataBaseURL + "/product.php?id=%d";
+        rQueue = CentralRequestQueue.getInstance();
         lastRequestTime = 0;
     }
 
@@ -79,7 +82,6 @@ public class CategoryDataReceiver {
                             Log.v("key = type", "value = " + value);
                         }
                     }
-                    Toast.makeText(context,"got " + (products.size() - startCount) + " new item",Toast.LENGTH_SHORT).show();
                     linkedAdapter.notifyDataSetChanged();
                 } catch (JSONException e) {
 
@@ -91,7 +93,6 @@ public class CategoryDataReceiver {
 //                Toast.makeText(context, "Some error occurred!!", Toast.LENGTH_SHORT).show();
             }
         });
-        RequestQueue rQueue = Volley.newRequestQueue(context);
         rQueue.add(request);
         lastRequestTime = System.currentTimeMillis();
     }

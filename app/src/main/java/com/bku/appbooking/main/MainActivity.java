@@ -13,6 +13,7 @@ import com.bku.appbooking.main.fragment.CartFragment;
 import com.bku.appbooking.main.fragment.HistoryFragment;
 import com.bku.appbooking.main.fragment.HomeFragment;
 import com.bku.appbooking.main.fragment.PersonFragment;
+import com.bku.appbooking.ultis.CentralRequestQueue;
 
 public class MainActivity extends AppCompatActivity {
     CartFragment cartFragment;
@@ -57,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
         historyFragment = null;
         homeFragment = null;
         personFragment = null;
+        CentralRequestQueue.getInstance().setupAndStart(this);
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
 
