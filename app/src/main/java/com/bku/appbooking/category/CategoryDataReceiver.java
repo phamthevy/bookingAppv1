@@ -65,6 +65,7 @@ public class CategoryDataReceiver {
             @Override
             public void onResponse(String response) {
                 try {
+                    response=new String(response.getBytes("ISO-8859-1"), "UTF-8");
                     Log.e(CategoryDataReceiver.class.getName(),"recieved response number " + responseCount++);
                     JSONObject object = new JSONObject(response);
                     Iterator<String> keys = object.keys();

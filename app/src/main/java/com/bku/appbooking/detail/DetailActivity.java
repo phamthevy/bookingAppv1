@@ -11,12 +11,10 @@ import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.HttpResponse;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bku.appbooking.R;
-import com.bku.appbooking.category.CategoryAdapter;
-import com.bku.appbooking.category.CategoryDataReceiver;
-import com.bku.appbooking.common.Product;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
@@ -44,6 +42,7 @@ public class DetailActivity extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 try {
+                    response=new String(response.getBytes("ISO-8859-1"), "UTF-8");
                     JSONObject object = new JSONObject(response);
                     Iterator<String> keys = object.keys();
                     while (keys.hasNext()) {
@@ -65,7 +64,7 @@ public class DetailActivity extends AppCompatActivity {
                             Log.v("key = type", "value = " + value);
                         }
                     }
-                } catch (JSONException e) {
+                } catch (Exception e) {
 
                 }
             }
