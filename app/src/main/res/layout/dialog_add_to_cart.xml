@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:text="Xác nhận"
+        android:textSize="20dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:layout_marginBottom="5dp"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#000000"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nhập số lượng bạn muốn mua: "
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"/>
+
+    <EditText
+        android:layout_width="100dp"
+        android:id="@+id/edtNumProduct"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="20dp"
+        android:singleLine="true"
+        android:inputType="number"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <Button
+            android:id="@+id/btnCancalAddProduct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hủy bỏ"
+            android:background="#F4F6F6"
+            android:layout_weight="1"
+            android:layout_toLeftOf="@+id/viewSeparate"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:textAllCaps="false"/>
+
+        <View
+            android:id="@+id/viewSeparate"
+            android:layout_width="0dp"
+            android:layout_centerInParent="true"
+            android:layout_height="match_parent"/>
+
+
+        <Button
+            android:layout_toRightOf="@+id/viewSeparate"
+            android:id="@+id/btnConfirmAddProduct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Xác nhận"
+
+            android:textColor="#FFFFFF"
+            android:background="#3498DB"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:textAllCaps="false"/>
+    </RelativeLayout>
+
+</LinearLayout>
