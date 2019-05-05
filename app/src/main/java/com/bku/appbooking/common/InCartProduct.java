@@ -12,4 +12,13 @@ public class InCartProduct {
         this.product = product;
         this.num = num;
     }
+
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public int getNum() {
+        return num;
+    }
 }
