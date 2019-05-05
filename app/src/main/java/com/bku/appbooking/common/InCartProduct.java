@@ -15,14 +15,6 @@ public class InCartProduct {
         this.checked = checked;
     }
 
-    public Product getProduct() {
-        return product;
-    }
-
-    public int getNum() {
-        return num;
-    }
-
     public void setChecked(boolean checked) {
         this.checked = checked;
     }
@@ -33,5 +25,14 @@ public class InCartProduct {
 
     public boolean isChecked() {
         return checked;
+    }
+
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public int getNum() {
+        return num;
     }
 }
