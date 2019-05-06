@@ -50,7 +50,18 @@ public class CartFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 CheckBox cb = (CheckBox) view.findViewById(R.id.btnCart);
                 if (cb.isChecked()) {
+                    boolean newState = !inCartProductList.get(position).isChecked();
+                    inCartProductList.get(position).setChecked(newState);
+                    cb.setChecked(newState);
                     txPrice.setText(getPrice(inCartProductList));
+                }
+                else {
+                    boolean newState = !inCartProductList.get(position).isChecked();
+                    inCartProductList.get(position).setChecked(newState);
+                    cb.setChecked(newState);
+                    txPrice.setText(getPrice(inCartProductList));
+
+
                 }
 
             }
@@ -61,7 +72,6 @@ public class CartFragment extends Fragment {
                 for (int i = 0; i < inCartProductList.size(); i++) {
 
                     if (btnAllCheck.isChecked()) {
-
                         inCartProductList.get(i).setChecked(true);
                         myCartAdapter.notifyDataSetChanged();
                         txPrice.setText(getPrice(inCartProductList));
