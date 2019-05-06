@@ -32,8 +32,8 @@ public class CartFragment extends Fragment {
     }
     private  List<InCartProduct> getListCartData() {
         List<InCartProduct> inCartProductList = new ArrayList<InCartProduct>();
-        InCartProduct product1 = new InCartProduct(new Product(123, "title1","100000d","fe","shortDescription1", "longDescription"),1);
-        InCartProduct product2 = new InCartProduct(new Product(234, "title2","100000d","fe","shortDescription1", "longDescription"),1);
+        InCartProduct product1 = new InCartProduct(new Product(123, "title1","100000d","fe","shortDescription1", "longDescription"),4);
+        InCartProduct product2 = new InCartProduct(new Product(234, "title2","100000d","fe","shortDescription1", "longDescription"),2);
 
         inCartProductList.add(product1);
         inCartProductList.add(product1);

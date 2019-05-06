@@ -51,6 +51,7 @@ public class CartAdapter  extends BaseAdapter {
             holder.titleView = (TextView) convertView.findViewById(R.id.title);
             holder.priceView = (TextView) convertView.findViewById(R.id.price);
             holder.desView = (TextView) convertView.findViewById(R.id.shortDes);
+            holder.numView = (TextView) convertView.findViewById(R.id.num);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -60,6 +61,8 @@ public class CartAdapter  extends BaseAdapter {
         ImageView imageViewCoverArt = (ImageView)convertView.findViewById(R.id.image);
         holder.titleView.setText(inCartProduct.getProduct().getTitle());
         holder.priceView.setText(inCartProduct.getProduct().getPrice());
+        holder.desView.setText(inCartProduct.getProduct().getShortDescription());
+        holder.numView.setText(String.valueOf(inCartProduct.getNum()));
 
         Picasso.with(context).load(inCartProduct.getProduct().getImageUrl()).into(holder.imgView);
 
@@ -70,6 +73,7 @@ public class CartAdapter  extends BaseAdapter {
         TextView titleView;
         TextView priceView;
         TextView desView;
+        TextView numView;
     }
 
 }
