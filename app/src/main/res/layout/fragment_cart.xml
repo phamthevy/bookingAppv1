@@ -17,7 +17,7 @@
         android:layout_gravity="bottom"
         android:layout_alignParentBottom="true"
         android:background="@android:color/holo_green_light">
-        <RadioButton
+        <CheckBox
             android:id="@+id/btnAllCheck"
             android:layout_width="100dp"
             android:layout_height="match_parent"

@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -55,7 +56,7 @@ public class CartAdapter  extends BaseAdapter {
             holder.txPrice = (TextView) convertView.findViewById(R.id.txPrice);
             holder.txShortDes = (TextView) convertView.findViewById(R.id.txShortDes);
             holder.txNum = (TextView) convertView.findViewById(R.id.txNum);
-            holder.btnCart = (Button) convertView.findViewById(R.id.btnCart) ;
+            holder.btnCart = (CheckBox) convertView.findViewById(R.id.btnCart) ;
             holder.btnSub = (Button) convertView.findViewById(R.id.btnSub) ;
             holder.btnAdd = (Button) convertView.findViewById(R.id.btnAdd);
             convertView.setTag(holder);
@@ -108,7 +109,7 @@ public class CartAdapter  extends BaseAdapter {
         TextView txPrice;
         TextView txShortDes;
         TextView txNum;
-        Button btnCart;
+        CheckBox btnCart;
         Button btnSub;
         Button btnAdd;
     }
