@@ -5,8 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bku.appbooking.R;
 import com.bku.appbooking.common.InCartProduct;
@@ -43,37 +45,72 @@ public class CartAdapter  extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        ViewHolder holder;
+        final ViewHolder holder;
+
         if (convertView == null) {
             convertView = layoutInflater.inflate(R.layout.layout_cart, null);
             holder = new ViewHolder();
-            holder.imgView = (ImageView) convertView.findViewById(R.id.image);
-            holder.titleView = (TextView) convertView.findViewById(R.id.title);
-            holder.priceView = (TextView) convertView.findViewById(R.id.price);
-            holder.desView = (TextView) convertView.findViewById(R.id.shortDes);
-            holder.numView = (TextView) convertView.findViewById(R.id.num);
+            holder.imImage = (ImageView) convertView.findViewById(R.id.imImage);
+            holder.txTitle = (TextView) convertView.findViewById(R.id.txTitle);
+            holder.txPrice = (TextView) convertView.findViewById(R.id.txPrice);
+            holder.txShortDes = (TextView) convertView.findViewById(R.id.txShortDes);
+            holder.txNum = (TextView) convertView.findViewById(R.id.txNum);
+            holder.btnCart = (Button) convertView.findViewById(R.id.btnCart) ;
+            holder.btnSub = (Button) convertView.findViewById(R.id.btnSub) ;
+            holder.btnAdd = (Button) convertView.findViewById(R.id.btnAdd);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
 
         InCartProduct inCartProduct = this.inCartProductList.get(position);
-        ImageView imageViewCoverArt = (ImageView)convertView.findViewById(R.id.image);
-        holder.titleView.setText(inCartProduct.getProduct().getTitle());
-        holder.priceView.setText(inCartProduct.getProduct().getPrice());
-        holder.desView.setText(inCartProduct.getProduct().getShortDescription());
-        holder.numView.setText(String.valueOf(inCartProduct.getNum()));
+        holder.txTitle.setText(inCartProduct.getProduct().getTitle());
+        holder.txPrice.setText(inCartProduct.getProduct().getPrice());
+        holder.txShortDes.setText(inCartProduct.getProduct().getShortDescription());
+        holder.txNum.setText(String.valueOf(inCartProduct.getNum()));
+        Picasso.with(context).load(inCartProduct.getProduct().getImageUrl()).into(holder.imImage);
+        holder.btnCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "Check RadioButton", Toast.LENGTH_SHORT).show();
+            }
+        });
+        holder.btnSub.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int num = Integer.valueOf((String) holder.txNum.getText());
+                if (num==1){
+                    holder.btnSub.setEnabled(false);
+                }
+                else {
+                    num -= 1;
+                    holder.txNum.setText(String.valueOf(String.valueOf(num)));
+                }
 
-        Picasso.with(context).load(inCartProduct.getProduct().getImageUrl()).into(holder.imgView);
-
+            }
+        });
+        holder.btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int num = Integer.valueOf((String) holder.txNum.getText());
+                num += 1;
+                holder.txNum.setText(String.valueOf(String.valueOf(num)));
+                holder.btnSub.setEnabled(true);
+            }
+        });
         return convertView;
     }
+
+
     static class ViewHolder {
-        ImageView imgView;
-        TextView titleView;
-        TextView priceView;
-        TextView desView;
-        TextView numView;
+        ImageView imImage;
+        TextView txTitle;
+        TextView txPrice;
+        TextView txShortDes;
+        TextView txNum;
+        Button btnCart;
+        Button btnSub;
+        Button btnAdd;
     }
 
 }

@@ -18,7 +18,7 @@
         android:layout_alignParentBottom="true"
         android:background="@android:color/holo_green_light">
         <RadioButton
-            android:id="@+id/allCheck"
+            android:id="@+id/btnAllCheck"
             android:layout_width="100dp"
             android:layout_height="match_parent"
             android:textColor="@android:color/black"
@@ -30,14 +30,14 @@
             android:textColor="@android:color/black"
             android:text="Tổng cộng" />
         <TextView
-            android:id="@+id/price"
+            android:id="@+id/txPrice"
             android:layout_width="100dp"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:textColor="@android:color/holo_red_dark"
             android:text="0 VND" />
         <Button
-            android:id="@+id/order"
+            android:id="@+id/btOrder"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/rounded_order"

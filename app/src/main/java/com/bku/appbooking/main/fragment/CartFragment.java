@@ -32,13 +32,15 @@ public class CartFragment extends Fragment {
     }
     private  List<InCartProduct> getListCartData() {
         List<InCartProduct> inCartProductList = new ArrayList<InCartProduct>();
-        InCartProduct product1 = new InCartProduct(new Product(123, "title1","100000d","fe","shortDescription1", "longDescription"),4);
-        InCartProduct product2 = new InCartProduct(new Product(234, "title2","100000d","fe","shortDescription1", "longDescription"),2);
+        InCartProduct product1 = new InCartProduct(new Product(11, "title1","100000d","https://style.vihey.com/uploads/product/4.jpg","shortDescription1", "longDescription"),11);
+        InCartProduct product2 = new InCartProduct(new Product(22, "title2","200000d","https://style.vihey.com/uploads/product/4.jpg","shortDescription2", "longDescription2"),12);
+        InCartProduct product3 = new InCartProduct(new Product(33, "title3","300000d","https://style.vihey.com/uploads/product/4.jpg","shortDescription3", "longDescription3"),13);
+        InCartProduct product4 = new InCartProduct(new Product(44, "title4","400000d","https://style.vihey.com/uploads/product/4.jpg","shortDescription4", "longDescription4"),14);
 
         inCartProductList.add(product1);
-        inCartProductList.add(product1);
-        inCartProductList.add(product1);
         inCartProductList.add(product2);
+        inCartProductList.add(product3);
+        inCartProductList.add(product4);
 
 
         return inCartProductList;
