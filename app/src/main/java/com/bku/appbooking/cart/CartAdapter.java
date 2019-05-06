@@ -74,6 +74,7 @@ public class CartAdapter  extends BaseAdapter {
         holder.txShortDes.setText(inCartProduct.getProduct().getShortDescription());
         holder.txNum.setText(String.valueOf(inCartProduct.getNum()));
         Picasso.with(context).load(inCartProduct.getProduct().getImageUrl()).into(holder.imImage);
+        holder.btnCart.setChecked(inCartProduct.isChecked());
         holder.btnCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
