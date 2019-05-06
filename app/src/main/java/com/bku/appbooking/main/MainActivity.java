@@ -1,6 +1,11 @@
 package com.bku.appbooking.main;
 
+import android.app.Dialog;
+import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.LayerDrawable;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -8,22 +13,30 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.RatingBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bku.appbooking.R;
 import com.bku.appbooking.main.fragment.CartFragment;
 import com.bku.appbooking.main.fragment.HistoryFragment;
 import com.bku.appbooking.main.fragment.HomeFragment;
 import com.bku.appbooking.main.fragment.PersonFragment;
+import com.bku.appbooking.search.SearchActivity;
 import com.bku.appbooking.ultis.CentralRequestQueue;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     CartFragment cartFragment;
     HistoryFragment historyFragment;
     HomeFragment homeFragment;
     PersonFragment personFragment;
+    ImageView imageView;
 
+    public final int IMAGE_PICKER = 1;
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle drawerToggle;
 
@@ -68,12 +81,17 @@ public class MainActivity extends AppCompatActivity {
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
 
+        findViewById(R.id.left_aboutUs).setOnClickListener(this);
+        findViewById(R.id.left_rate).setOnClickListener(this);
+        findViewById(R.id.img_avatar).setOnClickListener(this);
+        findViewById(R.id.left_search).setOnClickListener(this);
+
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
         drawerLayout = (DrawerLayout) findViewById(R.id.activity_main_drawer);
         drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(drawerToggle);
-
+        imageView = findViewById(R.id.img_avatar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
@@ -135,4 +153,82 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 }
             };
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.left_aboutUs:
+                openDialogAboutUs();
+                break;
+            case R.id.left_rate:
+                openRate();
+                break;
+            case R.id.img_avatar:
+                OpenGallery();
+                break;
+            case R.id.left_search:
+                Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+                startActivity(intent);
+        }
+    }
+
+    private void openRate() {
+        final Dialog dialog = new Dialog(MainActivity.this);
+        dialog.setContentView(R.layout.dialog_infomation);
+        dialog.setCanceledOnTouchOutside(false);
+
+        Button btnConfirm = dialog.findViewById(R.id.btnConfirm);
+//        TextView title = dialog.findViewById(R.id.dialog_title);
+        TextView content = dialog.findViewById(R.id.dialog_content);
+        final RatingBar ratingBar = dialog.findViewById(R.id.simpleRatingBar);
+        LayerDrawable stars = (LayerDrawable) ratingBar.getProgressDrawable();
+        stars.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorYellow), PorterDuff.Mode.SRC_ATOP);
+        ratingBar.setVisibility(View.VISIBLE);
+
+//        title.setText(getString(R.string.title_rateApp));
+        content.setText(getString(R.string.content_rateApp));
+
+        btnConfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String totalStars = "Total Stars:: " + ratingBar.getNumStars();
+                String rating = "Rating :: " + ratingBar.getRating();
+                dialog.dismiss();
+                Toast.makeText(MainActivity.this, totalStars + "\n" + rating, Toast.LENGTH_LONG).show();
+            }
+        });
+        dialog.show();
+    }
+
+    private void openDialogAboutUs() {
+        final Dialog dialog = new Dialog(MainActivity.this);
+        dialog.setContentView(R.layout.dialog_infomation);
+        dialog.setCanceledOnTouchOutside(false);
+
+        Button btnConfirm = (Button) dialog.findViewById(R.id.btnConfirm);
+//        TextView title = dialog.findViewById(R.id.dialog_title);
+        TextView content = dialog.findViewById(R.id.dialog_content);
+//        title.setText("abc");
+        content.setText(getString(R.string.content_aboutUs));
+        btnConfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                    dialog.dismiss();
+            }
+        });
+        dialog.show();
+    }
+    private void OpenGallery(){
+        Intent getImageIntent = new Intent(Intent.ACTION_GET_CONTENT);
+        getImageIntent .setType("image/*");
+        startActivityForResult(getImageIntent , IMAGE_PICKER );
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode== IMAGE_PICKER  && resultCode == RESULT_OK) {
+            Uri fullPhotoUri = data.getData();
+            imageView.setImageURI(fullPhotoUri);
+        }
+    }
 }

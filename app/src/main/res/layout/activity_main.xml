@@ -49,32 +49,57 @@
                 android:paddingTop="16dp"
                 android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
-                <ImageView
-                    android:id="@+id/activity_main_imv_avatar"
+                <de.hdodenhof.circleimageview.CircleImageView
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/img_avatar"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="16dp"
-                    app:srcCompat="@mipmap/ic_launcher_round" />
+                    android:layout_height="80dp"
+                    android:src="@drawable/qoobee_agapi_00"
+                    android:scaleType="centerCrop"
+                    app:civ_border_width="0dp"
+                    app:civ_border_color="#FF000000"/>
 
                 <TextView
                     android:id="@+id/activity_main_tv_user_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingTop="16dp"
-                    android:text="Yellow Code"
+                    android:text="Pham The Vy"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
                 <TextView
                     android:id="@+id/activity_main_tv_email"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="yellowcode.books@gmail.com" />
+                    android:text="ptvy3197@gmail.com" />
 
             </LinearLayout>
 
-            <!-- Item Info -->
+            <LinearLayout
+                android:id="@+id/left_search"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="3dp"
+                android:background="@android:color/white"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_search_black_24dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="32dp"
+                    android:text="Search" />
+
+            </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/left_aboutUs"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginTop="3dp"
@@ -93,13 +118,36 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="32dp"
-                    android:text="About App" />
+                    android:text="About Us" />
 
             </LinearLayout>
 
-            <!-- Item Help -->
+            <LinearLayout
+                android:id="@+id/left_rate"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="3dp"
+                android:background="@android:color/white"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_star_black_24dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="32dp"
+                    android:text="Rate this app" />
+
+            </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/left_logOut"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:background="@android:color/white"
@@ -111,13 +159,13 @@
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/ic_history_black_24dp" />
+                    android:src="@drawable/logout" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="32dp"
-                    android:text="Help" />
+                    android:text="Log out" />
 
             </LinearLayout>
 

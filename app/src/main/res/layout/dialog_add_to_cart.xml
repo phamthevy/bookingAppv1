@@ -5,34 +5,28 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:text="Xác nhận"
-        android:textSize="20dp"
+    <ImageView
+        android:id="@+id/ic_annoucemeent"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_gravity="center"
-        android:gravity="center"
-        android:textStyle="bold"
-        android:layout_marginBottom="5dp"/>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#000000"/>
+        android:src="@drawable/ic_specker"
+        android:layout_marginTop="20dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Nhập số lượng bạn muốn mua: "
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"/>
+        android:textSize="14dp"
+        android:padding="20dp"/>
 
     <EditText
         android:layout_width="100dp"
         android:id="@+id/edtNumProduct"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="15dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
         android:singleLine="true"
         android:inputType="number"/>
 
@@ -67,7 +61,7 @@
             android:text="Xác nhận"
 
             android:textColor="#FFFFFF"
-            android:background="#3498DB"
+            android:background="#0AA8FF"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
             android:textAllCaps="false"/>
