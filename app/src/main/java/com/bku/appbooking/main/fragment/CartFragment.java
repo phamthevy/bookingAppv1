@@ -7,7 +7,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ListView;
+import android.widget.RadioButton;
+import android.widget.Toast;
 
 import com.bku.appbooking.R;
 import com.bku.appbooking.cart.CartAdapter;
@@ -18,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CartFragment extends Fragment {
+    CheckBox btnCart;
 
     @Nullable
     @Override
@@ -32,7 +36,7 @@ public class CartFragment extends Fragment {
     }
     private  List<InCartProduct> getListCartData() {
         List<InCartProduct> inCartProductList = new ArrayList<InCartProduct>();
-        InCartProduct product1 = new InCartProduct(new Product(11, "title1","100000d","https://style.vihey.com/uploads/product/4.jpg","shortDescription1", "longDescription"),11);
+        InCartProduct product1 = new InCartProduct(new Product(11, "title1","100000000d","https://style.vihey.com/uploads/product/4.jpg","shortDescription1", "longDescription"),11);
         InCartProduct product2 = new InCartProduct(new Product(22, "title2","200000d","https://style.vihey.com/uploads/product/4.jpg","shortDescription2", "longDescription2"),12);
         InCartProduct product3 = new InCartProduct(new Product(33, "title3","300000d","https://style.vihey.com/uploads/product/4.jpg","shortDescription3", "longDescription3"),13);
         InCartProduct product4 = new InCartProduct(new Product(44, "title4","400000d","https://style.vihey.com/uploads/product/4.jpg","shortDescription4", "longDescription4"),14);

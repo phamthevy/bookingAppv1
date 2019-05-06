@@ -70,12 +70,6 @@ public class CartAdapter  extends BaseAdapter {
         holder.txShortDes.setText(inCartProduct.getProduct().getShortDescription());
         holder.txNum.setText(String.valueOf(inCartProduct.getNum()));
         Picasso.with(context).load(inCartProduct.getProduct().getImageUrl()).into(holder.imImage);
-        holder.btnCart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(context, "Check RadioButton", Toast.LENGTH_SHORT).show();
-            }
-        });
         holder.btnSub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

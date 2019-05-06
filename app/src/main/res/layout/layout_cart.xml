@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="20dp"
-    android:layout_marginLeft="30dp"
+    android:layout_marginLeft="10dp"
     android:layout_marginBottom="30dp"
     android:layout_marginRight="30dp">
 
@@ -30,12 +30,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginLeft="20dp">
+        android:layout_marginLeft="10dp">
         <TextView
             android:id="@+id/txTitle"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
+            android:textSize="20dp"
             android:textColor="@android:color/black" />
         <LinearLayout
             android:layout_width="match_parent"
@@ -43,7 +44,7 @@
             android:gravity="center_vertical">
             <TextView
                 android:id="@+id/txPrice"
-                android:layout_width="120dp"
+                android:layout_width="100dp"
                 android:layout_height="30dp"
                 android:gravity="center_vertical"
                 android:textColor="@android:color/holo_red_dark" />
@@ -58,7 +59,7 @@
 
             <TextView
                 android:id="@+id/txNum"
-                android:layout_width="40dp"
+                android:layout_width="35dp"
                 android:layout_height="30dp"
                 android:background="@drawable/border_text"
                 android:gravity="center"
