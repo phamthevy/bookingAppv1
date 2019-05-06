@@ -13,7 +13,6 @@ public class InCartProduct {
         this.num = num;
     }
 
-
     public Product getProduct() {
         return product;
     }
