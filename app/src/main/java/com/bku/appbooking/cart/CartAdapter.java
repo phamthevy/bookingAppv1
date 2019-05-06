@@ -104,6 +104,7 @@ public class CartAdapter  extends BaseAdapter {
                 num += 1;
                 holder.txNum.setText(String.valueOf(String.valueOf(num)));
                 holder.btnSub.setEnabled(true);
+                inCartProductList.get(position).setNum(num);
             }
         });
         return convertView;

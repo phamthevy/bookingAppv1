@@ -25,26 +25,45 @@ import java.util.List;
 
 public class CartFragment extends Fragment {
     private CartAdapter myCartAdapter;
-    Button btnOrder;
+    Button btnOrder, btnSumPrice;
     TextView txPrice;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Log.e(this.getClass().getName(), "onCreateView");
         View view = inflater.inflate(R.layout.fragment_cart, container, false);
+        txPrice =  view.findViewById(R.id.txPrice);
+
+        btnOrder = view.findViewById(R.id.btnOrder);
+        btnSumPrice = view.findViewById(R.id.btnSumPrice);
         final List<InCartProduct> inCartProductList = getListCartData();
+        txPrice.setText(getPrice(inCartProductList));
         final ListView listView = (ListView)view.findViewById(R.id.listCart);
         myCartAdapter = new CartAdapter(getContext(), inCartProductList);
         myCartAdapter.notifyDataSetChanged();
         listView.setAdapter(myCartAdapter);
-        txPrice =  view.findViewById(R.id.txPrice);
-        txPrice.setText(getPrice(inCartProductList));
-        btnOrder = view.findViewById(R.id.btnOrder);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                CheckBox cb = (CheckBox) view.findViewById(R.id.btnCart);
+                if (cb.isChecked()) {
+                    txPrice.setText(getPrice(inCartProductList));
+                }
+
+            }
+        });
+        btnSumPrice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                txPrice.setText(getPrice(inCartProductList));
+            }
+        });
+
         btnOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String price = getPrice(inCartProductList);
-                Toast.makeText(getContext(), price, Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "Invalid", Toast.LENGTH_LONG).show();
 
             }
         });
