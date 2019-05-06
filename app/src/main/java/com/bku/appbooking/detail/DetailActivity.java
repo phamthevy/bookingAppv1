@@ -63,7 +63,7 @@ public class DetailActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         final int numberProduct = Integer.valueOf(edtNum.getText().toString());
                         if (numberProduct != 0){
-                            Cart.getInstance().addProduct(new InCartProduct(product, numberProduct));
+                            Cart.getInstance().addProduct(new InCartProduct(product, numberProduct,false));
                             dialog.dismiss();
                             Toast.makeText(DetailActivity.this, "Add thanh cong", Toast.LENGTH_LONG).show();
                         }

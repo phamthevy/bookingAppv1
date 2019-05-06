@@ -43,8 +43,12 @@ public class CartAdapter  extends BaseAdapter {
         return position;
     }
 
+    public boolean isChecked(int position) {
+        return inCartProductList.get(position).isChecked();
+    }
+
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
 
         final ViewHolder holder;
 
@@ -64,22 +68,31 @@ public class CartAdapter  extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        InCartProduct inCartProduct = this.inCartProductList.get(position);
+        final InCartProduct inCartProduct = this.inCartProductList.get(position);
         holder.txTitle.setText(inCartProduct.getProduct().getTitle());
         holder.txPrice.setText(inCartProduct.getProduct().getPrice());
         holder.txShortDes.setText(inCartProduct.getProduct().getShortDescription());
         holder.txNum.setText(String.valueOf(inCartProduct.getNum()));
         Picasso.with(context).load(inCartProduct.getProduct().getImageUrl()).into(holder.imImage);
+        holder.btnCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean newState = !inCartProductList.get(position).isChecked();
+                inCartProductList.get(position).setChecked(newState);
+            }
+        });
         holder.btnSub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int num = Integer.valueOf((String) holder.txNum.getText());
                 if (num==1){
                     holder.btnSub.setEnabled(false);
+                    inCartProductList.get(position).setNum(num);
                 }
                 else {
                     num -= 1;
                     holder.txNum.setText(String.valueOf(String.valueOf(num)));
+                    inCartProductList.get(position).setNum(num);
                 }
 
             }
