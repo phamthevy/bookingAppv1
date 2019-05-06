@@ -26,8 +26,7 @@ public class InCartProduct {
     public boolean isChecked() {
         return checked;
     }
-
-
+    
     public Product getProduct() {
         return product;
     }
