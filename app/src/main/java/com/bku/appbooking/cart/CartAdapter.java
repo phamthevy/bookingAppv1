@@ -34,9 +34,6 @@ public class CartAdapter  extends BaseAdapter {
         layoutInflater =  LayoutInflater.from(context);
     }
 
-
-
-
     @Override
     public int getCount() {
         return inCartProductList.size();

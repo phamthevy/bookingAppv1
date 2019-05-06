@@ -34,13 +34,4 @@ public class InCartProduct {
     public boolean isChecked() {
         return checked;
     }
-
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public int getNum() {
-        return num;
-    }
 }
