@@ -5,13 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".category.CategoryActivity"
+    android:padding="5dp"
     android:orientation="vertical">
 
     <ImageView
         android:id="@+id/category_demo_img"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        app:srcCompat="@drawable/cat_img" />
+        android:layout_height="200dp"
+        android:scaleType="fitXY"/>
 
     <GridView
         android:id="@+id/gridview"
