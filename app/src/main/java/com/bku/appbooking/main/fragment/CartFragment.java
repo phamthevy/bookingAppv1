@@ -149,24 +149,26 @@ public class CartFragment extends Fragment {
                 dialog.setContentView(R.layout.dialog_order);
                 dialog.setTitle("Xac nhan");
                 dialog.setCanceledOnTouchOutside(false);
-                edtNum = (EditText) dialog.findViewById(R.id.edtNumProduct);
-                Button btnCancel = (Button) dialog.findViewById(R.id.btnCancalAddProduct);
+                edtNum = (EditText) dialog.findViewById(R.id.edtName);
+                Button btnCancel = (Button) dialog.findViewById(R.id.btnCancelOrder);
                 btnCancel.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         dialog.dismiss();
                     }
                 });
-                Button btnConfirm = (Button) dialog.findViewById(R.id.btnConfirmAddProduct);
+                Button btnConfirm = (Button) dialog.findViewById(R.id.btnConfirmOrder);
                 btnConfirm.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        final int numberProduct = Integer.valueOf(edtNum.getText().toString());
-                        if (numberProduct != 0){
-                            Cart.getInstance().addProduct(new InCartProduct(product, numberProduct,false));
-                            dialog.dismiss();
-                            Toast.makeText(getContext(), "Add thanh cong", Toast.LENGTH_LONG).show();
-                        }
+//                        final int numberProduct = Integer.valueOf(edtNum.getText().toString());
+//                        if (numberProduct != 0){
+//                            Cart.getInstance().addProduct(new InCartProduct(product, numberProduct,false));
+//                            dialog.dismiss();
+//                            Toast.makeText(getContext(), "Add thanh cong", Toast.LENGTH_LONG).show();
+//                        }
+                        Toast.makeText(getContext(), "Add thanh cong", Toast.LENGTH_LONG).show();
+
                     }
                 });
                 dialog.show();
