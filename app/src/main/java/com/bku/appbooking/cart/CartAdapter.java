@@ -1,6 +1,7 @@
 package com.bku.appbooking.cart;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 
 import com.bku.appbooking.R;
 import com.bku.appbooking.common.InCartProduct;
+import com.bku.appbooking.main.fragment.CartFragment;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -75,13 +77,13 @@ public class CartAdapter  extends BaseAdapter {
         holder.txNum.setText(String.valueOf(inCartProduct.getNum()));
         Picasso.with(context).load(inCartProduct.getProduct().getImageUrl()).into(holder.imImage);
         holder.btnCart.setChecked(inCartProduct.isChecked());
-        holder.btnCart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                boolean newState = !inCartProductList.get(position).isChecked();
-                inCartProductList.get(position).setChecked(newState);
-            }
-        });
+//        holder.btnCart.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                boolean newState = !inCartProductList.get(position).isChecked();
+//                inCartProductList.get(position).setChecked(newState);
+//            }
+//        });
         holder.btnSub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -51,7 +51,7 @@ public class CartFragment extends Fragment {
         txDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(checkSelectCheckBox(inCartProductList)){
+                if(isCheckSelectCheckBox(inCartProductList)){
                     new AlertDialog.Builder(getContext())
                             .setTitle("Xóa danh mục")
                             .setMessage("Bạn chắc chắn xóa danh mục này?")
@@ -155,13 +155,12 @@ public class CartFragment extends Fragment {
 
         return inCartProductList;
     }
-    private String getPrice(List<InCartProduct> inCartProductList){
+    public String getPrice(List<InCartProduct> inCartProductList){
         long price =0;
         for (int i=0; i<inCartProductList.size(); i++){
             if (inCartProductList.get(i).isChecked()){
                 String strPrice = inCartProductList.get(i).getProduct().getPrice();
-                int num = inCartProductList.get(i).getNum();
-                Log.e("num: ",String.valueOf(num));
+                int num = inCartProductList.get(i).getNum();;
                 price += (Long.valueOf(strPrice)* num);
             }
 
@@ -181,7 +180,7 @@ public class CartFragment extends Fragment {
         }
         myCartAdapter.notifyDataSetChanged();
     }
-    private  boolean checkSelectCheckBox(List<InCartProduct> inCartProductList){
+    private  boolean isCheckSelectCheckBox(List<InCartProduct> inCartProductList){
         for (int i=0; i<inCartProductList.size(); i++){
             if (inCartProductList.get(i).isChecked()){
                 return true;
