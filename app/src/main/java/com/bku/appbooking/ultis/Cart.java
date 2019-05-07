@@ -23,6 +23,8 @@ public class Cart {
         products.add(product);
     }
 
+
+
     public List<InCartProduct> getProducts(){
         return products;
     }

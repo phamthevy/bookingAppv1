@@ -1,6 +1,7 @@
 package com.bku.appbooking.cart;
 
 import android.content.Context;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,12 +24,18 @@ public class CartAdapter  extends BaseAdapter {
     private List<InCartProduct> inCartProductList;
     private Context context;
     private LayoutInflater layoutInflater;
+    private CartFragment fragment;
 
-    public CartAdapter(Context context, List<InCartProduct>inCartProductList){
+
+    public CartAdapter(CartFragment fragment, Context context, List<InCartProduct>inCartProductList){
+        this.fragment = fragment;
         this.context =  context;
         this.inCartProductList = inCartProductList;
         layoutInflater =  LayoutInflater.from(context);
     }
+
+
+
 
     @Override
     public int getCount() {
@@ -97,7 +104,7 @@ public class CartAdapter  extends BaseAdapter {
                     holder.txNum.setText(String.valueOf(String.valueOf(num)));
                     inCartProductList.get(position).setNum(num);
                 }
-
+                fragment.getPrice();
             }
         });
         holder.btnAdd.setOnClickListener(new View.OnClickListener() {
@@ -108,6 +115,7 @@ public class CartAdapter  extends BaseAdapter {
                 holder.txNum.setText(String.valueOf(String.valueOf(num)));
                 holder.btnSub.setEnabled(true);
                 inCartProductList.get(position).setNum(num);
+                fragment.getPrice();
             }
         });
         return convertView;

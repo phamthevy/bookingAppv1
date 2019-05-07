@@ -1,6 +1,7 @@
 package com.bku.appbooking.main.fragment;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -21,15 +23,22 @@ import com.bku.appbooking.R;
 import com.bku.appbooking.cart.CartAdapter;
 import com.bku.appbooking.common.InCartProduct;
 import com.bku.appbooking.common.Product;
+import com.bku.appbooking.detail.DetailActivity;
+import com.bku.appbooking.ultis.Cart;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CartFragment extends Fragment {
     private CartAdapter myCartAdapter;
-    Button btnOrder, btnSumPrice;
+    Button btnOrder;
     CheckBox btnAllCheck;
     TextView txPrice, txDelete, txMyCart;
+    String productId;
+    Product product;
+    EditText edtNum;
+    List<InCartProduct> inCartProductList;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -39,12 +48,12 @@ public class CartFragment extends Fragment {
         txDelete =  view.findViewById(R.id.txDelete);
         txMyCart =  view.findViewById(R.id.txMyCart);
         btnOrder = view.findViewById(R.id.btnOrder);
-        btnSumPrice = view.findViewById(R.id.btnSumPrice);
         btnAllCheck = view.findViewById(R.id.btnAllCheck);
-        final List<InCartProduct> inCartProductList = getListCartData();
-        txPrice.setText(getPrice(inCartProductList));
+        inCartProductList = getListCartData();
+//        final List<InCartProduct> inCartProductList = getListCartData();
+        getPrice();
         final ListView listView = (ListView)view.findViewById(R.id.listCart);
-        myCartAdapter = new CartAdapter(getContext(), inCartProductList);
+        myCartAdapter = new CartAdapter(this, getContext(), inCartProductList);
         myCartAdapter.notifyDataSetChanged();
         listView.setAdapter(myCartAdapter);
         txMyCart.setText("Giỏ hàng của tôi("+String.valueOf(inCartProductList.size())+")");
@@ -85,13 +94,13 @@ public class CartFragment extends Fragment {
                     boolean newState = !inCartProductList.get(position).isChecked();
                     inCartProductList.get(position).setChecked(newState);
                     cb.setChecked(newState);
-                    txPrice.setText(getPrice(inCartProductList));
+                    getPrice();
                 }
                 else {
                     boolean newState = !inCartProductList.get(position).isChecked();
                     inCartProductList.get(position).setChecked(newState);
                     cb.setChecked(newState);
-                    txPrice.setText(getPrice(inCartProductList));
+                    getPrice();
 
 
                 }
@@ -106,30 +115,48 @@ public class CartFragment extends Fragment {
                     if (btnAllCheck.isChecked()) {
                         inCartProductList.get(i).setChecked(true);
                         myCartAdapter.notifyDataSetChanged();
-                        txPrice.setText(getPrice(inCartProductList));
+                       getPrice();
                     }
                     else {
                         inCartProductList.get(i).setChecked(false);
                         myCartAdapter.notifyDataSetChanged();
-                        txPrice.setText(getPrice(inCartProductList));
+                        getPrice();
                     }
                 }
             }
 
 
         });
-        btnSumPrice.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                txPrice.setText(getPrice(inCartProductList));
-            }
-        });
 
         btnOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(getContext(), "Invalid", Toast.LENGTH_LONG).show();
+                final Dialog dialog = new Dialog(getContext());
+                dialog.setContentView(R.layout.dialog_order);
+                dialog.setTitle("Xac nhan");
+                dialog.setCanceledOnTouchOutside(false);
+                edtNum = (EditText) dialog.findViewById(R.id.edtNumProduct);
+                Button btnCancel = (Button) dialog.findViewById(R.id.btnCancalAddProduct);
+                btnCancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+                Button btnConfirm = (Button) dialog.findViewById(R.id.btnConfirmAddProduct);
+                btnConfirm.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        final int numberProduct = Integer.valueOf(edtNum.getText().toString());
+                        if (numberProduct != 0){
+                            Cart.getInstance().addProduct(new InCartProduct(product, numberProduct,false));
+                            dialog.dismiss();
+                            Toast.makeText(getContext(), "Add thanh cong", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+                dialog.show();
             }
         });
 
@@ -141,7 +168,8 @@ public class CartFragment extends Fragment {
         return view;
     }
     private  List<InCartProduct> getListCartData() {
-        List<InCartProduct> inCartProductList = new ArrayList<InCartProduct>();
+
+        List<InCartProduct> inCartProductList = new ArrayList<InCartProduct>();//Cart.getInstance().getProducts();
         InCartProduct product1 = new InCartProduct(new Product(11, "title1","100000000","https://style.vihey.com/uploads/product/4.jpg","shortDescription1", "longDescription"),11,true);
         InCartProduct product2 = new InCartProduct(new Product(22, "title2","200000","https://style.vihey.com/uploads/product/4.jpg","shortDescription2", "longDescription2"),12,false);
         InCartProduct product3 = new InCartProduct(new Product(33, "title3","300000","https://style.vihey.com/uploads/product/4.jpg","shortDescription3", "longDescription3"),13,false);
@@ -153,9 +181,10 @@ public class CartFragment extends Fragment {
         inCartProductList.add(product4);
 
 
+
         return inCartProductList;
     }
-    public String getPrice(List<InCartProduct> inCartProductList){
+    public void  getPrice(){
         long price =0;
         for (int i=0; i<inCartProductList.size(); i++){
             if (inCartProductList.get(i).isChecked()){
@@ -165,7 +194,7 @@ public class CartFragment extends Fragment {
             }
 
         }
-        return String.valueOf(price+" VND");
+        txPrice.setText(String.valueOf(price+" VND"));
     }
     private void ChangeInCartProductList(List<InCartProduct> inCartProductList){
         int i = 0;
