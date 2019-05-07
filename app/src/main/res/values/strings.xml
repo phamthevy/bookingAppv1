@@ -5,4 +5,6 @@
     <string name="textSizeSmall">10sp</string>
     <string name="textSizeMedium">12sp</string>
     <string name="textSizeLarge">14sp</string>
+    <string name="yes">Đồng ý</string>
+    <string name="no">Hủy</string>
 </resources>

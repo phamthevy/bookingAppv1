@@ -1,5 +1,7 @@
 package com.bku.appbooking.main.fragment;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -27,14 +29,15 @@ public class CartFragment extends Fragment {
     private CartAdapter myCartAdapter;
     Button btnOrder, btnSumPrice;
     CheckBox btnAllCheck;
-    TextView txPrice;
+    TextView txPrice, txDelete, txMyCart;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Log.e(this.getClass().getName(), "onCreateView");
         View view = inflater.inflate(R.layout.fragment_cart, container, false);
         txPrice =  view.findViewById(R.id.txPrice);
-
+        txDelete =  view.findViewById(R.id.txDelete);
+        txMyCart =  view.findViewById(R.id.txMyCart);
         btnOrder = view.findViewById(R.id.btnOrder);
         btnSumPrice = view.findViewById(R.id.btnSumPrice);
         btnAllCheck = view.findViewById(R.id.btnAllCheck);
@@ -44,6 +47,35 @@ public class CartFragment extends Fragment {
         myCartAdapter = new CartAdapter(getContext(), inCartProductList);
         myCartAdapter.notifyDataSetChanged();
         listView.setAdapter(myCartAdapter);
+        txMyCart.setText("Giỏ hàng của tôi("+String.valueOf(inCartProductList.size())+")");
+        txDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(checkSelectCheckBox(inCartProductList)){
+                    new AlertDialog.Builder(getContext())
+                            .setTitle("Xóa danh mục")
+                            .setMessage("Bạn chắc chắn xóa danh mục này?")
+                            .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    ChangeInCartProductList(inCartProductList);
+                                    txMyCart.setText("Giỏ hàng của tôi("+String.valueOf(inCartProductList.size())+")");
+                                }
+                            })
+
+                            // A null listener allows the button to dismiss the dialog and take no further action.
+                            .setNegativeButton(R.string.no, null)
+                            .setIcon(R.drawable.icon_warning)
+                            .show();
+                }
+                else {
+                    new AlertDialog.Builder(getContext())
+                            .setMessage("Vui lòng chọn danh mục cần xóa?")
+                            .setPositiveButton(R.string.yes, null)
+                            .show();
+                }
+                }
+
+        });
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -96,8 +128,8 @@ public class CartFragment extends Fragment {
         btnOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "Invalid", Toast.LENGTH_LONG).show();
 
+                Toast.makeText(getContext(), "Invalid", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -135,5 +167,28 @@ public class CartFragment extends Fragment {
 
         }
         return String.valueOf(price+" VND");
+    }
+    private void ChangeInCartProductList(List<InCartProduct> inCartProductList){
+        int i = 0;
+        while (i < inCartProductList.size()){
+            if (inCartProductList.get(i).isChecked()){
+                inCartProductList.remove(i);
+                i = 0;
+            }
+            else {
+                i += 1;
+            }
+        }
+        myCartAdapter.notifyDataSetChanged();
+    }
+    private  boolean checkSelectCheckBox(List<InCartProduct> inCartProductList){
+        for (int i=0; i<inCartProductList.size(); i++){
+            if (inCartProductList.get(i).isChecked()){
+                return true;
+
+            }
+
+        }
+        return false;
     }
 }
