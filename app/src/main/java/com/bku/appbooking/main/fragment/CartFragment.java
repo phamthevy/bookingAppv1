@@ -33,10 +33,8 @@ public class CartFragment extends Fragment {
     private CartAdapter myCartAdapter;
     Button btnOrder;
     CheckBox btnAllCheck;
-    TextView txPrice, txDelete, txMyCart;
-    String productId;
-    Product product;
-    EditText edtNum;
+    TextView txPrice, txDelete, txMyCart,txSumPrice;
+    EditText edtName, edtPhone, edtAddress, edtEmail;
     List<InCartProduct> inCartProductList;
 
     @Nullable
@@ -144,34 +142,73 @@ public class CartFragment extends Fragment {
         btnOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(isCheckSelectCheckBox()){
+                    final Dialog dialog = new Dialog(getContext());
+                    dialog.setContentView(R.layout.dialog_order);
+                    dialog.setCanceledOnTouchOutside(false);
+                    edtName = (EditText) dialog.findViewById(R.id.edtName);
+                    edtPhone = (EditText) dialog.findViewById(R.id.edtPhone);
+                    edtEmail = (EditText) dialog.findViewById(R.id.edtEmail);
+                    edtAddress = (EditText) dialog.findViewById(R.id.edtAddress);
+                    txSumPrice = (TextView)dialog.findViewById(R.id.txSumPrice) ;
 
-                final Dialog dialog = new Dialog(getContext());
-                dialog.setContentView(R.layout.dialog_order);
-                dialog.setTitle("Xac nhan");
-                dialog.setCanceledOnTouchOutside(false);
-                edtNum = (EditText) dialog.findViewById(R.id.edtName);
-                Button btnCancel = (Button) dialog.findViewById(R.id.btnCancelOrder);
-                btnCancel.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        dialog.dismiss();
-                    }
-                });
-                Button btnConfirm = (Button) dialog.findViewById(R.id.btnConfirmOrder);
-                btnConfirm.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-//                        final int numberProduct = Integer.valueOf(edtNum.getText().toString());
-//                        if (numberProduct != 0){
-//                            Cart.getInstance().addProduct(new InCartProduct(product, numberProduct,false));
-//                            dialog.dismiss();
-//                            Toast.makeText(getContext(), "Add thanh cong", Toast.LENGTH_LONG).show();
-//                        }
-                        Toast.makeText(getContext(), "Add thanh cong", Toast.LENGTH_LONG).show();
 
-                    }
-                });
-                dialog.show();
+                    txSumPrice.setText(txPrice.getText().toString());
+                    Button btnCancel = (Button) dialog.findViewById(R.id.btnCancelOrder);
+                    btnCancel.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                        }
+                    });
+                    final Button btnConfirm = (Button) dialog.findViewById(R.id.btnConfirmOrder);
+                    btnConfirm.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                        final String name = edtName.getText().toString();
+                        final String phone = edtPhone.getText().toString();
+                        final String email = edtEmail.getText().toString();
+                        final String address = edtAddress.getText().toString();
+
+                        if (name.equals(null) || name.equals("") ){
+
+                            Toast.makeText(getContext(), "Empty Name", Toast.LENGTH_SHORT).show();
+                        }
+                        else if (phone.equals(null) || phone.equals("") ){
+
+                                Toast.makeText(getContext(), "Empty Phone", Toast.LENGTH_SHORT).show();
+
+                            }
+                        else if(phone.length()<9 || phone.length()>11 ){
+                            Toast.makeText(getContext(), " Invalid Phone", Toast.LENGTH_SHORT).show();
+                        }
+                        else if (email.equals(null) || email.equals("") ){
+
+                            Toast.makeText(getContext(), "Empty Email", Toast.LENGTH_SHORT).show();
+
+                        }
+                        else if (address.equals(null) || address.equals("") ){
+
+                            Toast.makeText(getContext(), "Empty Address", Toast.LENGTH_SHORT).show();
+
+                        }
+                        else {
+                            Toast.makeText(getContext(), "Add thanh cong", Toast.LENGTH_SHORT).show();
+                        }
+
+
+                        }
+                    });
+                    dialog.show();
+                }
+                else {
+                    new AlertDialog.Builder(getContext())
+                            .setMessage("Vui lòng chọn danh mục cần đặt hàng?")
+                            .setPositiveButton(R.string.yes, null)
+                            .show();
+                }
+
+
             }
         });
 
