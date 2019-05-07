@@ -60,7 +60,7 @@ public class CartFragment extends Fragment {
         txDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(isCheckSelectCheckBox(inCartProductList)){
+                if(isCheckSelectCheckBox()){
                     new AlertDialog.Builder(getContext())
                             .setTitle("Xóa danh mục")
                             .setMessage("Bạn chắc chắn xóa danh mục này?")
@@ -90,16 +90,29 @@ public class CartFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 CheckBox cb = (CheckBox) view.findViewById(R.id.btnCart);
+
                 if (cb.isChecked()) {
                     boolean newState = !inCartProductList.get(position).isChecked();
                     inCartProductList.get(position).setChecked(newState);
                     cb.setChecked(newState);
+                    if(notSelectAllCheckBox()){
+                        btnAllCheck.setChecked(false);
+                    }
+                    else {
+                        btnAllCheck.setChecked(true);
+                    }
                     getPrice();
                 }
                 else {
                     boolean newState = !inCartProductList.get(position).isChecked();
                     inCartProductList.get(position).setChecked(newState);
                     cb.setChecked(newState);
+                    if(notSelectAllCheckBox()){
+                        btnAllCheck.setChecked(false);
+                    }
+                    else {
+                        btnAllCheck.setChecked(true);
+                    }
                     getPrice();
 
 
@@ -170,7 +183,7 @@ public class CartFragment extends Fragment {
     private  List<InCartProduct> getListCartData() {
 
         List<InCartProduct> inCartProductList = new ArrayList<InCartProduct>();//Cart.getInstance().getProducts();
-        InCartProduct product1 = new InCartProduct(new Product(11, "title1","100000000","https://style.vihey.com/uploads/product/4.jpg","shortDescription1", "longDescription"),11,true);
+        InCartProduct product1 = new InCartProduct(new Product(11, "title1","100000000","https://style.vihey.com/uploads/product/4.jpg","shortDescription1", "longDescription"),11,false);
         InCartProduct product2 = new InCartProduct(new Product(22, "title2","200000","https://style.vihey.com/uploads/product/4.jpg","shortDescription2", "longDescription2"),12,false);
         InCartProduct product3 = new InCartProduct(new Product(33, "title3","300000","https://style.vihey.com/uploads/product/4.jpg","shortDescription3", "longDescription3"),13,false);
         InCartProduct product4 = new InCartProduct(new Product(44, "title4","400000","https://style.vihey.com/uploads/product/4.jpg","shortDescription4", "longDescription4"),14,false);
@@ -209,9 +222,19 @@ public class CartFragment extends Fragment {
         }
         myCartAdapter.notifyDataSetChanged();
     }
-    private  boolean isCheckSelectCheckBox(List<InCartProduct> inCartProductList){
+    private  boolean isCheckSelectCheckBox(){
         for (int i=0; i<inCartProductList.size(); i++){
             if (inCartProductList.get(i).isChecked()){
+                return true;
+
+            }
+
+        }
+        return false;
+    }
+    private  boolean notSelectAllCheckBox(){
+        for (int i=0; i<inCartProductList.size(); i++){
+            if (!(inCartProductList.get(i).isChecked())){
                 return true;
 
             }
