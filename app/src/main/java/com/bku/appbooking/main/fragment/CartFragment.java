@@ -19,15 +19,49 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.bku.appbooking.R;
 import com.bku.appbooking.cart.CartAdapter;
+import com.bku.appbooking.category.CategoryDataReceiver;
 import com.bku.appbooking.common.InCartProduct;
 import com.bku.appbooking.common.Product;
 import com.bku.appbooking.detail.DetailActivity;
 import com.bku.appbooking.ultis.Cart;
+import com.bku.appbooking.ultis.CentralRequestQueue;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+
+import javax.net.ssl.HttpsURLConnection;
 
 public class CartFragment extends Fragment {
     private CartAdapter myCartAdapter;
@@ -36,6 +70,9 @@ public class CartFragment extends Fragment {
     TextView txPrice, txDelete, txMyCart,txSumPrice;
     EditText edtName, edtPhone, edtAddress, edtEmail;
     List<InCartProduct> inCartProductList;
+    private long lastRequestTime = 0;
+    private CentralRequestQueue rQueue = CentralRequestQueue.getInstance();
+    private int status = 0;
 
     @Nullable
     @Override
@@ -169,32 +206,39 @@ public class CartFragment extends Fragment {
                         final String phone = edtPhone.getText().toString();
                         final String email = edtEmail.getText().toString();
                         final String address = edtAddress.getText().toString();
+//                        if (name.equals(null) || name.equals("") ){
+//
+//                            Toast.makeText(getContext(), "Empty Name", Toast.LENGTH_SHORT).show();
+//                        }
+//                        else if (phone.equals(null) || phone.equals("") ){
+//
+//                                Toast.makeText(getContext(), "Empty Phone", Toast.LENGTH_SHORT).show();
+//
+//                            }
+//                        else if(phone.length()<9 || phone.length()>11 ){
+//                            Toast.makeText(getContext(), " Invalid Phone", Toast.LENGTH_SHORT).show();
+//                        }
+//                        else if (email.equals(null) || email.equals("") ){
+//
+//                            Toast.makeText(getContext(), "Empty Email", Toast.LENGTH_SHORT).show();
+//
+//                        }
+//                        else if (address.equals(null) || address.equals("") ){
+//
+//                            Toast.makeText(getContext(), "Empty Address", Toast.LENGTH_SHORT).show();
+//
+//                        }
+//                        else {
 
-                        if (name.equals(null) || name.equals("") ){
+                            String urlString = "http://booking.vihey.com/api/booking.php";
+                            int sub = submitRequestOrder(urlString,"Pham The Vy","0123456789","vy@gmail.com","BKU","khong co","1511111","21");
+                            //Log.e("Status: ",String.valueOf(sub));
 
-                            Toast.makeText(getContext(), "Empty Name", Toast.LENGTH_SHORT).show();
-                        }
-                        else if (phone.equals(null) || phone.equals("") ){
 
-                                Toast.makeText(getContext(), "Empty Phone", Toast.LENGTH_SHORT).show();
 
-                            }
-                        else if(phone.length()<9 || phone.length()>11 ){
-                            Toast.makeText(getContext(), " Invalid Phone", Toast.LENGTH_SHORT).show();
-                        }
-                        else if (email.equals(null) || email.equals("") ){
+                            //}
 
-                            Toast.makeText(getContext(), "Empty Email", Toast.LENGTH_SHORT).show();
 
-                        }
-                        else if (address.equals(null) || address.equals("") ){
-
-                            Toast.makeText(getContext(), "Empty Address", Toast.LENGTH_SHORT).show();
-
-                        }
-                        else {
-                            Toast.makeText(getContext(), "Add thanh cong", Toast.LENGTH_SHORT).show();
-                        }
 
 
                         }
@@ -281,4 +325,45 @@ public class CartFragment extends Fragment {
         }
         return false;
     }
+    private int submitRequestOrder(final String url, final String name, final String sdt, final String email, final String diachi, final String ghichu, final String soluong, final String productid){
+        StringRequest MyStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.e("Response: ", response);
+                try {
+                    response=new String(response.getBytes("ISO-8859-1"), "UTF-8");
+                    JSONObject object = new JSONObject(response);
+                    status = object.optInt("status");
+                } catch (Exception e) {
+
+                }
+
+
+            }
+        }, new Response.ErrorListener() { //Create an error listener to handle errors appropriately.
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //This code is executed if there is an error.
+            }
+        }) {
+            protected Map<String, String> getParams() {
+                Map<String, String> MyData = new HashMap<String, String>();
+                MyData.put("name", name);
+                MyData.put("sdt", sdt);
+                MyData.put("email", email);
+                MyData.put("diachi", diachi);
+                MyData.put("ghichu", ghichu);
+                MyData.put("soluong", soluong);
+                MyData.put("productid", productid);
+                return MyData;
+            }
+
+        };
+        
+        rQueue.add(MyStringRequest);
+        Log.e("Status: ",String.valueOf(status));
+        return status;
+    }
+
+
 }
