@@ -2,6 +2,7 @@ package com.bku.appbooking.main.fragment;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -68,11 +69,10 @@ public class CartFragment extends Fragment {
     Button btnOrder;
     CheckBox btnAllCheck;
     TextView txPrice, txDelete, txMyCart,txSumPrice;
-    EditText edtName, edtPhone, edtAddress, edtEmail;
+    EditText edtName, edtPhone, edtAddress, edtEmail, edtNote;
     List<InCartProduct> inCartProductList;
     private long lastRequestTime = 0;
     private CentralRequestQueue rQueue = CentralRequestQueue.getInstance();
-    private int status = 0;
 
     @Nullable
     @Override
@@ -187,6 +187,7 @@ public class CartFragment extends Fragment {
                     edtPhone = (EditText) dialog.findViewById(R.id.edtPhone);
                     edtEmail = (EditText) dialog.findViewById(R.id.edtEmail);
                     edtAddress = (EditText) dialog.findViewById(R.id.edtAddress);
+                    edtNote = (EditText) dialog.findViewById(R.id.edtNote);
                     txSumPrice = (TextView)dialog.findViewById(R.id.txSumPrice) ;
 
 
@@ -206,37 +207,57 @@ public class CartFragment extends Fragment {
                         final String phone = edtPhone.getText().toString();
                         final String email = edtEmail.getText().toString();
                         final String address = edtAddress.getText().toString();
-//                        if (name.equals(null) || name.equals("") ){
-//
-//                            Toast.makeText(getContext(), "Empty Name", Toast.LENGTH_SHORT).show();
-//                        }
-//                        else if (phone.equals(null) || phone.equals("") ){
-//
-//                                Toast.makeText(getContext(), "Empty Phone", Toast.LENGTH_SHORT).show();
-//
-//                            }
-//                        else if(phone.length()<9 || phone.length()>11 ){
-//                            Toast.makeText(getContext(), " Invalid Phone", Toast.LENGTH_SHORT).show();
-//                        }
-//                        else if (email.equals(null) || email.equals("") ){
-//
-//                            Toast.makeText(getContext(), "Empty Email", Toast.LENGTH_SHORT).show();
-//
-//                        }
-//                        else if (address.equals(null) || address.equals("") ){
-//
-//                            Toast.makeText(getContext(), "Empty Address", Toast.LENGTH_SHORT).show();
-//
-//                        }
-//                        else {
+                        final String note = edtNote.getText().toString();
+                        if (name.equals(null) || name.equals("") ){
+
+                            Toast.makeText(getContext(), "Empty Name", Toast.LENGTH_SHORT).show();
+                        }
+                        else if (phone.equals(null) || phone.equals("") ){
+
+                                Toast.makeText(getContext(), "Empty Phone", Toast.LENGTH_SHORT).show();
+
+                            }
+                        else if(phone.length()<9 || phone.length()>11 ){
+                            Toast.makeText(getContext(), " Invalid Phone", Toast.LENGTH_SHORT).show();
+                        }
+                        else if (email.equals(null) || email.equals("") ){
+
+                            Toast.makeText(getContext(), "Empty Email", Toast.LENGTH_SHORT).show();
+
+                        }
+                        else if (address.equals(null) || address.equals("") ){
+
+                            Toast.makeText(getContext(), "Empty Address", Toast.LENGTH_SHORT).show();
+
+                        }
+                        else {
 
                             String urlString = "http://booking.vihey.com/api/booking.php";
-                            int sub = submitRequestOrder(urlString,"Pham The Vy","0123456789","vy@gmail.com","BKU","khong co","1511111","21");
+                            int countCartSelect= 0;
+                            int currentCartSelect = getSelectCart();
+                            dialog.dismiss();
+                            ProgressDialog progress = new ProgressDialog(getContext());
+                            progress.setTitle("Đang thực hiện");
+                            progress.setMessage("Vui lòng đợi trong giây lát...");
+                            progress.setCancelable(false); // disable dismiss by tapping outside of the dialog
+                            progress.show();
+
+                            for (int i=0; i<inCartProductList.size(); i++){
+                                if (inCartProductList.get(i).isChecked()){
+                                    countCartSelect++;
+                                    String num = String.valueOf(inCartProductList.get(i).getNum());
+                                    String id = String.valueOf(inCartProductList.get(i).getProduct().getId());
+                                    submitRequestOrder(progress,countCartSelect, currentCartSelect,urlString,name,phone,email,address,note,num,id);
+
+                                }
+
+                            }
+
                             //Log.e("Status: ",String.valueOf(sub));
 
 
 
-                            //}
+                            }
 
 
 
@@ -292,6 +313,16 @@ public class CartFragment extends Fragment {
         }
         txPrice.setText(String.valueOf(price+" VND"));
     }
+    private int  getSelectCart(){
+        int count = 0;
+        for (int i=0; i<inCartProductList.size(); i++){
+            if (inCartProductList.get(i).isChecked()){
+                count++;
+            }
+
+        }
+       return count;
+    }
     private void ChangeInCartProductList(List<InCartProduct> inCartProductList){
         int i = 0;
         while (i < inCartProductList.size()){
@@ -325,7 +356,7 @@ public class CartFragment extends Fragment {
         }
         return false;
     }
-    private int submitRequestOrder(final String url, final String name, final String sdt, final String email, final String diachi, final String ghichu, final String soluong, final String productid){
+    private void submitRequestOrder(final ProgressDialog progress,final int countSelectCart, final int currentSelectCart, final String url, final String name, final String sdt, final String email, final String diachi, final String ghichu, final String soluong, final String productid){
         StringRequest MyStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -333,7 +364,28 @@ public class CartFragment extends Fragment {
                 try {
                     response=new String(response.getBytes("ISO-8859-1"), "UTF-8");
                     JSONObject object = new JSONObject(response);
-                    status = object.optInt("status");
+                    int status = object.optInt("status");
+                    if(status == 1 && countSelectCart == currentSelectCart){
+                        progress.dismiss();
+                        new AlertDialog.Builder(getContext())
+                                .setMessage("Đặt hàng thành công")
+                                .setPositiveButton(R.string.yes, null)
+                                .show();
+                        ChangeInCartProductList(inCartProductList);
+                        txMyCart.setText("Giỏ hàng của tôi("+String.valueOf(inCartProductList.size())+")");
+                        getPrice();
+                        btnAllCheck.setChecked(false);
+
+                    }
+                    else if(status == 0){
+                        new AlertDialog.Builder(getContext())
+                                .setMessage("Đặt hàng không thành công")
+                                .setPositiveButton(R.string.yes, null)
+                                .show();
+
+
+                    }
+
                 } catch (Exception e) {
 
                 }
@@ -343,7 +395,10 @@ public class CartFragment extends Fragment {
         }, new Response.ErrorListener() { //Create an error listener to handle errors appropriately.
             @Override
             public void onErrorResponse(VolleyError error) {
-                //This code is executed if there is an error.
+                new AlertDialog.Builder(getContext())
+                        .setMessage("Không thể thực hiện đặt hàng")
+                        .setPositiveButton(R.string.yes, null)
+                        .show();
             }
         }) {
             protected Map<String, String> getParams() {
@@ -361,8 +416,6 @@ public class CartFragment extends Fragment {
         };
         
         rQueue.add(MyStringRequest);
-        Log.e("Status: ",String.valueOf(status));
-        return status;
     }
 
 
