@@ -103,6 +103,8 @@ public class CartFragment extends Fragment {
                                 public void onClick(DialogInterface dialog, int which) {
                                     ChangeInCartProductList(inCartProductList);
                                     txMyCart.setText("Giỏ hàng của tôi("+String.valueOf(inCartProductList.size())+")");
+                                    btnAllCheck.setChecked(false);
+                                    getPrice();
                                 }
                             })
 
