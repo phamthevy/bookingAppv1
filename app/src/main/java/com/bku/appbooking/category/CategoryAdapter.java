@@ -56,14 +56,16 @@ public class CategoryAdapter extends BaseAdapter {
             ImageView imageViewCoverArt = (ImageView)convertView.findViewById(R.id.imageview_cover_art);
             TextView titleTv = (TextView)convertView.findViewById(R.id.tv_title);
             TextView priceTv = (TextView)convertView.findViewById(R.id.tv_price);
+            TextView bonusTv = (TextView)convertView.findViewById(R.id.tv_bonus);
 
-            ViewHolder viewHolder = new ViewHolder(titleTv, priceTv, imageViewCoverArt);
+            ViewHolder viewHolder = new ViewHolder(titleTv, priceTv, bonusTv, imageViewCoverArt);
             convertView.setTag(viewHolder);
         }
         final ViewHolder viewHolder = (ViewHolder)convertView.getTag();
 //    viewHolder.imageViewCoverArt.setImageResource(book.getImageResource());
         viewHolder.titleTv.setText(product.getTitle());
         viewHolder.priceTv.setText(product.getPrice());
+        viewHolder.bonusTv.setText(String.valueOf(position));
 
         Picasso.with(context).load(product.getImageUrl()).into(viewHolder.imageViewCoverArt);
 
@@ -77,11 +79,13 @@ public class CategoryAdapter extends BaseAdapter {
     private class ViewHolder {
         private TextView titleTv;
         private TextView priceTv;
+        private TextView bonusTv;
         private ImageView imageViewCoverArt;
 
-        public ViewHolder(TextView titleTv, TextView priceTv, ImageView imageViewCoverArt) {
+        public ViewHolder(TextView titleTv, TextView priceTv, TextView bonusTv, ImageView imageViewCoverArt) {
             this.titleTv = titleTv;
             this.priceTv = priceTv;
+            this.bonusTv = bonusTv;
             this.imageViewCoverArt = imageViewCoverArt;
         }
     }

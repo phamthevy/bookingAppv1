@@ -5,11 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:background="#0F1"
     >
 
     <FrameLayout
-        android:background="#06F"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
@@ -35,6 +33,14 @@
 
     <TextView
         android:id="@+id/tv_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        tools:text="Dr. Seuss"
+        android:gravity="center_horizontal"/>
+
+    <TextView
+        android:id="@+id/tv_bonus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="12sp"

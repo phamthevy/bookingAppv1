@@ -65,6 +65,7 @@ public class CategoryDataReceiver {
             @Override
             public void onResponse(String response) {
                 try {
+                    response=new String(response.getBytes("ISO-8859-1"), "UTF-8");
                     Log.e(CategoryDataReceiver.class.getName(),"recieved response number " + responseCount++);
                     JSONObject object = new JSONObject(response);
                     Iterator<String> keys = object.keys();
@@ -76,14 +77,15 @@ public class CategoryDataReceiver {
                             String tilte = product_json.optString("tieude");
                             String price = product_json.optString("price");
                             String imgUrl = product_json.optString("image");
-                            products.add(new Product(tilte, price, imgUrl, ""));
+                            long id = Long.valueOf(key);
+                            products.add(new Product(id, tilte, price, imgUrl, "", ""));
                         } else if (object.get(key) instanceof String){
                             String value = object.getString("type");
                             Log.v("key = type", "value = " + value);
                         }
                     }
                     linkedAdapter.notifyDataSetChanged();
-                } catch (JSONException e) {
+                } catch (Exception e) {
 
                 }
             }
