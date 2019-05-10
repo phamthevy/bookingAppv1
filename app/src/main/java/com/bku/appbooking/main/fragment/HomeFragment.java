@@ -33,7 +33,7 @@ public class HomeFragment extends Fragment {
                 Intent intent = new Intent(getContext(), CategoryActivity.class);
                 Gson gson = new Gson();
                 String data = gson.toJson(this);
-                Category category = new Category(1, "tit", "des", "xxx");
+                Category category = new Category(1, "tit", "des", "http://booking.vihey.com/uploads/productcategory/1.jpg");
                 intent.putExtra("category", gson.toJson(category));
                 startActivity(intent);
             }
