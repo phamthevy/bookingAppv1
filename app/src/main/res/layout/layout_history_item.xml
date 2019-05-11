@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingVertical="10dp"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:id="@+id/history_item_image"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="5dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/history_item_title"
+            android:text="item_title"
+            android:textSize="15dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/history_item_price"
+            android:text="item_price"
+            android:textSize="10dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/history_item_date"
+            android:text="item_date"
+            android:textSize="10dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/history_item_status"
+            android:text="item_status"
+            android:textSize="10dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -3,7 +3,7 @@ package com.bku.appbooking.ultis;
 public class UserInfo {
     private static final UserInfo ourInstance = new UserInfo();
     private String mail;
-    private String accessToken;
+    private String accessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9ib29raW5nLnZpaGV5LmNvbSIsImF1ZCI6Imh0dHA6XC9cL2Jvb2tpbmcudmloZXkuY29tIiwiaWF0IjoxNTU3NTkzMTQzLCJuYmYiOjEzNTcwMDAwMDAsImV4cCI6MTU1NzU5Mzc0MywiZGF0YSI6eyJpZCI6IjEiLCJob3RlbiI6IlRlbiBUZXN0Iiwic2R0IjoiMDk2NjU2NTY1NjUiLCJlbWFpbCI6ImFzZGFzZEBnbWFpbC5jb20ifX0.duvknpQt90-BUXWktYVgPVc8_5lvOishcRS58cQZSeg";
     private String name;
 
     public void setMail(String mail) {
