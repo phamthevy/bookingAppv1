@@ -61,7 +61,7 @@ public class LoginActivity extends AppCompatActivity {
 //
 //
         String urlLogin = "http://booking.vihey.com/api/login.php";
-        {
+
             StringRequest MyStringRequest = new StringRequest(Request.Method.POST, urlLogin, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
@@ -74,11 +74,14 @@ public class LoginActivity extends AppCompatActivity {
                         Log.e("accessToken: ", accessToken);
                         if (status == 1) {
                             Toast.makeText(getApplicationContext(), "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                            intent.putExtra("accessToken", accessToken);
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            //intent.putExtra("accessToken", accessToken);
                             startActivity(intent);
 
 
+                        }
+                        if(status == 0){
+                            Toast.makeText(getApplicationContext(), "Tên tài khoản hoặc mật khẩu không đúng", Toast.LENGTH_SHORT).show();
                         }
 
                     } catch (Exception e) {
@@ -106,7 +109,7 @@ public class LoginActivity extends AppCompatActivity {
             };
 
             rQueue.add(MyStringRequest);
-        }
+
     }
 
     public void onRegister(View v) {
