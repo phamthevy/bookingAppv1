@@ -70,12 +70,16 @@ public class LoginActivity extends AppCompatActivity {
                         JSONObject object = new JSONObject(response);
                         int status = object.optInt("status");
                         String accessToken = object.optString("accesstoken");
-                        Log.e("Status: ", String.valueOf(status));
-                        Log.e("accessToken: ", accessToken);
+                        String name = object.optString("hoten");
+                        String sdt = object.optString("sdt");
+                        String email = object.optString("email");
                         if (status == 1) {
                             Toast.makeText(getApplicationContext(), "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                            //intent.putExtra("accessToken", accessToken);
+                            intent.putExtra("accessToken", accessToken);
+                            intent.putExtra("name", name);
+                            intent.putExtra("phone", sdt);
+                            intent.putExtra("email", email);
                             startActivity(intent);
 
 

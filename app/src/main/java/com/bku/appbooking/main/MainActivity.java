@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     HomeFragment homeFragment;
     PersonFragment personFragment;
     ImageView imageView;
+    TextView txName, txEmail;
 
     public final int IMAGE_PICKER = 1;
     private DrawerLayout drawerLayout;
@@ -72,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        Bundle extras = getIntent().getExtras();
         cartFragment = null;
         historyFragment = null;
         homeFragment = null;
@@ -92,6 +93,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(drawerToggle);
         imageView = findViewById(R.id.img_avatar);
+        txName = findViewById(R.id.activity_main_tv_user_name);
+        txEmail = findViewById(R.id.activity_main_tv_email);
+        if(extras !=null){
+            String name = extras.getString("name");
+            String email = extras.getString("email");
+            String accessToken = extras.getString("accessToken");
+            txName.setText(name);
+            txEmail.setText(email);
+        }
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
