@@ -59,14 +59,11 @@ public class CategoryDataReceiver {
         if (System.currentTimeMillis() - lastRequestTime < 1000)
             return;
         String requestStr = categoryRequestFormat;
-        final int startCount = products.size();
-        Log.e(CategoryDataReceiver.class.getName(), "send request: " + requestStr);
         StringRequest request = new StringRequest(requestStr, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
                     response=new String(response.getBytes("ISO-8859-1"), "UTF-8");
-                    Log.e(CategoryDataReceiver.class.getName(),"recieved response number " + responseCount++);
                     JSONObject object = new JSONObject(response);
                     Iterator<String> keys = object.keys();
                     while (keys.hasNext()) {
