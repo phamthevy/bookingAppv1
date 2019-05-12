@@ -166,6 +166,28 @@
                     android:text="Log out" />
 
             </LinearLayout>
+            <LinearLayout
+                android:id="@+id/left_Login"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@android:color/white"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/login" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="32dp"
+                    android:text="Login" />
+
+            </LinearLayout>
 
         </LinearLayout>
 

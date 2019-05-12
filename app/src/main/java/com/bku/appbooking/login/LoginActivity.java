@@ -18,6 +18,7 @@ import com.bku.appbooking.R;
 import com.bku.appbooking.register.RegisterActivity;
 import com.bku.appbooking.main.MainActivity;
 import com.bku.appbooking.ultis.CentralRequestQueue;
+import com.bku.appbooking.ultis.UserInfo;
 
 import org.json.JSONObject;
 
@@ -35,7 +36,6 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         setUpView();
-
         btLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,16 +71,13 @@ public class LoginActivity extends AppCompatActivity {
                         int status = object.optInt("status");
                         String accessToken = object.optString("accesstoken");
                         String name = object.optString("hoten");
-                        String sdt = object.optString("sdt");
                         String email = object.optString("email");
                         if (status == 1) {
                             Toast.makeText(getApplicationContext(), "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                            intent.putExtra("accessToken", accessToken);
-                            intent.putExtra("name", name);
-                            intent.putExtra("phone", sdt);
-                            intent.putExtra("email", email);
-                            startActivity(intent);
+                            UserInfo.getInstance().setAccessToken(accessToken);
+                            UserInfo.getInstance().setName(name);
+                            UserInfo.getInstance().setMail(email);
+                            LoginActivity.super.onBackPressed();
 
 
                         }

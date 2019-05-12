@@ -13,21 +13,27 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bku.appbooking.R;
+import com.bku.appbooking.login.LoginActivity;
 import com.bku.appbooking.main.fragment.CartFragment;
 import com.bku.appbooking.main.fragment.HistoryFragment;
 import com.bku.appbooking.main.fragment.HomeFragment;
 import com.bku.appbooking.main.fragment.PersonFragment;
 import com.bku.appbooking.search.SearchActivity;
 import com.bku.appbooking.ultis.CentralRequestQueue;
+import com.bku.appbooking.ultis.UserInfo;
+
+import javax.security.auth.login.LoginException;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     CartFragment cartFragment;
@@ -73,7 +79,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Bundle extras = getIntent().getExtras();
         cartFragment = null;
         historyFragment = null;
         homeFragment = null;
@@ -86,6 +91,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.left_rate).setOnClickListener(this);
         findViewById(R.id.img_avatar).setOnClickListener(this);
         findViewById(R.id.left_search).setOnClickListener(this);
+        findViewById(R.id.left_logOut).setOnClickListener(this);
+        findViewById(R.id.left_Login).setOnClickListener(this);
 
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
@@ -95,13 +102,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         imageView = findViewById(R.id.img_avatar);
         txName = findViewById(R.id.activity_main_tv_user_name);
         txEmail = findViewById(R.id.activity_main_tv_email);
-        if(extras !=null){
-            String name = extras.getString("name");
-            String email = extras.getString("email");
-            String accessToken = extras.getString("accessToken");
-            txName.setText(name);
-            txEmail.setText(email);
+        String name = UserInfo.getInstance().getName();
+        String email = UserInfo.getInstance().getMail();
+        String accessToken = UserInfo.getInstance().getAccessToken();
+        if(accessToken == "" || accessToken == null){
+            LinearLayout leftLogout=(LinearLayout)this.findViewById(R.id.left_logOut);
+            leftLogout.setVisibility(LinearLayout.GONE);
         }
+        else {
+            LinearLayout leftLogin=(LinearLayout)this.findViewById(R.id.left_Login);
+            leftLogin.setVisibility(LinearLayout.GONE);
+        }
+        txName.setText(name);
+        txEmail.setText(email);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
@@ -180,6 +193,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.left_search:
                 Intent intent = new Intent(MainActivity.this, SearchActivity.class);
                 startActivity(intent);
+                break;
+            case R.id.left_logOut:
+                Logout();
+                break;
+            case R.id.left_Login:
+                Intent intentLogin = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intentLogin);
+                break;
+
         }
     }
 
@@ -233,6 +255,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent getImageIntent = new Intent(Intent.ACTION_GET_CONTENT);
         getImageIntent .setType("image/*");
         startActivityForResult(getImageIntent , IMAGE_PICKER );
+    }
+    private void Logout(){
+       UserInfo.getInstance().setMail("");
+       UserInfo.getInstance().setName("");
+       UserInfo.getInstance().setAccessToken("");
+       Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+       startActivity(intent);
+
+
     }
 
     @Override
