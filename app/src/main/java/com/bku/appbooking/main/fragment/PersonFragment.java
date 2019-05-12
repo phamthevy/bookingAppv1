@@ -33,7 +33,7 @@ import java.util.Map;
 
 public class PersonFragment extends Fragment implements View.OnClickListener {
 
-    EditText txPersonName, txPersonPhone, txPersonEmail, txCurrentPass, txNewPass, txConfirmPass;
+    EditText txPersonName, txPersonPhone, txPersonEmail, txCurrentPass, txNewPass, txConfirmPass, txPersonAddress;
     Button btChangePerson, btCancel, btSaveChange, btChangePass, btLogout;
     public boolean isChangePass = false;
     LinearLayout layoutChangePass;
@@ -78,11 +78,11 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.btChangePass:
 //                layoutChangePass.setVisibility(View.VISIBLE);
-                new AlertDialog.Builder(getContext())
-                        .setMessage("Chưa thực hiện chức năng này")
-                        .setPositiveButton(R.string.yes, null)
-                        .show();
-                break;
+//                new AlertDialog.Builder(getContext())
+//                        .setMessage("Chưa thực hiện chức năng này")
+//                        .setPositiveButton(R.string.yes, null)
+//                        .show();
+//                break;
             case R.id.btCancel:
                 setCancel();
                 break;
@@ -95,6 +95,7 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
                         txPersonName.getText().toString(),
                         txPersonPhone.getText().toString(),
                         txPersonEmail.getText().toString(),
+                        txPersonAddress.getText().toString(),
                         txCurrentPass.getText().toString(),
                         txNewPass.getText().toString(),
                         txConfirmPass.getText().toString());
@@ -106,7 +107,7 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
 
 
 
-    private void saveChange(String name, String phone, String email, String currentPass, String newPass, String confirmPass){
+    private void saveChange(String name, String phone, String email, String diachi, String currentPass, String newPass, String confirmPass){
         //check null info
         if (name.equals("") || email.equals("")){
             Toast.makeText(getContext(), "Khong the de thong tin trong", Toast.LENGTH_SHORT).show();
@@ -139,6 +140,9 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
             //TODO: send to sever
             //send(name,phone,email, currentPass, newPass, confirmPass)
         }
+
+        String url = "http://booking.vihey.com/api/getuserinfo.php";
+        requestUpdateUserInfo(url, UserInfo.getInstance().getAccessToken(), name, email, phone, diachi);
     }
 
     private void setCancel(){
@@ -175,6 +179,7 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
         btChangePass = (Button) view.findViewById(R.id.btChangePass);
         btCancel = (Button) view.findViewById(R.id.btCancel);
         layoutChangePass = (LinearLayout) view.findViewById(R.id.layoutChangePass);
+        txPersonAddress = (EditText) view.findViewById(R.id.txPersonAddress);
     }
 
     private void requestGetUserInfo(final String url, final String accesstoken){
@@ -216,6 +221,57 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
             protected Map<String, String> getParams() {
                 Map<String, String> MyData = new HashMap<String, String>();
                 MyData.put("accesstoken", accesstoken);
+                return MyData;
+            }
+
+        };
+
+        rQueue.add(MyStringRequest);
+    }
+
+    private void requestUpdateUserInfo(final String url, final String accesstoken, final String name, final String email, final String phone, final String diachi){
+        StringRequest MyStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.e("Response: ", response);
+                try {
+                    response=new String(response.getBytes("ISO-8859-1"), "UTF-8");
+                    JSONObject object = new JSONObject(response);
+                    int status = object.optInt("status");
+                    if (status == 1){
+                        new AlertDialog.Builder(getContext())
+                                .setMessage("Update thanh cong")
+                                .setPositiveButton(R.string.yes, null)
+                                .show();
+                    } else {
+                        new AlertDialog.Builder(getContext())
+                                .setMessage("Lấy thông tin user thất bại")
+                                .setPositiveButton(R.string.yes, null)
+                                .show();
+                    }
+
+                } catch (Exception e) {
+
+                }
+
+
+            }
+        }, new Response.ErrorListener() { //Create an error listener to handle errors appropriately.
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                new AlertDialog.Builder(getContext())
+                        .setMessage("Không thể lấy thông tin user")
+                        .setPositiveButton(R.string.yes, null)
+                        .show();
+            }
+        }) {
+            protected Map<String, String> getParams() {
+                Map<String, String> MyData = new HashMap<String, String>();
+                MyData.put("accesstoken", accesstoken);
+                MyData.put("ten", name);
+                MyData.put("sdt", phone);
+                MyData.put("email", email);
+                MyData.put("diachi", diachi);
                 return MyData;
             }
 
