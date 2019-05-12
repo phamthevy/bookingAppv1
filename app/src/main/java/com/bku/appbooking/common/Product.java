@@ -1,30 +1,16 @@
 package com.bku.appbooking.common;
 
-import android.util.Log;
-import android.widget.BaseAdapter;
-import android.widget.Toast;
 
-import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-import com.bku.appbooking.ultis.CentralRequestQueue;
-
-import org.json.JSONObject;
-
-import java.util.Iterator;
 
 public class Product {
-    private long id;
+    private int id;
     private String title = "";
     private String price = "";
     private String imageUrl = "";
     private String shortDescription = "";
     private String longDescription = "";
 
-    public Product(long id, String title, String price, String imageUrl, String shortDescription, String longDescription) {
+    public Product(int id, String title, String price, String imageUrl, String shortDescription, String longDescription) {
         this.id = id;
         this.title = title;
         this.price = price;
@@ -33,7 +19,7 @@ public class Product {
         this.longDescription = longDescription;
     }
 
-    public Product(long id) {
+    public Product(int id) {
         this.id = id;
     }
 
@@ -57,11 +43,11 @@ public class Product {
         return shortDescription;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
