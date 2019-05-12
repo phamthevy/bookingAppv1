@@ -108,10 +108,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if(accessToken == "" || accessToken == null){
             LinearLayout leftLogout=(LinearLayout)this.findViewById(R.id.left_logOut);
             leftLogout.setVisibility(LinearLayout.GONE);
+            LinearLayout leftLogin=(LinearLayout)this.findViewById(R.id.left_Login);
+            leftLogin.setVisibility(View.VISIBLE);
         }
         else {
             LinearLayout leftLogin=(LinearLayout)this.findViewById(R.id.left_Login);
             leftLogin.setVisibility(LinearLayout.GONE);
+            LinearLayout leftLogout=(LinearLayout)this.findViewById(R.id.left_logOut);
+            leftLogout.setVisibility(View.VISIBLE);
         }
         txName.setText(name);
         txEmail.setText(email);
@@ -262,6 +266,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
        UserInfo.getInstance().setAccessToken("");
        txName.setText(UserInfo.getInstance().getName());
        txEmail.setText(UserInfo.getInstance().getMail());
+
+       LinearLayout leftLogout=(LinearLayout)this.findViewById(R.id.left_logOut);
+       leftLogout.setVisibility(LinearLayout.GONE);
+       LinearLayout leftLogin=(LinearLayout)this.findViewById(R.id.left_Login);
+       leftLogin.setVisibility(View.VISIBLE);
+
        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
        startActivity(intent);
 
