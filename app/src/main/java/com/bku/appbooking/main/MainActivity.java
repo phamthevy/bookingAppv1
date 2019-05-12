@@ -260,6 +260,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
        UserInfo.getInstance().setMail("");
        UserInfo.getInstance().setName("");
        UserInfo.getInstance().setAccessToken("");
+       txName.setText(UserInfo.getInstance().getName());
+       txEmail.setText(UserInfo.getInstance().getMail());
        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
        startActivity(intent);
 

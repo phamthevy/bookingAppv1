@@ -42,8 +42,6 @@ public class LoginActivity extends AppCompatActivity {
                 onLogin(txEmail.getText().toString(), txPassword.getText().toString());
             }
         });
-        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-        startActivity(intent);
 
     }
 
@@ -77,7 +75,9 @@ public class LoginActivity extends AppCompatActivity {
                             UserInfo.getInstance().setAccessToken(accessToken);
                             UserInfo.getInstance().setName(name);
                             UserInfo.getInstance().setMail(email);
-                            LoginActivity.super.onBackPressed();
+                            //LoginActivity.super.onBackPressed();
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            startActivity(intent);
 
 
                         }
