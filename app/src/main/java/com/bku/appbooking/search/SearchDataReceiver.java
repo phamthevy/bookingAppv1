@@ -52,7 +52,7 @@ public class SearchDataReceiver {
             public void onResponse(String response) {
                 Log.e("Response: ", response);
                 try {
-                    response=new String(response.getBytes("ISO-8859-1"), "UTF-8");
+//                    response=new String(response.getBytes("ISO-8859-1"), "UTF-8");
                     JSONObject object = new JSONObject(response);
                     int status = object.optInt("status");
                     if (status == 1){

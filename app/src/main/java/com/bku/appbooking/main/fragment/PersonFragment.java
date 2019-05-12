@@ -232,14 +232,15 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
                     response=new String(response.getBytes("ISO-8859-1"), "UTF-8");
                     JSONObject object = new JSONObject(response);
                     String message = object.optString("message");
-                    if ("Access granted".equals(message)){
+                    if ("Access granted.".equals(message)){
                         JSONObject objectData = new JSONObject(object.optString("data"));
                         UserInfo.getInstance().setName(objectData.getString("hoten"));
-                        UserInfo.getInstance().setMail(objectData.getString("mail"));
+                        UserInfo.getInstance().setMail(objectData.getString("email"));
                         UserInfo.getInstance().setPhone(objectData.getString("sdt"));
                         UserInfo.getInstance().setAddress(objectData.getString("diachi"));
-
+                        Log.e("UserInfo","get user info successs");
                     } else {
+                        Log.e("UserInfo","get user info fail");
                         new AlertDialog.Builder(getContext())
                                 .setMessage("Lấy thông tin user thất bại")
                                 .setPositiveButton(R.string.yes, null)
@@ -247,7 +248,8 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
                     }
 
                 } catch (Exception e) {
-
+                    Log.e("UserInfo2", String.valueOf(e));
+                    Log.e("UserInfo2","get user info successs");
                 }
 
 
@@ -255,6 +257,7 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
         }, new Response.ErrorListener() { //Create an error listener to handle errors appropriately.
             @Override
             public void onErrorResponse(VolleyError error) {
+                Log.e("UserInfo1","get user info fail");
                 new AlertDialog.Builder(getContext())
                         .setMessage("Không thể lấy thông tin user")
                         .setPositiveButton(R.string.yes, null)
