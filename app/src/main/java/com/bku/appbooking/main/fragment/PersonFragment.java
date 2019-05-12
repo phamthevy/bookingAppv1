@@ -60,14 +60,14 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
     private void getUserInfo(){
         String url = "http://booking.vihey.com/api/getuserinfo.php";
         requestGetUserInfo(url,UserInfo.getInstance().getAccessToken());
-        //TODO: sua lai thanh get phone
-        audoFillTextView(UserInfo.getInstance().getName(), UserInfo.getInstance().getMail(), UserInfo.getInstance().getAccessToken());
+        audoFillTextView(UserInfo.getInstance().getName(), UserInfo.getInstance().getMail(), UserInfo.getInstance().getPhone(), UserInfo.getInstance().getAddress());
     }
 
-    private void audoFillTextView(String name, String email, String phone){
+    private void audoFillTextView(String name, String email, String phone, String address){
         txPersonName.setText(name);
         txPersonEmail.setText(email);
         txPersonPhone.setText(phone);
+        txPersonAddress.setText(address);
     }
 
     @Override
@@ -195,7 +195,9 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
                         JSONObject objectData = new JSONObject(object.optString("data"));
                         UserInfo.getInstance().setName(objectData.getString("hoten"));
                         UserInfo.getInstance().setMail(objectData.getString("mail"));
-//                        UserInfo.getInstance().set(objectData.getString("diachi"));
+                        UserInfo.getInstance().setPhone(objectData.getString("sdt"));
+                        UserInfo.getInstance().setAddress(objectData.getString("diachi"));
+
                     } else {
                         new AlertDialog.Builder(getContext())
                                 .setMessage("Lấy thông tin user thất bại")
