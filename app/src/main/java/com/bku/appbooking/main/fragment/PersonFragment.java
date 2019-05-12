@@ -34,8 +34,7 @@ import java.util.Map;
 public class PersonFragment extends Fragment implements View.OnClickListener {
 
     EditText txPersonName, txPersonPhone, txPersonEmail, txNewPass, txConfirmPass, txPersonAddress;
-    Button btChangePerson, btCancel, btSaveChange, btChangePass, btLogout;
-    public boolean isChangePass = false;
+    Button btChangePerson, btCancel, btSaveChange, btChangePass, btCanCelChangePass, btConfirmChangePass;
     LinearLayout layoutChangePass;
     private CentralRequestQueue rQueue = CentralRequestQueue.getInstance();
     @Nullable
@@ -50,7 +49,8 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
         btChangePass.setOnClickListener(this);
         btCancel.setOnClickListener(this);
         btSaveChange.setOnClickListener(this);
-        btLogout.setOnClickListener(this);
+        btConfirmChangePass.setOnClickListener(this);
+        btCanCelChangePass.setOnClickListener(this);
 
         return view;
     }
@@ -77,6 +77,7 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
             case R.id.btChangePass:
                 layoutChangePass.setVisibility(View.VISIBLE);
                 btSaveChange.setEnabled(false);
+                break;
             case R.id.btCancel:
                 setCancel();
                 break;
@@ -144,11 +145,7 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
     }
 
     private void setCancel(){
-        //fillInfo(view);
-//        txPersonName.setEnabled(false);
-//        txPersonName.setEnabled(false);
-//        txPersonName.setEnabled(false);
-//        btChangePass.setEnabled(false);
+        btChangePass.setEnabled(false);
         layoutChangePass.setVisibility(View.GONE);
         btChangePerson.setVisibility(View.VISIBLE);
         btSaveChange.setVisibility(View.GONE);
@@ -156,10 +153,7 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
     }
 
     private void setChangePersonInfo(){
-//        txPersonName.setEnabled(true);
-//        txPersonName.setEnabled(true);
-//        txPersonName.setEnabled(true);
-//        btChangePass.setEnabled(true);
+        btChangePass.setEnabled(true);
         btChangePerson.setVisibility(View.GONE);
         btSaveChange.setVisibility(View.VISIBLE);
         btCancel.setVisibility(View.VISIBLE);
@@ -175,6 +169,8 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
         btSaveChange = (Button) view.findViewById(R.id.btSaveChange);
         btChangePass = (Button) view.findViewById(R.id.btChangePass);
         btCancel = (Button) view.findViewById(R.id.btCancel);
+        btCanCelChangePass = view.findViewById(R.id.btCancelChangePass);
+        btConfirmChangePass = view.findViewById(R.id.btConfirmChangePass);
         layoutChangePass = (LinearLayout) view.findViewById(R.id.layoutChangePass);
         txPersonAddress = (EditText) view.findViewById(R.id.txPersonAddress);
     }
