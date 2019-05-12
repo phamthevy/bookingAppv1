@@ -88,8 +88,7 @@ public class RegisterActivity extends AppCompatActivity {
                     Log.e("Status: ", String.valueOf(status));
                     if (status == 1) {
                         Toast.makeText(getApplicationContext(), "Đăng ký thành công", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                        startActivity(intent);
+                        RegisterActivity.super.onBackPressed();
 
 
                     }
