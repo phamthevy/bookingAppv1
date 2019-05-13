@@ -1,4 +1,4 @@
-package com.bku.appbooking.main.fragment;
+package com.bku.appbooking.main.fragment.history;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import com.bku.appbooking.history.HistoryListAdapter;
+import com.bku.appbooking.main.fragment.history.HistoryListAdapter;
 import com.bku.appbooking.R;
 
 public class HistoryFragment extends Fragment {

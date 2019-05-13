@@ -25,14 +25,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bku.appbooking.R;
-import com.bku.appbooking.detail.DetailActivity;
 import com.bku.appbooking.login.LoginActivity;
-import com.bku.appbooking.main.fragment.CartFragment;
-import com.bku.appbooking.main.fragment.HistoryFragment;
-import com.bku.appbooking.main.fragment.HomeFragment;
-import com.bku.appbooking.main.fragment.PersonFragment;
+import com.bku.appbooking.main.fragment.cart.CartFragment;
+import com.bku.appbooking.main.fragment.history.HistoryFragment;
+import com.bku.appbooking.main.fragment.home.HomeFragment;
+import com.bku.appbooking.main.fragment.person.PersonFragment;
 import com.bku.appbooking.search.SearchActivity;
-import com.bku.appbooking.ultis.Cart;
 import com.bku.appbooking.ultis.CentralRequestQueue;
 import com.bku.appbooking.ultis.UserInfo;
 

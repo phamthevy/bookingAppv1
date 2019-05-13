@@ -1,4 +1,4 @@
-package com.bku.appbooking.main.fragment;
+package com.bku.appbooking.main.fragment.cart;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -16,53 +16,24 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.bku.appbooking.R;
-import com.bku.appbooking.cart.CartAdapter;
-import com.bku.appbooking.category.CategoryDataReceiver;
+import com.bku.appbooking.main.fragment.cart.CartAdapter;
 import com.bku.appbooking.common.InCartProduct;
-import com.bku.appbooking.common.Product;
-import com.bku.appbooking.detail.DetailActivity;
 import com.bku.appbooking.ultis.Cart;
 import com.bku.appbooking.ultis.CentralRequestQueue;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
-import javax.net.ssl.HttpsURLConnection;
 
 public class CartFragment extends Fragment {
     private CartAdapter myCartAdapter;

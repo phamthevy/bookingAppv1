@@ -47,12 +47,19 @@ public class HistoryListAdapter extends BaseAdapter {
                         String key = keys.next();
                         Log.v("list key", key);
                         if(object.get(key) instanceof JSONObject) {
-                            JSONObject product_json = object.getJSONObject(key);
+                            JSONObject bill = object.getJSONObject(key);
                             int productId = Integer.valueOf(key);
-                            String createDate = product_json.optString("ngaytao");
-                            String description = product_json.optString("ghichu");
-                            String status = product_json.optString("trangthai");
-                            completeLoadHistoryItem(new HistoryItem(new Product(productId), createDate, description, status));
+                            String createDate = bill.optString("ngaytao");
+                            String description = bill.optString("ghichu");
+                            String status = bill.optString("trangthai");
+                            JSONObject productsJson = bill.getJSONObject("sanpham");
+                            Iterator<String> products = productsJson.keys();
+                            Toast.makeText(context, "aaaaaaa", Toast.LENGTH_SHORT).show();
+                            while (products.hasNext()) {
+                                String id = products.next();
+                                int amount = productsJson.optInt(id);
+                                completeLoadHistoryItem(new HistoryItem(new Product(Integer.valueOf(id)), amount, createDate, description, status));
+                            }
                         } else if (object.get(key) instanceof String){
                             String value = object.getString("type");
                             Log.v("key = type", "value = " + value);
@@ -68,7 +75,7 @@ public class HistoryListAdapter extends BaseAdapter {
 
             private void completeLoadHistoryItem(final HistoryItem historyItem){
                 final Product product = historyItem.getProduct();
-                String requestStr= "https://style.vihey.com/api/product.php?id="+"4"; //+productId
+                String requestStr= "https://booking.vihey.com/api/product.php?id="+"1"; //+productId
                 StringRequest request = new StringRequest(requestStr, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -114,7 +121,7 @@ public class HistoryListAdapter extends BaseAdapter {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(context, "cannot history home data", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "cannot load history data, need login", Toast.LENGTH_SHORT).show();
             }
         });
         CentralRequestQueue.getInstance().add(stringRequest);
@@ -146,10 +153,11 @@ public class HistoryListAdapter extends BaseAdapter {
             convertView = layoutInflater.inflate(R.layout.layout_history_item, null);
             ImageView imageView = convertView.findViewById(R.id.history_item_image);
             TextView itemTitleView = convertView.findViewById(R.id.history_item_title);
+            TextView itemAmountView = convertView.findViewById(R.id.history_item_amount);
             TextView itemPriceView = convertView.findViewById(R.id.history_item_price);
             TextView dateCreatedView = convertView.findViewById(R.id.history_item_date);
             TextView statusView = convertView.findViewById(R.id.history_item_status);
-            historyItemHodler = new HistoryItemHodler(imageView, itemTitleView, itemPriceView, dateCreatedView, statusView);
+            historyItemHodler = new HistoryItemHodler(imageView, itemTitleView, itemAmountView, itemPriceView, dateCreatedView, statusView);
             convertView.setTag(historyItemHodler);
         }
         else {
@@ -158,11 +166,13 @@ public class HistoryListAdapter extends BaseAdapter {
         Log.e("aaaaaaaaaaaaaaa", "aaaaaaaaaaaaaaaaaa");
         ImageView imageView = historyItemHodler.getImageView();
         TextView itemTitleView = historyItemHodler.getProductTitle();
+        TextView itemAmountView = historyItemHodler.getProductAmount();
         TextView itemPriceView = historyItemHodler.getProductPrice();
         TextView dateCreatedView = historyItemHodler.getDateCreated();
         TextView statusView = historyItemHodler.getStatus();
         Picasso.with(context).load(historyItem.getProduct().getImageUrl()).into(imageView);
         itemTitleView.setText(historyItem.getProduct().getTitle());
+        itemAmountView.setText("Số lượng: " + String.valueOf(historyItem.getAmount()));
         itemPriceView.setText("Giá bán: " + historyItem.getProduct().getPrice());
         dateCreatedView.setText("Thời gian đặt hàng: " + historyItem.getCreateDate());
         statusView.setText(historyItem.getStatus());
@@ -172,13 +182,15 @@ public class HistoryListAdapter extends BaseAdapter {
     private class HistoryItemHodler {
         private ImageView imageView;
         private TextView productTitle;
+        private TextView productAmount;
         private TextView productPrice;
         private TextView dateCreated;
         private TextView status;
 
-        public HistoryItemHodler(ImageView imageView, TextView productTitle, TextView productPrice, TextView dateCreated, TextView status) {
+        public HistoryItemHodler(ImageView imageView, TextView productTitle, TextView productAmount, TextView productPrice, TextView dateCreated, TextView status) {
             this.imageView = imageView;
             this.productTitle = productTitle;
+            this.productAmount = productAmount;
             this.productPrice = productPrice;
             this.dateCreated = dateCreated;
             this.status = status;
@@ -190,6 +202,10 @@ public class HistoryListAdapter extends BaseAdapter {
 
         public TextView getProductTitle() {
             return productTitle;
+        }
+
+        public TextView getProductAmount() {
+            return productAmount;
         }
 
         public TextView getProductPrice() {

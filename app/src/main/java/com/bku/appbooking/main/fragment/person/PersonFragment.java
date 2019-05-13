@@ -1,4 +1,4 @@
-package com.bku.appbooking.main.fragment;
+package com.bku.appbooking.main.fragment.person;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;

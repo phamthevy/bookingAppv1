@@ -3,14 +3,16 @@ package com.bku.appbooking.common;
 public class HistoryItem {
     private int id;
     private Product product;
+    private int amount;
     private String createDate;
     private String description;
     private String status;
     private static int count = 0;
 
-    public HistoryItem(Product product, String createDate, String description, String status) {
+    public HistoryItem(Product product, int amount, String createDate, String description, String status) {
         this.id = count++;
         this.product = product;
+        this.amount = amount;
         this.createDate = createDate;
         this.description = description;
         switch (status) {
@@ -35,6 +37,10 @@ public class HistoryItem {
 
     public Product getProduct() {
         return product;
+    }
+
+    public int getAmount() {
+        return amount;
     }
 
     public String getCreateDate() {
