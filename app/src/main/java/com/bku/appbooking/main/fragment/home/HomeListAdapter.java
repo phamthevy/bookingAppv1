@@ -1,4 +1,4 @@
-package com.bku.appbooking.home;
+package com.bku.appbooking.main.fragment.home;
 
 import android.content.Context;
 import android.util.Log;
@@ -15,7 +15,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.bku.appbooking.R;
 import com.bku.appbooking.common.Category;
-import com.bku.appbooking.main.fragment.HomeFragment;
 import com.bku.appbooking.ultis.CentralRequestQueue;
 import com.squareup.picasso.Picasso;
 
