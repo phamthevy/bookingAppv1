@@ -65,7 +65,6 @@ public class CategoryAdapter extends BaseAdapter {
 //    viewHolder.imageViewCoverArt.setImageResource(book.getImageResource());
         viewHolder.titleTv.setText(product.getTitle());
         viewHolder.priceTv.setText(product.getPrice());
-        viewHolder.bonusTv.setText(String.valueOf(position));
 
         Picasso.with(context).load(product.getImageUrl()).into(viewHolder.imageViewCoverArt);
 

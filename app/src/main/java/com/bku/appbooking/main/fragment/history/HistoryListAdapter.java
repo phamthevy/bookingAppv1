@@ -54,7 +54,6 @@ public class HistoryListAdapter extends BaseAdapter {
                             String status = bill.optString("trangthai");
                             JSONObject productsJson = bill.getJSONObject("sanpham");
                             Iterator<String> products = productsJson.keys();
-                            Toast.makeText(context, "aaaaaaa", Toast.LENGTH_SHORT).show();
                             while (products.hasNext()) {
                                 String id = products.next();
                                 int amount = productsJson.optInt(id);
