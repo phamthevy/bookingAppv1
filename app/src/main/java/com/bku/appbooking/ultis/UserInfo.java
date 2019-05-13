@@ -37,6 +37,11 @@ public class UserInfo {
     }
 
     private UserInfo() {
+        mail = "";
+        address = "";
+        phone = "";
+        accessToken = "";
+        name = "";
     }
 
     public String getAddress() {

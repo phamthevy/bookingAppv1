@@ -9,10 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import com.bku.appbooking.History.HistoryListAdapter;
+import com.bku.appbooking.history.HistoryListAdapter;
 import com.bku.appbooking.R;
-
-import java.util.zip.Inflater;
 
 public class HistoryFragment extends Fragment {
     ListView listView;

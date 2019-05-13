@@ -1,4 +1,4 @@
-package com.bku.appbooking.History;
+package com.bku.appbooking.history;
 
 import android.content.Context;
 import android.util.Log;
@@ -14,7 +14,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.bku.appbooking.R;
-import com.bku.appbooking.common.Category;
 import com.bku.appbooking.common.HistoryItem;
 import com.bku.appbooking.common.Product;
 import com.bku.appbooking.ultis.CentralRequestQueue;
