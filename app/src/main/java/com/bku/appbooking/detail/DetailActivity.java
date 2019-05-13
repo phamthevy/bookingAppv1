@@ -172,8 +172,6 @@ public class DetailActivity extends AppCompatActivity {
                 break;
             case android.R.id.home:
                 finish();
-//                Intent backIntent = new Intent(DetailActivity.this, CategoryActivity.class);
-//                startActivity(backIntent);
                 break;
             default:
                 break;

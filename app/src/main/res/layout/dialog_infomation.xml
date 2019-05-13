@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:padding="20dp"
         android:text="Cam on"
-        android:textSize="14dp"
+        android:textSize="@dimen/medium_textsize"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="20dp"/>
@@ -34,7 +34,7 @@
         android:background="#FFF"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
-        android:rating="4"
+        android:rating="5"
         android:visibility="gone"/>
 
     <Button
@@ -42,9 +42,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Xác nhận"
-        android:textSize="16dp"
+        android:textSize="@dimen/medium_textsize"
         android:textColor="#FFFFFF"
-        android:background="#0AA8FF"
+        android:background="@color/colorPrimary"
         android:textAllCaps="false"/>
 
 </LinearLayout>

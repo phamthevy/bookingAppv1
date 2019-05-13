@@ -46,29 +46,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle drawerToggle;
 
-    private Fragment getCartFragment(){
-        if (cartFragment == null){
+    private Fragment getCartFragment() {
+        if (cartFragment == null) {
             cartFragment = new CartFragment();
         }
         return cartFragment;
     }
 
-    private Fragment getHistoryFragment(){
-        if (historyFragment == null){
+    private Fragment getHistoryFragment() {
+        if (historyFragment == null) {
             historyFragment = new HistoryFragment();
         }
         return historyFragment;
     }
 
-    private Fragment getHomeFragment(){
-        if (homeFragment == null){
+    private Fragment getHomeFragment() {
+        if (homeFragment == null) {
             homeFragment = new HomeFragment();
         }
         return homeFragment;
     }
 
-    private Fragment getPersonFragment(){
-        if (personFragment == null){
+    private Fragment getPersonFragment() {
+        if (personFragment == null) {
             personFragment = new PersonFragment();
         }
         return personFragment;
@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         setContentView(R.layout.activity_main);
         final String resultFragment = getIntent().getStringExtra("fragment");
-        if ("cart".equals(resultFragment)){
+        if ("cart".equals(resultFragment)) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new CartFragment()).commit();
         }
@@ -107,21 +107,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(drawerToggle);
         imageView = findViewById(R.id.img_avatar);
-        txName = findViewById(R.id.activity_main_tv_user_name);
-        txEmail = findViewById(R.id.activity_main_tv_email);
+        txName = findViewById(R.id.left_name);
+        txEmail = findViewById(R.id.left_email);
         String name = UserInfo.getInstance().getName();
         String email = UserInfo.getInstance().getMail();
         String accessToken = UserInfo.getInstance().getAccessToken();
-        if(accessToken == "" || accessToken == null){
-            LinearLayout leftLogout=(LinearLayout)this.findViewById(R.id.left_logOut);
+        if (accessToken == null || accessToken.equals("")) {
+            LinearLayout leftLogout = (LinearLayout) findViewById(R.id.left_logOut);
             leftLogout.setVisibility(LinearLayout.GONE);
-            LinearLayout leftLogin=(LinearLayout)this.findViewById(R.id.left_Login);
+            LinearLayout leftLogin = (LinearLayout) findViewById(R.id.left_Login);
             leftLogin.setVisibility(View.VISIBLE);
-        }
-        else {
-            LinearLayout leftLogin=(LinearLayout)this.findViewById(R.id.left_Login);
+        } else {
+            LinearLayout leftLogin = (LinearLayout) findViewById(R.id.left_Login);
             leftLogin.setVisibility(LinearLayout.GONE);
-            LinearLayout leftLogout=(LinearLayout)this.findViewById(R.id.left_logOut);
+            LinearLayout leftLogout = (LinearLayout) findViewById(R.id.left_logOut);
             leftLogout.setVisibility(View.VISIBLE);
         }
         txName.setText(name);
@@ -129,7 +128,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-
 
 
     }
@@ -149,7 +147,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(drawerToggle.onOptionsItemSelected(item)) {
+        if (drawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
         switch (item.getItemId()) {
@@ -184,7 +182,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             selectedFragment = getCartFragment();
                             break;
                         default:
-                            selectedFragment =  getHomeFragment();
+                            selectedFragment = getHomeFragment();
                             break;
                     }
 
@@ -197,7 +195,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.left_aboutUs:
                 openDialogAboutUs();
                 break;
@@ -259,36 +257,39 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    dialog.dismiss();
+                dialog.dismiss();
             }
         });
         dialog.show();
     }
-    private void OpenGallery(){
+
+    private void OpenGallery() {
         Intent getImageIntent = new Intent(Intent.ACTION_GET_CONTENT);
-        getImageIntent .setType("image/*");
-        startActivityForResult(getImageIntent , IMAGE_PICKER );
+        getImageIntent.setType("image/*");
+        startActivityForResult(getImageIntent, IMAGE_PICKER);
     }
-    private void Logout(){
-       UserInfo.getInstance().setMail("");
-       UserInfo.getInstance().setName("");
-       UserInfo.getInstance().setAccessToken("");
-       txName.setText(UserInfo.getInstance().getName());
-       txEmail.setText(UserInfo.getInstance().getMail());
 
-       LinearLayout leftLogout=(LinearLayout)this.findViewById(R.id.left_logOut);
-       leftLogout.setVisibility(LinearLayout.GONE);
-       LinearLayout leftLogin=(LinearLayout)this.findViewById(R.id.left_Login);
-       leftLogin.setVisibility(View.VISIBLE);
+    private void Logout() {
+        UserInfo.getInstance().setMail("");
+        UserInfo.getInstance().setName("");
+        UserInfo.getInstance().setAccessToken("");
+        txName.setText(UserInfo.getInstance().getName());
+        txEmail.setText(UserInfo.getInstance().getMail());
 
-       Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-       startActivity(intent);
+        LinearLayout leftLogout = (LinearLayout) this.findViewById(R.id.left_logOut);
+        leftLogout.setVisibility(LinearLayout.GONE);
+        LinearLayout leftLogin = (LinearLayout) this.findViewById(R.id.left_Login);
+        leftLogin.setVisibility(View.VISIBLE);
+
+        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        startActivity(intent);
 
 
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode== IMAGE_PICKER  && resultCode == RESULT_OK) {
+        if (requestCode == IMAGE_PICKER && resultCode == RESULT_OK) {
             Uri fullPhotoUri = data.getData();
             imageView.setImageURI(fullPhotoUri);
         }

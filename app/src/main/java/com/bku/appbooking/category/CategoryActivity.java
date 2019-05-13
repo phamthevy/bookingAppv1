@@ -24,9 +24,11 @@ import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
 
 import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
+
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.TextView;
+
 import com.bku.appbooking.detail.DetailActivity;
 
 
@@ -35,7 +37,7 @@ public class CategoryActivity extends AppCompatActivity {
     private Category category;
     private int count = 0;
     TextView cateTitle;
-    private Menu mOptionsMenu;
+    private Menu mOptionsMenu = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +64,7 @@ public class CategoryActivity extends AppCompatActivity {
         });
     }
 
-    private void setupGridview(){
+    private void setupGridview() {
         CategoryDataReceiver categoryDataReceiver = new CategoryDataReceiver(this, category.getId());
         final CategoryAdapter categoryAdapter = new CategoryAdapter(this, categoryDataReceiver);
         categoryAdapter.updateNextPage();
@@ -101,7 +103,7 @@ public class CategoryActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.ic_cart_combine:
                 Intent intent = new Intent(CategoryActivity.this, MainActivity.class);
-                intent.putExtra("fragment","cart");
+                intent.putExtra("fragment", "cart");
                 startActivity(intent);
                 break;
             case R.id.ic_search_combine:
@@ -135,5 +137,13 @@ public class CategoryActivity extends AppCompatActivity {
         badge.setCount(count);
         icon.mutate();
         icon.setDrawableByLayerId(R.id.ic_group_count, badge);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (mOptionsMenu != null) {
+            setCount(this, mOptionsMenu, String.valueOf(Cart.getInstance().getProducts().size()));
+        }
     }
 }

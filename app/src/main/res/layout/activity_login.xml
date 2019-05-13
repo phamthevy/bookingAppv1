@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="20dp"
-    android:background="@android:color/holo_blue_light"
+    android:background="@color/colorPrimary"
     android:orientation="vertical"
     tools:context=".login.LoginActivity">
 
@@ -13,7 +13,7 @@
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        tools:src="@tools:sample/avatars[0]"
+        tools:src="@drawable/qoobee_agapi_00"
         android:layout_marginBottom="10dp"/>
 
     <TextView
@@ -57,13 +57,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Dang nhap"
+        android:background="@color/colorWhite"
         android:layout_gravity="center" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Chua co tai khoan? Dang ki ngay"
+        android:text="@string/register"
         android:layout_gravity="center"
         android:onClick="onRegister"
         android:clickable="true"/>

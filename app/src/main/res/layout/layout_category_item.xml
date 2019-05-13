@@ -15,14 +15,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/home_cate_title"
-        android:textColor="#db1c1c"
-        android:textSize="20sp"
+        android:textColor="@color/colorRed"
+        android:textSize="@dimen/big_textsize"
+        android:paddingLeft="@dimen/normal_padding"
         android:text="Hello"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/home_cate_des"
+        android:paddingLeft="@dimen/normal_padding"
+        android:textSize="@dimen/medium_textsize"
         android:text="Hello"/>
 
 </LinearLayout>

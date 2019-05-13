@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="20dp">
+    android:padding="10dp">
 
 <LinearLayout
     android:layout_width="match_parent"
@@ -19,14 +19,14 @@
         <TextView
             android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
+            android:textSize="@dimen/medium_textsize"
             android:text="Ho ten:* " />
 
         <EditText
             android:id="@+id/txPersonName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
+            android:textSize="@dimen/medium_textsize"
             android:imeOptions="actionNext"
             android:singleLine="true"/>
     </LinearLayout>
@@ -40,13 +40,13 @@
         <TextView
             android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
+            android:textSize="@dimen/medium_textsize"
             android:text="So dien thoai: " />
 
         <EditText
             android:id="@+id/txPersonPhone"
             android:layout_width="match_parent"
-            android:textSize="15sp"
+            android:textSize="@dimen/medium_textsize"
             android:layout_height="wrap_content"
             android:imeOptions="actionNext"
             android:singleLine="true"/>
@@ -61,13 +61,13 @@
         <TextView
             android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
+            android:textSize="@dimen/medium_textsize"
             android:text="Dia chi:"/>
 
         <EditText
             android:id="@+id/txPersonAddress"
             android:layout_width="match_parent"
-            android:textSize="15sp"
+            android:textSize="@dimen/medium_textsize"
             android:layout_height="wrap_content"
             android:imeOptions="actionNext"
             android:singleLine="true"/>
@@ -82,13 +82,13 @@
         <TextView
             android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
+            android:textSize="@dimen/medium_textsize"
             android:text="Email:* "/>
 
         <EditText
             android:id="@+id/txPersonEmail"
             android:layout_width="match_parent"
-            android:textSize="15sp"
+            android:textSize="@dimen/medium_textsize"
             android:layout_height="wrap_content"
             android:imeOptions="actionDone"
             android:singleLine="true"/>
@@ -103,7 +103,7 @@
         <TextView
             android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:textSize="18dp"
+            android:textSize="@dimen/medium_textsize"
             android:text="Mat khau: "/>
 
         <Button
@@ -111,6 +111,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:enabled="false"
+            android:background="@drawable/enable_color"
+            android:textColor="@color/colorWhite"
+            android:paddingLeft="@dimen/normal_padding"
+            android:paddingRight="@dimen/normal_padding"
+            android:textSize="@dimen/medium_textsize"
             android:text="Doi mat khau" />
     </LinearLayout>
 
@@ -125,7 +130,7 @@
         <EditText
             android:id="@+id/txNewPass"
             android:layout_width="match_parent"
-            android:textSize="15dp"
+            android:textSize="@dimen/medium_textsize"
             android:layout_height="wrap_content"
             android:hint="Mat khau moi"
             android:imeOptions="actionNext"
@@ -134,7 +139,7 @@
         <EditText
             android:id="@+id/txConfirmPass"
             android:layout_width="match_parent"
-            android:textSize="15dp"
+            android:textSize="@dimen/medium_textsize"
             android:layout_height="wrap_content"
             android:hint="Nhap lai mat khau"
             android:imeOptions="actionDone"
@@ -150,12 +155,17 @@
                 android:id="@+id/btCancelChangePass"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@color/cancelColor"
+                android:textSize="@dimen/medium_textsize"
                 android:text="Huy bo" />
 
             <Button
                 android:id="@+id/btConfirmChangePass"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/medium_textsize"
                 android:text="OK" />
         </LinearLayout>
     </LinearLayout>
@@ -170,6 +180,11 @@
             android:id="@+id/btChangePerson"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/enable_color"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/medium_textsize"
+            android:paddingLeft="@dimen/normal_padding"
+            android:paddingRight="@dimen/normal_padding"
             android:text="Sua doi thong tin"/>
 
         <Button
@@ -177,6 +192,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Huy bo"
+            android:background="@color/cancelColor"
+            android:paddingLeft="@dimen/normal_padding"
+            android:paddingRight="@dimen/normal_padding"
+            android:textSize="@dimen/medium_textsize"
             android:visibility="gone"/>
 
         <Button
@@ -184,6 +203,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Luu chinhh sua"
+            android:paddingLeft="@dimen/normal_padding"
+            android:paddingRight="@dimen/normal_padding"
+            android:background="@drawable/enable_color"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/medium_textsize"
             android:visibility="gone"/>
     </LinearLayout>
 </LinearLayout>

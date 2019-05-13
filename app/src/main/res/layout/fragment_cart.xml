@@ -2,80 +2,96 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:layout_gravity="bottom">
+    android:layout_alignParentTop="true">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="top"
         android:layout_alignParentTop="true"
-        android:background="#EC5A50">
+        android:id="@+id/layout_top"
+        android:padding="15dp"
+        android:background="@color/colorAccent">
         <TextView
             android:id="@+id/txMyCart"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:layout_marginLeft="15dp"
             android:layout_alignParentLeft="true"
-            android:textColor="@android:color/background_light"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/small_textsize"
             android:text="Giỏ hàng của tôi (0)" />
         <TextView
             android:id="@+id/txDelete"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:background="#EC5A50"
+            android:layout_height="wrap_content"
             android:layout_marginRight="15dp"
             android:layout_alignParentRight="true"
             android:gravity="center_vertical"
-            android:textColor="@android:color/background_light"
+            android:textColor="@color/colorWhite"
             android:onClick="onClick"
+            android:textSize="@dimen/small_textsize"
             android:clickable="true"
-            android:textAllCaps="false"
             android:text="Xóa"/>
     </RelativeLayout>
+
     <ListView
         android:id="@+id/listCart"
+        android:layout_below="@+id/layout_top"
+        android:layout_above="@id/layout_bot"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="30dp"
-        android:layout_marginTop="50dp">
+        android:layout_height="match_parent">
     </ListView>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
+        android:layout_height="50dp"
         android:layout_alignParentBottom="true"
-        android:background="@android:color/holo_green_light">
+        android:background="@color/colorPrimary"
+        android:id="@+id/layout_bot">
         <CheckBox
             android:id="@+id/btnAllCheck"
-            android:layout_width="100dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:textColor="@android:color/black"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/small_textsize"
+            android:layout_alignParentLeft="true"
+            android:gravity="center"
             android:text="Tất cả"/>
         <TextView
             android:id="@+id/btnSumPrice"
-            android:layout_width="80dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:textColor="@android:color/black"
-            android:background="@android:color/holo_green_light"
+            android:textColor="@color/colorWhite"
+            android:layout_toRightOf="@id/btnAllCheck"
+            android:textSize="@dimen/small_textsize"
+            android:layout_marginLeft="@dimen/normal_padding"
+            android:gravity="center"
             android:text="Tổng cộng" />
         <TextView
             android:id="@+id/txPrice"
-            android:layout_width="100dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:textColor="@android:color/holo_red_dark"
+            android:textColor="@color/colorAccent"
+            android:layout_toRightOf="@id/btnSumPrice"
+            android:layout_toLeftOf="@+id/btnOrder"
+            android:textSize="@dimen/small_textsize"
+            android:gravity="center"
             android:text="0 VND" />
         <Button
             android:id="@+id/btnOrder"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/rounded_order"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentTop="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorAccent"
             android:textAllCaps="false"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/small_textsize"
+            android:gravity="center"
             android:text="Đặt hàng"/>
 
-    </LinearLayout>
+    </RelativeLayout>
 
 
 </RelativeLayout>

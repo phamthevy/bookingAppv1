@@ -18,16 +18,17 @@
         android:layout_height="wrap_content"
         android:text="Nhập số lượng bạn muốn mua: "
         android:layout_gravity="center"
-        android:textSize="14dp"
+        android:textSize="@dimen/medium_textsize"
         android:padding="20dp"/>
 
     <EditText
-        android:layout_width="100dp"
+        android:layout_width="50dp"
         android:id="@+id/edtNumProduct"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginBottom="20dp"
         android:singleLine="true"
+        android:textSize="@dimen/medium_textsize"
         android:inputType="number"/>
 
     <RelativeLayout
@@ -39,18 +40,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Hủy bỏ"
-            android:background="#F4F6F6"
+            android:textSize="@dimen/medium_textsize"
+            android:background="@color/cancelColor"
             android:layout_weight="1"
             android:layout_toLeftOf="@+id/viewSeparate"
             android:layout_alignParentLeft="true"
             android:layout_alignParentBottom="true"
+            android:layout_alignParentTop="true"
             android:textAllCaps="false"/>
 
         <View
             android:id="@+id/viewSeparate"
             android:layout_width="0dp"
             android:layout_centerInParent="true"
-            android:layout_height="match_parent"/>
+            android:layout_height="0dp"/>
 
 
         <Button
@@ -59,11 +62,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Xác nhận"
-
+            android:textSize="@dimen/medium_textsize"
             android:textColor="#FFFFFF"
-            android:background="#0AA8FF"
+            android:background="@color/colorPrimary"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
+            android:layout_alignParentTop="true"
             android:textAllCaps="false"/>
     </RelativeLayout>
 

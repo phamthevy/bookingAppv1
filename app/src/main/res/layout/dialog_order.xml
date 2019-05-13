@@ -1,151 +1,162 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="400dp"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical">
-
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="35dp"
+        android:layout_height="wrap_content"
         android:text="Xác nhận đặt hàng"
-        android:textSize="20dp"
+        android:textSize="@dimen/big_textsize"
         android:layout_gravity="center"
         android:gravity="center"
         android:textStyle="bold"
-        android:layout_marginBottom="5dp"/>
-
+        android:padding="10dp"/>
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#000000"/>
+        android:background="@color/colorPrimary"/>
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:paddingRight="30dp">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
             <TextView
-                android:layout_width="95dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Họ và Tên "
+                android:text="Họ và Tên: "
                 android:layout_gravity="center"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="10dp"/>
+                android:textSize="@dimen/medium_textsize"
+                android:paddingLeft="10dp"/>
 
             <EditText
                 android:layout_width="match_parent"
                 android:id="@+id/edtName"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
+                android:textSize="@dimen/medium_textsize"
+                android:paddingRight="10dp"
+                android:imeOptions="actionNext"
                 android:singleLine="true" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
             <TextView
-                android:layout_width="95dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Số điện thoại "
+                android:text="Số điện thoại: "
                 android:layout_gravity="center"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="10dp"/>
+                android:textSize="@dimen/medium_textsize"
+                android:paddingLeft="10dp"/>
 
             <EditText
                 android:layout_width="match_parent"
                 android:id="@+id/edtPhone"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
+                android:textSize="@dimen/medium_textsize"
+                android:paddingRight="10dp"
+                android:imeOptions="actionNext"
                 android:singleLine="true"
                 android:inputType="number"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
             <TextView
-                android:layout_width="95dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Email "
+                android:text="Email: "
                 android:layout_gravity="center"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="10dp"/>
+                android:textSize="@dimen/medium_textsize"
+                android:paddingLeft="10dp"/>
 
             <EditText
                 android:layout_width="match_parent"
                 android:id="@+id/edtEmail"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
+                android:textSize="@dimen/medium_textsize"
+                android:paddingRight="10dp"
+                android:imeOptions="actionNext"
                 android:singleLine="true"
                 android:inputType="textEmailAddress"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
             <TextView
-                android:layout_width="95dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Địa chỉ "
+                android:text="Địa chỉ: "
                 android:layout_gravity="center"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="10dp"/>
+                android:textSize="@dimen/medium_textsize"
+                android:paddingLeft="10dp"/>
 
             <EditText
                 android:layout_width="match_parent"
                 android:id="@+id/edtAddress"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:singleLine="true" />
+                android:textSize="@dimen/medium_textsize"
+                android:paddingRight="10dp"
+                android:imeOptions="actionNext"
+                android:singleLine="true"
+                android:inputType="textEmailAddress"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
             <TextView
-                android:layout_width="95dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Ghi chú "
+                android:text="Ghi chú: "
                 android:layout_gravity="center"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="10dp"/>
+                android:textSize="@dimen/medium_textsize"
+                android:paddingLeft="10dp"/>
 
             <EditText
                 android:layout_width="match_parent"
                 android:id="@+id/edtNote"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
+                android:textSize="@dimen/medium_textsize"
+                android:paddingRight="10dp"
+                android:imeOptions="actionDone"
                 android:singleLine="true" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:paddingBottom="10dp" >
+            android:layout_height="wrap_content"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:orientation="horizontal">
             <TextView
-                android:layout_width="95dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tổng tiền "
+                android:text="Tổng tiền: "
                 android:layout_gravity="center"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="10dp"/>
+                android:textSize="@dimen/medium_textsize"
+                android:paddingLeft="10dp"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:id="@+id/txSumPrice"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="10dp"
                 android:paddingLeft="10dp"
-                android:textColor="@android:color/holo_red_dark"
+                android:textSize="@dimen/medium_textsize"
+                android:textColor="@color/colorAccent"
                 android:singleLine="true" />
         </LinearLayout>
 
@@ -162,18 +173,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Hủy bỏ"
-            android:background="#F4F6F6"
+            android:textSize="@dimen/medium_textsize"
+            android:background="@color/cancelColor"
             android:layout_weight="1"
             android:layout_toLeftOf="@+id/viewSeparate"
             android:layout_alignParentLeft="true"
             android:layout_alignParentBottom="true"
+            android:layout_alignParentTop="true"
             android:textAllCaps="false"/>
 
         <View
             android:id="@+id/viewSeparate"
             android:layout_width="0dp"
             android:layout_centerInParent="true"
-            android:layout_height="match_parent"/>
+            android:layout_height="0dp"/>
 
 
         <Button
@@ -182,10 +195,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Xác nhận"
+            android:textSize="@dimen/medium_textsize"
             android:textColor="#FFFFFF"
-            android:background="#3498DB"
+            android:background="@color/colorPrimary"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
+            android:layout_alignParentTop="true"
             android:textAllCaps="false"/>
     </RelativeLayout>
 

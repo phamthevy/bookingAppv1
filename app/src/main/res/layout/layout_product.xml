@@ -23,7 +23,7 @@
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="12sp"
+        android:textSize="@dimen/medium_textsize"
         tools:text="Are You My Mother"
         android:textStyle="bold"
         android:paddingTop="4dp"
@@ -35,15 +35,16 @@
         android:id="@+id/tv_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="12sp"
+        android:textSize="@dimen/small_textsize"
         tools:text="Dr. Seuss"
+        android:textColor="@color/colorRed"
         android:gravity="center_horizontal"/>
 
     <TextView
         android:id="@+id/tv_bonus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="12sp"
+        android:textSize="@dimen/small_textsize"
         tools:text="Dr. Seuss"
         android:gravity="center_horizontal"/>
 
