@@ -24,6 +24,7 @@ public class Cart {
 
     public void addProduct(InCartProduct product){
         products.add(product);
+        notiChange();
     }
 
     public List<InCartProduct> getProducts(){
