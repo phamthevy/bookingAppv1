@@ -27,6 +27,11 @@ public class Cart {
         notiChange();
     }
 
+    public void clear(){
+        products.clear();
+        notiChange();
+    }
+
     public List<InCartProduct> getProducts(){
         return products;
     }
