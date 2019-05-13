@@ -1,6 +1,5 @@
-package com.bku.appbooking.main.fragment;
+package com.bku.appbooking.main.fragment.home;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,32 +9,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
 import com.bku.appbooking.R;
 import com.bku.appbooking.category.CategoryActivity;
 import com.bku.appbooking.common.Category;
-import com.bku.appbooking.common.Product;
-import com.bku.appbooking.home.HomeListAdapter;
-import com.bku.appbooking.ultis.CentralRequestQueue;
+import com.bku.appbooking.main.fragment.home.HomeListAdapter;
 import com.google.gson.Gson;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.UnsupportedEncodingException;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-
-import jp.wasabeef.picasso.transformations.internal.Utils;
 
 public class HomeFragment extends Fragment {
     Button button;
