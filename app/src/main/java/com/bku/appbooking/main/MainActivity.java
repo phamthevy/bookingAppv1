@@ -13,7 +13,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -32,8 +31,6 @@ import com.bku.appbooking.main.fragment.PersonFragment;
 import com.bku.appbooking.search.SearchActivity;
 import com.bku.appbooking.ultis.CentralRequestQueue;
 import com.bku.appbooking.ultis.UserInfo;
-
-import javax.security.auth.login.LoginException;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     CartFragment cartFragment;
@@ -78,7 +75,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //keep the selected fragment when rotating the device
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new HomeFragment()).commit();
+        }
         setContentView(R.layout.activity_main);
+        final String resultFragment = getIntent().getStringExtra("fragment");
+        if ("cart".equals(resultFragment)){
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new CartFragment()).commit();
+        }
         cartFragment = null;
         historyFragment = null;
         homeFragment = null;
@@ -123,11 +130,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
-        //keep the selected fragment when rotating the device
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    new HomeFragment()).commit();
-        }
+
+
     }
 
     @Override

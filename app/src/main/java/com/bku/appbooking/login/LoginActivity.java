@@ -51,13 +51,6 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        //TODO: Gui den sever, tra ve true - false
-
-        //final String message = true ? "Dang nhap thanh cong" : "Dang nhap that bai, vui long thu lai";
-//
-//        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
-//
-//
         String urlLogin = "http://booking.vihey.com/api/login.php";
 
             StringRequest MyStringRequest = new StringRequest(Request.Method.POST, urlLogin, new Response.Listener<String>() {
@@ -67,20 +60,16 @@ public class LoginActivity extends AppCompatActivity {
                         response=new String(response.getBytes("ISO-8859-1"), "UTF-8");
                         JSONObject object = new JSONObject(response);
                         int status = object.optInt("status");
-                        String accessToken = object.optString("accesstoken");
-                        String name = object.optString("hoten");
-                        String email = object.optString("email");
                         if (status == 1) {
+                            String accessToken = object.optString("accesstoken");
+                            String name = object.optString("hoten");
+                            String email = object.optString("email");
                             Toast.makeText(getApplicationContext(), "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
                             UserInfo.getInstance().setAccessToken(accessToken);
                             UserInfo.getInstance().setName(name);
                             UserInfo.getInstance().setPass(pass);
                             UserInfo.getInstance().setMail(email);
-                            //LoginActivity.super.onBackPressed();
-                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                            startActivity(intent);
-
-
+                            LoginActivity.super.onBackPressed();
                         }
                         if(status == 0){
                             Toast.makeText(getApplicationContext(), "Tên tài khoản hoặc mật khẩu không đúng", Toast.LENGTH_SHORT).show();

@@ -1,9 +1,16 @@
 package com.bku.appbooking.detail;
 
 import android.app.Dialog;
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,7 +27,10 @@ import com.android.volley.toolbox.Volley;
 import com.bku.appbooking.R;
 import com.bku.appbooking.common.InCartProduct;
 import com.bku.appbooking.common.Product;
+import com.bku.appbooking.main.MainActivity;
+import com.bku.appbooking.search.SearchActivity;
 import com.bku.appbooking.ultis.Cart;
+import com.bku.appbooking.ultis.CountDrawable;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONObject;
@@ -32,6 +42,7 @@ public class DetailActivity extends AppCompatActivity {
     String productId;
     Product product;
     EditText edtNum;
+    private Menu mOptionsMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,10 +71,14 @@ public class DetailActivity extends AppCompatActivity {
                 btnConfirm.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        if (edtNum.getText().toString().equals("")){
+                            return;
+                        }
                         final int numberProduct = Integer.valueOf(edtNum.getText().toString());
                         if (numberProduct != 0){
                             Cart.getInstance().addProduct(new InCartProduct(product, numberProduct,false));
                             dialog.dismiss();
+                            setCount(DetailActivity.this, mOptionsMenu, String.valueOf(Cart.getInstance().getProducts().size()));
                             Toast.makeText(DetailActivity.this, "Add thanh cong", Toast.LENGTH_LONG).show();
                         }
                     }
@@ -128,6 +143,54 @@ public class DetailActivity extends AppCompatActivity {
 
         ImageView imProduct = (ImageView)findViewById(R.id.imProduct);
         Picasso.with(getApplicationContext()).load(imgUrl).into(imProduct);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.cart_menu, menu);
+        mOptionsMenu = menu;
+        return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        setCount(this, menu, String.valueOf(Cart.getInstance().getProducts().size()));
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.ic_cart:
+                Intent intent = new Intent(DetailActivity.this, MainActivity.class);
+                intent.putExtra("fragment","cart");
+                startActivity(intent);
+                break;
+            default:
+                break;
+        }
+
+        return true;
+    }
+
+    public void setCount(Context context, Menu menu, String count) {
+        MenuItem menuItem = menu.findItem(R.id.ic_cart);
+        LayerDrawable icon = (LayerDrawable) menuItem.getIcon();
+
+        CountDrawable badge;
+
+        // Reuse drawable if possible
+        Drawable reuse = icon.findDrawableByLayerId(R.id.ic_group_count);
+        if (reuse != null && reuse instanceof CountDrawable) {
+            badge = (CountDrawable) reuse;
+        } else {
+            badge = new CountDrawable(context);
+        }
+
+        badge.setCount(count);
+        icon.mutate();
+        icon.setDrawableByLayerId(R.id.ic_group_count, badge);
     }
 
 
