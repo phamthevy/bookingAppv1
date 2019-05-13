@@ -25,6 +25,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bku.appbooking.R;
+import com.bku.appbooking.category.CategoryActivity;
 import com.bku.appbooking.common.InCartProduct;
 import com.bku.appbooking.common.Product;
 import com.bku.appbooking.main.MainActivity;
@@ -51,6 +52,8 @@ public class DetailActivity extends AppCompatActivity {
         productId = getIntent().getStringExtra("productId");
 
         getContentTextView(productId);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
 
         ((Button) findViewById(R.id.btnBuy)).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -166,6 +169,11 @@ public class DetailActivity extends AppCompatActivity {
                 Intent intent = new Intent(DetailActivity.this, MainActivity.class);
                 intent.putExtra("fragment","cart");
                 startActivity(intent);
+                break;
+            case android.R.id.home:
+                finish();
+//                Intent backIntent = new Intent(DetailActivity.this, CategoryActivity.class);
+//                startActivity(backIntent);
                 break;
             default:
                 break;

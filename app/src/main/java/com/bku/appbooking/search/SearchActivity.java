@@ -3,17 +3,17 @@ package com.bku.appbooking.search;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
-import android.widget.TextView;
 
 import com.bku.appbooking.R;
-import com.bku.appbooking.common.Product;
 import com.bku.appbooking.detail.DetailActivity;
+import com.bku.appbooking.main.MainActivity;
 
 public class SearchActivity extends AppCompatActivity {
 
@@ -41,6 +41,8 @@ public class SearchActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
     }
 
     private void setupGridview(){
@@ -62,6 +64,19 @@ public class SearchActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+            default:
+                break;
+        }
+
+        return true;
     }
 
 

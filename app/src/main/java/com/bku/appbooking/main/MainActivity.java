@@ -13,6 +13,8 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -23,12 +25,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bku.appbooking.R;
+import com.bku.appbooking.detail.DetailActivity;
 import com.bku.appbooking.login.LoginActivity;
 import com.bku.appbooking.main.fragment.CartFragment;
 import com.bku.appbooking.main.fragment.HistoryFragment;
 import com.bku.appbooking.main.fragment.HomeFragment;
 import com.bku.appbooking.main.fragment.PersonFragment;
 import com.bku.appbooking.search.SearchActivity;
+import com.bku.appbooking.ultis.Cart;
 import com.bku.appbooking.ultis.CentralRequestQueue;
 import com.bku.appbooking.ultis.UserInfo;
 
@@ -75,7 +79,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //keep the selected fragment when rotating the device
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new HomeFragment()).commit();
@@ -97,7 +100,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.left_aboutUs).setOnClickListener(this);
         findViewById(R.id.left_rate).setOnClickListener(this);
         findViewById(R.id.img_avatar).setOnClickListener(this);
-        findViewById(R.id.left_search).setOnClickListener(this);
         findViewById(R.id.left_logOut).setOnClickListener(this);
         findViewById(R.id.left_Login).setOnClickListener(this);
 
@@ -152,6 +154,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if(drawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
+        switch (item.getItemId()) {
+            case R.id.ic_search:
+                Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+                startActivity(intent);
+                break;
+            default:
+                break;
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -197,10 +208,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.img_avatar:
                 OpenGallery();
-                break;
-            case R.id.left_search:
-                Intent intent = new Intent(MainActivity.this, SearchActivity.class);
-                startActivity(intent);
                 break;
             case R.id.left_logOut:
                 Logout();
@@ -281,12 +288,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     }
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode== IMAGE_PICKER  && resultCode == RESULT_OK) {
             Uri fullPhotoUri = data.getData();
             imageView.setImageURI(fullPhotoUri);
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.search_menu, menu);
+        return true;
     }
 }

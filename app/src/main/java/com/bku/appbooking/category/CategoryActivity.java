@@ -16,23 +16,17 @@ import android.widget.ImageView;
 import com.bku.appbooking.R;
 import com.bku.appbooking.common.Category;
 import com.bku.appbooking.main.MainActivity;
+import com.bku.appbooking.search.SearchActivity;
 import com.bku.appbooking.ultis.Cart;
-import com.bku.appbooking.ultis.CircleTransform;
 import com.bku.appbooking.ultis.CountDrawable;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
 
 import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.GridView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.bku.appbooking.R;
-import com.bku.appbooking.common.Product;
 import com.bku.appbooking.detail.DetailActivity;
 
 
@@ -55,14 +49,12 @@ public class CategoryActivity extends AppCompatActivity {
         Picasso.with(this).load(category.getImageUrl()).transform(transformation).into(imageView);
         cateTitle = findViewById(R.id.cate_title);
         cateTitle.setText(category.getTitle());
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
         setupGridview();
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Object o = gridView.getItemAtPosition(position);
-//                Product product = (Product) o;
-//                Log.d("abcd1", String.valueOf(id));
-//                Log.d("abcd2", String.valueOf(product.getId()));
                 Intent intent = new Intent(getApplicationContext(), DetailActivity.class);
                 intent.putExtra("productId", String.valueOf(id));
                 startActivity(intent);
@@ -93,7 +85,7 @@ public class CategoryActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.cart_menu, menu);
+        inflater.inflate(R.menu.search_cart_menu, menu);
         mOptionsMenu = menu;
         return true;
     }
@@ -107,10 +99,17 @@ public class CategoryActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.ic_cart:
+            case R.id.ic_cart_combine:
                 Intent intent = new Intent(CategoryActivity.this, MainActivity.class);
                 intent.putExtra("fragment","cart");
                 startActivity(intent);
+                break;
+            case R.id.ic_search_combine:
+                Intent intentSearch = new Intent(CategoryActivity.this, SearchActivity.class);
+                startActivity(intentSearch);
+                break;
+            case android.R.id.home:
+                finish();
                 break;
             default:
                 break;
@@ -120,7 +119,7 @@ public class CategoryActivity extends AppCompatActivity {
     }
 
     public void setCount(Context context, Menu menu, String count) {
-        MenuItem menuItem = menu.findItem(R.id.ic_cart);
+        MenuItem menuItem = menu.findItem(R.id.ic_cart_combine);
         LayerDrawable icon = (LayerDrawable) menuItem.getIcon();
 
         CountDrawable badge;
