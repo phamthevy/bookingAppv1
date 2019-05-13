@@ -1,8 +1,12 @@
 package com.bku.appbooking.search;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.util.Log;
+import android.view.View;
 import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -73,10 +77,20 @@ public class SearchDataReceiver {
                         }
                         linkedAdapter.notifyDataSetChanged();
                     } else {
-                        new AlertDialog.Builder(context)
-                                .setMessage("Lấy thông tin user thất bại")
-                                .setPositiveButton(R.string.yes, null)
-                                .show();
+                        final Dialog dialog = new Dialog(context);
+                        dialog.setContentView(R.layout.dialog_infomation);
+                        dialog.setCanceledOnTouchOutside(false);
+
+                        Button btnConfirm = (Button) dialog.findViewById(R.id.btnConfirm);
+                        TextView content = dialog.findViewById(R.id.dialog_content);
+                        content.setText("Lấy thông tin thất bại");
+                        btnConfirm.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                dialog.dismiss();
+                            }
+                        });
+                        dialog.show();
                     }
 
                 } catch (Exception e) {
@@ -88,10 +102,20 @@ public class SearchDataReceiver {
         }, new Response.ErrorListener() { //Create an error listener to handle errors appropriately.
             @Override
             public void onErrorResponse(VolleyError error) {
-                new AlertDialog.Builder(context)
-                        .setMessage("Không thể lấy thông tin user")
-                        .setPositiveButton(R.string.yes, null)
-                        .show();
+                final Dialog dialog = new Dialog(context);
+                dialog.setContentView(R.layout.dialog_infomation);
+                dialog.setCanceledOnTouchOutside(false);
+
+                Button btnConfirm = (Button) dialog.findViewById(R.id.btnConfirm);
+                TextView content = dialog.findViewById(R.id.dialog_content);
+                content.setText("Không thể lấy thông tin");
+                btnConfirm.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+                dialog.show();
             }
         }) {
             protected Map<String, String> getParams() {

@@ -1,5 +1,6 @@
 package com.bku.appbooking.main.fragment.person;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -17,6 +19,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.bku.appbooking.R;
+import com.bku.appbooking.main.MainActivity;
 import com.bku.appbooking.ultis.CentralRequestQueue;
 import com.bku.appbooking.ultis.UserInfo;
 
@@ -180,15 +183,41 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
                     JSONObject object = new JSONObject(response);
                     int status = object.optInt("status");
                     if (status == 1){
-                        new AlertDialog.Builder(getContext())
-                                .setMessage("Doi mat khau thanh cong")
-                                .setPositiveButton(R.string.yes, null)
-                                .show();
+                        if (getContext()== null) {
+                            return;
+                        }
+                        final Dialog dialog = new Dialog(getContext());
+                        dialog.setContentView(R.layout.dialog_infomation);
+                        dialog.setCanceledOnTouchOutside(false);
+
+                        Button btnConfirm = (Button) dialog.findViewById(R.id.btnConfirm);
+                        TextView content = dialog.findViewById(R.id.dialog_content);
+                        content.setText("Đổi mật khẩu thành công");
+                        btnConfirm.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                dialog.dismiss();
+                            }
+                        });
+                        dialog.show();
                     } else {
-                        new AlertDialog.Builder(getContext())
-                                .setMessage("Lấy thông tin user thất bại")
-                                .setPositiveButton(R.string.yes, null)
-                                .show();
+                        if (getContext()== null) {
+                            return;
+                        }
+                        final Dialog dialog = new Dialog(getContext());
+                        dialog.setContentView(R.layout.dialog_infomation);
+                        dialog.setCanceledOnTouchOutside(false);
+
+                        Button btnConfirm = (Button) dialog.findViewById(R.id.btnConfirm);
+                        TextView content = dialog.findViewById(R.id.dialog_content);
+                        content.setText("Đổi mật khẩu thất bại");
+                        btnConfirm.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                dialog.dismiss();
+                            }
+                        });
+                        dialog.show();
                     }
 
                 } catch (Exception e) {
@@ -200,10 +229,23 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
         }, new Response.ErrorListener() { //Create an error listener to handle errors appropriately.
             @Override
             public void onErrorResponse(VolleyError error) {
-                new AlertDialog.Builder(getContext())
-                        .setMessage("Không thể doi mat khau")
-                        .setPositiveButton(R.string.yes, null)
-                        .show();
+                if (getContext()== null) {
+                    return;
+                }
+                final Dialog dialog = new Dialog(getContext());
+                dialog.setContentView(R.layout.dialog_infomation);
+                dialog.setCanceledOnTouchOutside(false);
+
+                Button btnConfirm = (Button) dialog.findViewById(R.id.btnConfirm);
+                TextView content = dialog.findViewById(R.id.dialog_content);
+                content.setText("Xảy ra lỗi");
+                btnConfirm.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+                dialog.show();
             }
         }) {
             protected Map<String, String> getParams() {
@@ -236,10 +278,23 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
                         Log.e("UserInfo","get user info successs");
                     } else {
                         Log.e("UserInfo","get user info fail");
-                        new AlertDialog.Builder(getContext())
-                                .setMessage("Lấy thông tin user thất bại")
-                                .setPositiveButton(R.string.yes, null)
-                                .show();
+                        if (getContext()== null) {
+                            return;
+                        }
+                        final Dialog dialog = new Dialog(getContext());
+                        dialog.setContentView(R.layout.dialog_infomation);
+                        dialog.setCanceledOnTouchOutside(false);
+
+                        Button btnConfirm = (Button) dialog.findViewById(R.id.btnConfirm);
+                        TextView content = dialog.findViewById(R.id.dialog_content);
+                        content.setText("Không thể lấy thông tin người dùng");
+                        btnConfirm.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                dialog.dismiss();
+                            }
+                        });
+                        dialog.show();
                     }
 
                 } catch (Exception e) {
@@ -253,10 +308,23 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.e("UserInfo1","get user info fail");
-                new AlertDialog.Builder(getContext())
-                        .setMessage("Không thể lấy thông tin user")
-                        .setPositiveButton(R.string.yes, null)
-                        .show();
+                if (getContext()== null) {
+                    return;
+                }
+                final Dialog dialog = new Dialog(getContext());
+                dialog.setContentView(R.layout.dialog_infomation);
+                dialog.setCanceledOnTouchOutside(false);
+
+                Button btnConfirm = (Button) dialog.findViewById(R.id.btnConfirm);
+                TextView content = dialog.findViewById(R.id.dialog_content);
+                content.setText("Không thể lấy thông tin người dùng");
+                btnConfirm.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+                dialog.show();
             }
         }) {
             protected Map<String, String> getParams() {
@@ -280,15 +348,41 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
                     JSONObject object = new JSONObject(response);
                     int status = object.optInt("status");
                     if (status == 1){
-                        new AlertDialog.Builder(getContext())
-                                .setMessage("Update thanh cong")
-                                .setPositiveButton(R.string.yes, null)
-                                .show();
+                        if (getContext()== null) {
+                            return;
+                        }
+                        final Dialog dialog = new Dialog(getContext());
+                        dialog.setContentView(R.layout.dialog_infomation);
+                        dialog.setCanceledOnTouchOutside(false);
+
+                        Button btnConfirm = (Button) dialog.findViewById(R.id.btnConfirm);
+                        TextView content = dialog.findViewById(R.id.dialog_content);
+                        content.setText("Cập nhật thành công");
+                        btnConfirm.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                dialog.dismiss();
+                            }
+                        });
+                        dialog.show();
                     } else {
-                        new AlertDialog.Builder(getContext())
-                                .setMessage("Lấy thông tin user thất bại")
-                                .setPositiveButton(R.string.yes, null)
-                                .show();
+                        if (getContext()== null) {
+                            return;
+                        }
+                        final Dialog dialog = new Dialog(getContext());
+                        dialog.setContentView(R.layout.dialog_infomation);
+                        dialog.setCanceledOnTouchOutside(false);
+
+                        Button btnConfirm = (Button) dialog.findViewById(R.id.btnConfirm);
+                        TextView content = dialog.findViewById(R.id.dialog_content);
+                        content.setText("Cập nhật thất bại");
+                        btnConfirm.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                dialog.dismiss();
+                            }
+                        });
+                        dialog.show();
                     }
 
                 } catch (Exception e) {
@@ -300,10 +394,23 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
         }, new Response.ErrorListener() { //Create an error listener to handle errors appropriately.
             @Override
             public void onErrorResponse(VolleyError error) {
-                new AlertDialog.Builder(getContext())
-                        .setMessage("Không thể lấy thông tin user")
-                        .setPositiveButton(R.string.yes, null)
-                        .show();
+                if (getContext()== null) {
+                    return;
+                }
+                final Dialog dialog = new Dialog(getContext());
+                dialog.setContentView(R.layout.dialog_infomation);
+                dialog.setCanceledOnTouchOutside(false);
+
+                Button btnConfirm = (Button) dialog.findViewById(R.id.btnConfirm);
+                TextView content = dialog.findViewById(R.id.dialog_content);
+                content.setText("Không thể cập nhật");
+                btnConfirm.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+                dialog.show();
             }
         }) {
             protected Map<String, String> getParams() {
