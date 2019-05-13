@@ -1,8 +1,11 @@
 package com.bku.appbooking.ultis;
 
+import android.widget.Toast;
+
 public class UserInfo {
     private static final UserInfo ourInstance = new UserInfo();
     private String mail;
+    private String pass;
     private String address;
     private String phone;
     private String accessToken;
@@ -20,8 +23,16 @@ public class UserInfo {
         this.name = name;
     }
 
+    public void setPass(String pass) {
+        this.pass = pass;
+    }
+
     public String getMail() {
         return mail;
+    }
+
+    public String getPass() {
+        return pass;
     }
 
     public String getAccessToken() {
@@ -38,6 +49,7 @@ public class UserInfo {
 
     private UserInfo() {
         mail = "";
+        pass = "";
         address = "";
         phone = "";
         accessToken = "";
@@ -58,5 +70,11 @@ public class UserInfo {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public void keepConnection(){
+        if (mail.equals("") || pass.equals("")) {
+            return;
+        }// lam sau neu con thoi gian vi co the phai handle kill timer khi thoat app
     }
 }

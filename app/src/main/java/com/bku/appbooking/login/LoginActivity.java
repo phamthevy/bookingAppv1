@@ -74,6 +74,7 @@ public class LoginActivity extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(), "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
                             UserInfo.getInstance().setAccessToken(accessToken);
                             UserInfo.getInstance().setName(name);
+                            UserInfo.getInstance().setPass(pass);
                             UserInfo.getInstance().setMail(email);
                             //LoginActivity.super.onBackPressed();
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
