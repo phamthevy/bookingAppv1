@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="20dp">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,7 +27,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="15sp"
-            android:enabled="false"/>
+            android:imeOptions="actionNext"
+            android:singleLine="true"/>
     </LinearLayout>
 
     <LinearLayout
@@ -42,7 +48,29 @@
             android:layout_width="match_parent"
             android:textSize="15sp"
             android:layout_height="wrap_content"
-            android:enabled="false"/>
+            android:imeOptions="actionNext"
+            android:singleLine="true"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:text="Dia chi:"/>
+
+        <EditText
+            android:id="@+id/txPersonAddress"
+            android:layout_width="match_parent"
+            android:textSize="15sp"
+            android:layout_height="wrap_content"
+            android:imeOptions="actionNext"
+            android:singleLine="true"/>
     </LinearLayout>
 
     <LinearLayout
@@ -62,58 +90,74 @@
             android:layout_width="match_parent"
             android:textSize="15sp"
             android:layout_height="wrap_content"
-            android:enabled="false"/>
+            android:imeOptions="actionDone"
+            android:singleLine="true"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="10dp"
         android:orientation="horizontal">
 
         <TextView
             android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
+            android:textSize="18dp"
             android:text="Mat khau: "/>
 
         <Button
             android:id="@+id/btChangePass"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Doi mat khau"
-            android:enabled="false"/>
+            android:enabled="false"
+            android:text="Doi mat khau" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="0dp"
         android:paddingLeft="120dp"
         android:id="@+id/layoutChangePass"
         android:visibility="gone"
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/txCurrentPass"
-            android:layout_width="match_parent"
-            android:textSize="15sp"
-            android:layout_height="wrap_content"
-            android:hint="Mat khau hien tai" />
-
-        <EditText
             android:id="@+id/txNewPass"
             android:layout_width="match_parent"
-            android:textSize="15sp"
+            android:textSize="15dp"
             android:layout_height="wrap_content"
-            android:hint="Mat khau moi" />
+            android:hint="Mat khau moi"
+            android:imeOptions="actionNext"
+            android:singleLine="true"/>
 
         <EditText
             android:id="@+id/txConfirmPass"
             android:layout_width="match_parent"
-            android:textSize="15sp"
+            android:textSize="15dp"
             android:layout_height="wrap_content"
-            android:hint="Nhap lai mat khau" />
+            android:hint="Nhap lai mat khau"
+            android:imeOptions="actionDone"
+            android:singleLine="true"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btCancelChangePass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Huy bo" />
+
+            <Button
+                android:id="@+id/btConfirmChangePass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="OK" />
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
@@ -142,12 +186,5 @@
             android:text="Luu chinhh sua"
             android:visibility="gone"/>
     </LinearLayout>
-
-    <Button
-        android:id="@+id/btlogOut"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Dang xuat"/>
-
-
 </LinearLayout>
+</ScrollView>

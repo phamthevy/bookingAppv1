@@ -283,16 +283,23 @@ public class CartFragment extends Fragment {
         return view;
     }
     private  List<InCartProduct> getListCartData() {
-        List<InCartProduct> inCartProductList = new ArrayList<InCartProduct>();//Cart.getInstance().getProducts();
-        InCartProduct product1 = new InCartProduct(new Product(11, "title1","100000000","https://style.vihey.com/uploads/product/4.jpg","shortDescription1", "longDescription"),11,false);
-        InCartProduct product2 = new InCartProduct(new Product(22, "title2","200000","https://style.vihey.com/uploads/product/4.jpg","shortDescription2", "longDescription2"),12,false);
-        InCartProduct product3 = new InCartProduct(new Product(33, "title3","300000","https://style.vihey.com/uploads/product/4.jpg","shortDescription3", "longDescription3"),13,false);
-        InCartProduct product4 = new InCartProduct(new Product(44, "title4","400000","https://style.vihey.com/uploads/product/4.jpg","shortDescription4", "longDescription4"),14,false);
-
-        inCartProductList.add(product1);
-        inCartProductList.add(product2);
-        inCartProductList.add(product3);
-        inCartProductList.add(product4);
+        List<InCartProduct> inCartProductList = Cart.getInstance().getProducts();
+        if(inCartProductList.size()==0 ){
+            new AlertDialog.Builder(getContext())
+                    .setMessage("Không có có sản phẩm trong giỏ hàng")
+                    .setPositiveButton(R.string.yes, null)
+                    .show();
+        }
+//        List<InCartProduct> inCartProductList = new ArrayList<InCartProduct>();//Cart.getInstance().getProducts();
+//        InCartProduct product1 = new InCartProduct(new Product(11, "title1","100000000","https://style.vihey.com/uploads/product/4.jpg","shortDescription1", "longDescription"),11,false);
+//        InCartProduct product2 = new InCartProduct(new Product(22, "title2","200000","https://style.vihey.com/uploads/product/4.jpg","shortDescription2", "longDescription2"),12,false);
+//        InCartProduct product3 = new InCartProduct(new Product(33, "title3","300000","https://style.vihey.com/uploads/product/4.jpg","shortDescription3", "longDescription3"),13,false);
+//        InCartProduct product4 = new InCartProduct(new Product(44, "title4","400000","https://style.vihey.com/uploads/product/4.jpg","shortDescription4", "longDescription4"),14,false);
+//
+//        inCartProductList.add(product1);
+//        inCartProductList.add(product2);
+//        inCartProductList.add(product3);
+//        inCartProductList.add(product4);
 
 
 

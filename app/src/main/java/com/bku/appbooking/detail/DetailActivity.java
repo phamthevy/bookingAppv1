@@ -92,9 +92,9 @@ public class DetailActivity extends AppCompatActivity {
                             String imgUrl = product_json.optString("image");
                             String shortDescription = product_json.optString("mieutangan");
                             String longDescription = product_json.optString("mieutadai");
-                            long id = Long.valueOf(key);
+//                            long id = Long.valueOf(key);
                             Log.d("DetailLoad", title+" "+price+" "+imgUrl+" "+shortDescription+" "+longDescription);
-                            product = new Product(Long.valueOf(key), title, price, imgUrl, shortDescription, longDescription);
+                            product = new Product(Integer.valueOf(key), title, price, imgUrl, shortDescription, longDescription);
                             setTextView(title, price, imgUrl, shortDescription, longDescription);
 
                         } else if (object.get(key) instanceof String){
