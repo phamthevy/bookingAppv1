@@ -1,8 +1,5 @@
 package com.bku.appbooking.main.fragment.person;
 
-import android.app.AlertDialog;
-import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -19,8 +16,6 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.bku.appbooking.common.Product;
-import com.bku.appbooking.login.LoginActivity;
 import com.bku.appbooking.R;
 import com.bku.appbooking.ultis.CentralRequestQueue;
 import com.bku.appbooking.ultis.UserInfo;
@@ -106,14 +101,14 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
     private void saveChange(String name, String phone, String email, String diachi){
         //check null info
         if (name.equals("") || email.equals("")){
-            Toast.makeText(getContext(), "Khong the de thong tin trong", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Vui lòng điền đầy đủ thông tin", Toast.LENGTH_SHORT).show();
             return;
         }
 
         //kiem tra email
         String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
         if (!email.matches(emailPattern)) {
-            Toast.makeText(getContext(),"Email khong hop le",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(),"Email không hợp lệ",Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -129,13 +124,13 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
 
     private void confirmChangePass(String newPass, String confirmPass){
         if (newPass.equals("") && confirmPass.equals("") ){
-            Toast.makeText(getContext(), "Vui long khong de trong mat khau", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Mật khẩu không hợp lệ", Toast.LENGTH_SHORT).show();
             return;
         }
 
         //kiem tra mat khau
         if (!newPass.equals(confirmPass)){
-            Toast.makeText(getContext(), "Vui long nhap lai mat khau", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Mật khẩu không khớp", Toast.LENGTH_SHORT).show();
             return;
         }
 

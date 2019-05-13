@@ -20,7 +20,7 @@
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:textSize="@dimen/medium_textsize"
-            android:text="Ho ten:* " />
+            android:text="Họ tên: " />
 
         <EditText
             android:id="@+id/txPersonName"
@@ -41,7 +41,7 @@
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:textSize="@dimen/medium_textsize"
-            android:text="So dien thoai: " />
+            android:text="Số điện thoại: " />
 
         <EditText
             android:id="@+id/txPersonPhone"
@@ -62,7 +62,7 @@
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:textSize="@dimen/medium_textsize"
-            android:text="Dia chi:"/>
+            android:text="Địa chỉ:"/>
 
         <EditText
             android:id="@+id/txPersonAddress"
@@ -116,7 +116,7 @@
             android:paddingLeft="@dimen/normal_padding"
             android:paddingRight="@dimen/normal_padding"
             android:textSize="@dimen/medium_textsize"
-            android:text="Doi mat khau" />
+            android:text="Đổi mật khẩu" />
     </LinearLayout>
 
     <LinearLayout
@@ -132,7 +132,7 @@
             android:layout_width="match_parent"
             android:textSize="@dimen/medium_textsize"
             android:layout_height="wrap_content"
-            android:hint="Mat khau moi"
+            android:hint="Mật khẩu mới"
             android:imeOptions="actionNext"
             android:singleLine="true"/>
 
@@ -141,7 +141,7 @@
             android:layout_width="match_parent"
             android:textSize="@dimen/medium_textsize"
             android:layout_height="wrap_content"
-            android:hint="Nhap lai mat khau"
+            android:hint="Nhập lại mật khẩu"
             android:imeOptions="actionDone"
             android:singleLine="true"/>
 
@@ -157,7 +157,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/cancelColor"
                 android:textSize="@dimen/medium_textsize"
-                android:text="Huy bo" />
+                android:text="Hủy bỏ" />
 
             <Button
                 android:id="@+id/btConfirmChangePass"
@@ -185,13 +185,13 @@
             android:textSize="@dimen/medium_textsize"
             android:paddingLeft="@dimen/normal_padding"
             android:paddingRight="@dimen/normal_padding"
-            android:text="Sua doi thong tin"/>
+            android:text="Sửa đổi thông tin"/>
 
         <Button
             android:id="@+id/btCancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Huy bo"
+            android:text="Hủy bỏ"
             android:background="@color/cancelColor"
             android:paddingLeft="@dimen/normal_padding"
             android:paddingRight="@dimen/normal_padding"
@@ -202,7 +202,7 @@
             android:id="@+id/btSaveChange"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Luu chinhh sua"
+            android:text="Xác nhận"
             android:paddingLeft="@dimen/normal_padding"
             android:paddingRight="@dimen/normal_padding"
             android:background="@drawable/enable_color"

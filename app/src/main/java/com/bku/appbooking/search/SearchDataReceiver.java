@@ -1,6 +1,5 @@
 package com.bku.appbooking.search;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.util.Log;
 import android.widget.BaseAdapter;

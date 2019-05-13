@@ -70,7 +70,7 @@ public class HomeListAdapter extends BaseAdapter {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(context, "cannot load home data", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Không tải được dữ liệu", Toast.LENGTH_SHORT).show();
             }
         });
         CentralRequestQueue.getInstance().add(stringRequest);

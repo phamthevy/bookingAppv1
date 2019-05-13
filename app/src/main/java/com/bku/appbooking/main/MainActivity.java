@@ -238,7 +238,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 String totalStars = "Total Stars:: " + ratingBar.getNumStars();
                 String rating = "Rating :: " + ratingBar.getRating();
                 dialog.dismiss();
-                Toast.makeText(MainActivity.this, totalStars + "\n" + rating, Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this, "Cảm ơn sự góp ý của bạn", Toast.LENGTH_LONG).show();
             }
         });
         dialog.show();

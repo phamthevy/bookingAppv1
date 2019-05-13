@@ -183,24 +183,24 @@ public class CartFragment extends Fragment {
                         final String note = edtNote.getText().toString();
                         if (name.equals(null) || name.equals("") ){
 
-                            Toast.makeText(getContext(), "Empty Name", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "Tên không hợp lệ", Toast.LENGTH_SHORT).show();
                         }
                         else if (phone.equals(null) || phone.equals("") ){
 
-                                Toast.makeText(getContext(), "Empty Phone", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getContext(), "Số điện thoại không hợp lệ", Toast.LENGTH_SHORT).show();
 
                             }
                         else if(phone.length()<9 || phone.length()>11 ){
-                            Toast.makeText(getContext(), " Invalid Phone", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), " Số điện thoại không hợp lệ", Toast.LENGTH_SHORT).show();
                         }
                         else if (email.equals(null) || email.equals("") ){
 
-                            Toast.makeText(getContext(), "Empty Email", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "Email không hợp lệ", Toast.LENGTH_SHORT).show();
 
                         }
                         else if (address.equals(null) || address.equals("") ){
 
-                            Toast.makeText(getContext(), "Empty Address", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "Địa chỉ không hợp lệ", Toast.LENGTH_SHORT).show();
 
                         }
                         else {

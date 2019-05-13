@@ -112,7 +112,7 @@ public class HistoryListAdapter extends BaseAdapter {
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError volleyError) {
-                        Toast.makeText(context, "cannot history home data111", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Không tải được dữ liệu", Toast.LENGTH_SHORT).show();
                     }
                 });
                 CentralRequestQueue.getInstance().add(request);
@@ -120,7 +120,7 @@ public class HistoryListAdapter extends BaseAdapter {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(context, "cannot load history data, need login", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Không tải được dữ liệu", Toast.LENGTH_SHORT).show();
             }
         });
         CentralRequestQueue.getInstance().add(stringRequest);

@@ -1,10 +1,6 @@
 <resources>
     <string name="app_name">AppBooking</string>
 
-    <!--textsize-->
-    <string name="textSizeSmall">10sp</string>
-    <string name="textSizeMedium">12sp</string>
-    <string name="textSizeLarge">14sp</string>
     <string name="yes">Đồng ý</string>
     <string name="no">Hủy</string>
 
@@ -12,9 +8,9 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="content_aboutUs">Chúng tôi la những người vô danh bạn chưa từng nghe đến. Cảm ơn bạn đã quan tâm</string>
-    <string name="title_aboutUs">About us</string>
-    <string name="title_rateApp">Rate this app</string>
+    <string name="content_aboutUs">Chúng mình là một nhóm nhỏ đang làm bài tập lớn thôi. Cảm ơn bạn đã quan tâm</string>
+    <string name="title_aboutUs">Liên hệ</string>
+    <string name="title_rateApp">Đánh giá ứng dụng</string>
     <string name="content_rateApp">Cảm ơn bạn đã đồng hành với chúng tôi. Đánh giá app giúp chúng tôi cải thiện app để mang đến cho bạn những trải nghiệm tốt hơn</string>
-    <string name="register"><u>Chua co tai khoan? Dang ki ngay</u></string>
+    <string name="register"><u>Chưa có tài khoản? Đăng kí ngay</u></string>
 </resources>

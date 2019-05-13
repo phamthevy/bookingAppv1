@@ -82,7 +82,7 @@ public class DetailActivity extends AppCompatActivity {
                             Cart.getInstance().addProduct(new InCartProduct(product, numberProduct,false));
                             dialog.dismiss();
                             setCount(DetailActivity.this, mOptionsMenu, String.valueOf(Cart.getInstance().getProducts().size()));
-                            Toast.makeText(DetailActivity.this, "Add thanh cong", Toast.LENGTH_LONG).show();
+                            Toast.makeText(DetailActivity.this, "Thêm vào giỏ hàng thành công", Toast.LENGTH_LONG).show();
                         }
                     }
                 });
@@ -127,7 +127,7 @@ public class DetailActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
-                Toast.makeText(getApplicationContext(), "Some error occurred!!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Lỗi!!", Toast.LENGTH_SHORT).show();
             }
         });
         request.setRetryPolicy(new DefaultRetryPolicy(

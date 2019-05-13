@@ -47,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public void onLogin(final String email, final String pass) {
         if (email.equals("") || pass.equals("")) {
-            Toast.makeText(this, "Vui long dien day du thong tin", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Vui lòng điền đầy đủ thông tin", Toast.LENGTH_SHORT).show();
             return;
         }
 

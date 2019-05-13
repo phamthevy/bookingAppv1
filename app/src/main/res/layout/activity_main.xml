@@ -90,7 +90,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="32dp"
-                    android:text="Login" />
+                    android:text="Đăng nhập" />
             </LinearLayout>
 
             <LinearLayout
@@ -113,7 +113,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="32dp"
-                    android:text="About Us" />
+                    android:text="Liên hệ" />
 
             </LinearLayout>
 
@@ -137,7 +137,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="32dp"
-                    android:text="Rate this app" />
+                    android:text="Đánh giá ứng dụng" />
 
             </LinearLayout>
 
@@ -161,7 +161,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="32dp"
-                    android:text="Logout" />
+                    android:text="Đăng xuất" />
 
             </LinearLayout>
 

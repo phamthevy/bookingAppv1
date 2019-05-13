@@ -59,20 +59,20 @@ public class RegisterActivity extends AppCompatActivity {
     private void register(final String username, final String name, final String phone, final String email, final String pass, final String passAgain) {
         //check null
         if (username.equals("") || name.equals("") || phone.equals("") || email.equals("") || pass.equals("") || passAgain.equals("")){
-            Toast.makeText(this, "Vui long dien day du thong tin", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Vui lòng điền đầy đủ thông tin", Toast.LENGTH_SHORT).show();
             return;
         }
 
         //kiem tra mat khau
         if (!pass.equals(passAgain)){
-            Toast.makeText(this, "Vui long nhap lai mat khau", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Mật khẩu không khớp", Toast.LENGTH_SHORT).show();
             return;
         }
 
         //kiem tra email
         String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
         if (!email.matches(emailPattern)) {
-            Toast.makeText(getApplicationContext(),"Email khong hop le",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),"Email không hợp lệ",Toast.LENGTH_SHORT).show();
             return;
         }
 
