@@ -19,19 +19,25 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.bku.appbooking.R;
+import com.bku.appbooking.common.Product;
 import com.bku.appbooking.main.fragment.cart.CartAdapter;
 import com.bku.appbooking.common.InCartProduct;
 import com.bku.appbooking.ultis.Cart;
 import com.bku.appbooking.ultis.CentralRequestQueue;
+import com.bku.appbooking.ultis.UserInfo;
 
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -153,6 +159,7 @@ public class CartFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if(isCheckSelectCheckBox()){
+                    String urlInfo = "http://booking.vihey.com/api/getuserinfo.php";
                     final Dialog dialog = new Dialog(getContext());
                     dialog.setContentView(R.layout.dialog_order);
                     dialog.setCanceledOnTouchOutside(false);
@@ -162,6 +169,7 @@ public class CartFragment extends Fragment {
                     edtAddress = (EditText) dialog.findViewById(R.id.edtAddress);
                     edtNote = (EditText) dialog.findViewById(R.id.edtNote);
                     txSumPrice = (TextView)dialog.findViewById(R.id.txSumPrice) ;
+                   requestGetUserInfo(urlInfo, UserInfo.getInstance().getAccessToken());
 
 
                     txSumPrice.setText(txPrice.getText().toString());
@@ -390,6 +398,57 @@ public class CartFragment extends Fragment {
 
         };
         
+        rQueue.add(MyStringRequest);
+    }
+    private void requestGetUserInfo(final String url, final String accesstoken){
+        StringRequest MyStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.e("Response: ", response);
+                try {
+                    response=new String(response.getBytes("ISO-8859-1"), "UTF-8");
+                    JSONObject object = new JSONObject(response);
+                    String message = object.optString("message");
+                    if ("Access granted.".equals(message)){
+                        JSONObject objectData = new JSONObject(object.optString("data"));
+                        edtName.setText(objectData.getString("hoten"));
+                        edtEmail.setText(objectData.getString("email"));
+                        edtPhone.setText(objectData.getString("sdt"));
+                        edtAddress.setText(objectData.getString("diachi"));
+                        Log.e("UserInfo","get user info successs");
+                    } else {
+                        Log.e("UserInfo","get user info fail");
+                        if (getContext()== null) {
+                            return;
+                        }
+
+                    }
+
+                } catch (Exception e) {
+                    Log.e("UserInfo2", String.valueOf(e));
+                    Log.e("UserInfo2","get user info successs");
+                }
+
+
+            }
+        }, new Response.ErrorListener() { //Create an error listener to handle errors appropriately.
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("UserInfo1","get user info fail");
+                if (getContext()== null) {
+                    return;
+                }
+
+            }
+        }) {
+            protected Map<String, String> getParams() {
+                Map<String, String> MyData = new HashMap<String, String>();
+                MyData.put("accesstoken", accesstoken);
+                return MyData;
+            }
+
+        };
+
         rQueue.add(MyStringRequest);
     }
 
