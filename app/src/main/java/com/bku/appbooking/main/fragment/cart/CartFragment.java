@@ -73,28 +73,45 @@ public class CartFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if(isCheckSelectCheckBox()){
-                    new AlertDialog.Builder(getContext())
-                            .setTitle("Xóa danh mục")
-                            .setMessage("Bạn chắc chắn xóa danh mục này?")
-                            .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
-                                    ChangeInCartProductList(inCartProductList);
-                                    txMyCart.setText("Giỏ hàng của tôi("+String.valueOf(inCartProductList.size())+")");
-                                    btnAllCheck.setChecked(false);
-                                    getPrice();
-                                }
-                            })
+                    final Dialog dialog = new Dialog(getContext());
+                    dialog.setContentView(R.layout.dialog_delete);
+                    dialog.setCanceledOnTouchOutside(false);
+                    Button btnCancel = (Button) dialog.findViewById(R.id.btnCancel);
+                    btnCancel.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                        }
+                    });
+                    Button btnConfirm = (Button) dialog.findViewById(R.id.btnConfirm);
+                    btnConfirm.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                            ChangeInCartProductList(inCartProductList);
+                            txMyCart.setText("Giỏ hàng của tôi("+String.valueOf(inCartProductList.size())+")");
+                            btnAllCheck.setChecked(false);
+                            getPrice();
+                        }
+                    });
+                    dialog.show();
 
-                            // A null listener allows the button to dismiss the dialog and take no further action.
-                            .setNegativeButton(R.string.no, null)
-                            .setIcon(R.drawable.icon_warning)
-                            .show();
                 }
                 else {
-                    new AlertDialog.Builder(getContext())
-                            .setMessage("Vui lòng chọn danh mục cần xóa?")
-                            .setPositiveButton(R.string.yes, null)
-                            .show();
+                    final Dialog dialog = new Dialog(getContext());
+                    dialog.setContentView(R.layout.dialog_infomation);
+                    dialog.setCanceledOnTouchOutside(false);
+
+                    Button btnConfirm = (Button) dialog.findViewById(R.id.btnConfirm);
+                    TextView content = dialog.findViewById(R.id.dialog_content);
+                    content.setText("Vui lòng chọn danh mục cần xóa?");
+                    btnConfirm.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                        }
+                    });
+                    dialog.show();
                 }
                 }
 
@@ -248,10 +265,20 @@ public class CartFragment extends Fragment {
                     dialog.show();
                 }
                 else {
-                    new AlertDialog.Builder(getContext())
-                            .setMessage("Vui lòng chọn danh mục cần đặt hàng?")
-                            .setPositiveButton(R.string.yes, null)
-                            .show();
+                    final Dialog dialog = new Dialog(getContext());
+                    dialog.setContentView(R.layout.dialog_infomation);
+                    dialog.setCanceledOnTouchOutside(false);
+
+                    Button btnConfirm = (Button) dialog.findViewById(R.id.btnConfirm);
+                    TextView content = dialog.findViewById(R.id.dialog_content);
+                    content.setText("Vui lòng chọn danh mục cần đặt hàng?");
+                    btnConfirm.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                        }
+                    });
+                    dialog.show();
                 }
 
 
@@ -264,10 +291,20 @@ public class CartFragment extends Fragment {
     private  List<InCartProduct> getListCartData() {
         List<InCartProduct> inCartProductList = Cart.getInstance().getProducts();
         if(inCartProductList.size()==0 ){
-            new AlertDialog.Builder(getContext())
-                    .setMessage("Không có có sản phẩm trong giỏ hàng")
-                    .setPositiveButton(R.string.yes, null)
-                    .show();
+            final Dialog dialog = new Dialog(getContext());
+            dialog.setContentView(R.layout.dialog_infomation);
+            dialog.setCanceledOnTouchOutside(false);
+
+            Button btnConfirm = (Button) dialog.findViewById(R.id.btnConfirm);
+            TextView content = dialog.findViewById(R.id.dialog_content);
+            content.setText("Không có sản phẩm trong giỏ hàng");
+            btnConfirm.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+                }
+            });
+            dialog.show();
         }
 //        List<InCartProduct> inCartProductList = new ArrayList<InCartProduct>();//Cart.getInstance().getProducts();
 //        InCartProduct product1 = new InCartProduct(new Product(11, "title1","100000000","https://style.vihey.com/uploads/product/4.jpg","shortDescription1", "longDescription"),11,false);
@@ -350,10 +387,20 @@ public class CartFragment extends Fragment {
                     int status = object.optInt("status");
                     if(status == 1 && countSelectCart == currentSelectCart){
                         progress.dismiss();
-                        new AlertDialog.Builder(getContext())
-                                .setMessage("Đặt hàng thành công")
-                                .setPositiveButton(R.string.yes, null)
-                                .show();
+                        final Dialog dialog = new Dialog(getContext());
+                        dialog.setContentView(R.layout.dialog_infomation);
+                        dialog.setCanceledOnTouchOutside(false);
+
+                        Button btnConfirm = (Button) dialog.findViewById(R.id.btnConfirm);
+                        TextView content = dialog.findViewById(R.id.dialog_content);
+                        content.setText("Đặt hàng thành cônng");
+                        btnConfirm.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                dialog.dismiss();
+                            }
+                        });
+                        dialog.show();
                         ChangeInCartProductList(inCartProductList);
                         txMyCart.setText("Giỏ hàng của tôi("+String.valueOf(inCartProductList.size())+")");
                         getPrice();
@@ -361,10 +408,20 @@ public class CartFragment extends Fragment {
 
                     }
                     else if(status == 0){
-                        new AlertDialog.Builder(getContext())
-                                .setMessage("Đặt hàng không thành công")
-                                .setPositiveButton(R.string.yes, null)
-                                .show();
+                        final Dialog dialog = new Dialog(getContext());
+                        dialog.setContentView(R.layout.dialog_infomation);
+                        dialog.setCanceledOnTouchOutside(false);
+
+                        Button btnConfirm = (Button) dialog.findViewById(R.id.btnConfirm);
+                        TextView content = dialog.findViewById(R.id.dialog_content);
+                        content.setText("Đặt hàng không thành công");
+                        btnConfirm.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                dialog.dismiss();
+                            }
+                        });
+                        dialog.show();
 
 
                     }
@@ -378,10 +435,20 @@ public class CartFragment extends Fragment {
         }, new Response.ErrorListener() { //Create an error listener to handle errors appropriately.
             @Override
             public void onErrorResponse(VolleyError error) {
-                new AlertDialog.Builder(getContext())
-                        .setMessage("Không thể thực hiện đặt hàng")
-                        .setPositiveButton(R.string.yes, null)
-                        .show();
+                final Dialog dialog = new Dialog(getContext());
+                dialog.setContentView(R.layout.dialog_infomation);
+                dialog.setCanceledOnTouchOutside(false);
+
+                Button btnConfirm = (Button) dialog.findViewById(R.id.btnConfirm);
+                TextView content = dialog.findViewById(R.id.dialog_content);
+                content.setText("Không thể thực hiện đặt hàng");
+                btnConfirm.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+                dialog.show();
             }
         }) {
             protected Map<String, String> getParams() {

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/ic_annoucemeent"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_specker"
+        android:layout_marginTop="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bạn có chắc xóa danh mục này? "
+        android:layout_gravity="center"
+        android:textSize="@dimen/medium_textsize"
+        android:padding="20dp"/>
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <Button
+            android:id="@+id/btnCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hủy bỏ"
+            android:textSize="@dimen/medium_textsize"
+            android:background="@color/cancelColor"
+            android:layout_weight="1"
+            android:layout_toLeftOf="@+id/viewSeparate"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentTop="true"
+            android:textAllCaps="false"/>
+
+        <View
+            android:id="@+id/viewSeparate"
+            android:layout_width="0dp"
+            android:layout_centerInParent="true"
+            android:layout_height="0dp"/>
+
+
+        <Button
+            android:layout_toRightOf="@+id/viewSeparate"
+            android:id="@+id/btnConfirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Xác nhận"
+            android:textSize="@dimen/medium_textsize"
+            android:textColor="#FFFFFF"
+            android:background="@color/colorPrimary"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentTop="true"
+            android:textAllCaps="false"/>
+    </RelativeLayout>
+
+</LinearLayout>
