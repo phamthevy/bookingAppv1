@@ -69,7 +69,10 @@ public class LoginActivity extends AppCompatActivity {
                             UserInfo.getInstance().setName(name);
                             UserInfo.getInstance().setPass(pass);
                             UserInfo.getInstance().setMail(email);
-                            LoginActivity.super.onBackPressed();
+                            //LoginActivity.super.onBackPressed();
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            startActivity(intent);
+
                         }
                         if(status == 0){
                             Toast.makeText(getApplicationContext(), "Tên tài khoản hoặc mật khẩu không đúng", Toast.LENGTH_SHORT).show();
