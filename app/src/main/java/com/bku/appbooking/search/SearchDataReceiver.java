@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -55,7 +56,9 @@ public class SearchDataReceiver {
             public void onResponse(String response) {
                 Log.e("Response: ", response);
                 try {
-//                    response=new String(response.getBytes("ISO-8859-1"), "UTF-8");
+                    if (response.equals("\nnull")){
+                        Toast.makeText(context, "Không tìm thấy sản phẩm nào. Vui lòng dòng từ khóa khác như: áo", Toast.LENGTH_LONG).show();
+                    }
                     JSONObject object = new JSONObject(response);
                     int status = object.optInt("status");
                     if (status == 1){

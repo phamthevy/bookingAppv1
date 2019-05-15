@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.widget.AbsListView;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -16,6 +17,7 @@ import android.widget.ImageView;
 import com.bku.appbooking.R;
 import com.bku.appbooking.common.Category;
 import com.bku.appbooking.main.MainActivity;
+import com.bku.appbooking.search.ExpandableHeightGridView;
 import com.bku.appbooking.search.SearchActivity;
 import com.bku.appbooking.ultis.Cart;
 import com.bku.appbooking.ultis.CountDrawable;
@@ -33,7 +35,7 @@ import com.bku.appbooking.detail.DetailActivity;
 
 
 public class CategoryActivity extends AppCompatActivity {
-    private GridView gridView;
+    private ExpandableHeightGridView gridView;
     private Category category;
     private int count = 0;
     TextView cateTitle;
@@ -45,7 +47,8 @@ public class CategoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_category);
         Gson gson = new Gson();
         category = gson.fromJson(getIntent().getStringExtra("category"), Category.class);
-        gridView = findViewById(R.id.gridview);
+        gridView = (ExpandableHeightGridView) findViewById(R.id.gridview);
+        gridView.setExpanded(true);
         ImageView imageView = findViewById(R.id.category_demo_img);
         Transformation transformation = new RoundedCornersTransformation(20, 0);
         Picasso.with(this).load(category.getImageUrl()).transform(transformation).into(imageView);

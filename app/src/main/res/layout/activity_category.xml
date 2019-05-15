@@ -1,38 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".category.CategoryActivity"
     android:padding="5dp"
+    android:fillViewport="true"
     android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/category_demo_img"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:scaleType="fitXY"/>
-
-    <TextView
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/cate_title"
-        android:text="Cate_title"
-        android:textSize="25sp"
-        android:layout_marginBottom="10dp"/>
+        android:orientation="vertical">
 
-    <GridView
-        android:id="@+id/gridview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:columnWidth="190dp"
-        android:horizontalSpacing="8dp"
-        android:verticalSpacing="8dp"
-        android:numColumns="2"
-        android:stretchMode="columnWidth"
-        android:background="#0FFF"
-        />
+        <ImageView
+            android:id="@+id/category_demo_img"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="fitXY"/>
 
-</LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cate_title"
+            android:text="Cate_title"
+            android:textSize="25sp"
+            android:layout_marginBottom="10dp"/>
+
+        <com.bku.appbooking.search.ExpandableHeightGridView
+            android:id="@+id/gridview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:columnWidth="190dp"
+            android:horizontalSpacing="8dp"
+            android:verticalSpacing="8dp"
+            android:numColumns="2"
+            android:stretchMode="columnWidth"
+            android:background="#0FFF"
+            />
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>
