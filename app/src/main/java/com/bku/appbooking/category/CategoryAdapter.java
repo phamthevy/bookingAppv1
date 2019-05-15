@@ -65,9 +65,8 @@ public class CategoryAdapter extends BaseAdapter {
 //    viewHolder.imageViewCoverArt.setImageResource(book.getImageResource());
         viewHolder.titleTv.setText(product.getTitle());
         viewHolder.priceTv.setText(product.getPrice());
-
         Picasso.with(context).load(product.getImageUrl()).into(viewHolder.imageViewCoverArt);
-
+        viewHolder.bonusTv.setText("Mô tả " + product.getTitle());
         return convertView;
     }
 

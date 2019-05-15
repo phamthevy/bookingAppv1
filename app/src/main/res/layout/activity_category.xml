@@ -28,9 +28,11 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:columnWidth="190dp"
-        android:horizontalSpacing="10dp"
+        android:horizontalSpacing="8dp"
+        android:verticalSpacing="8dp"
         android:numColumns="2"
         android:stretchMode="columnWidth"
+        android:background="#0FFF"
         />
 
 </LinearLayout>

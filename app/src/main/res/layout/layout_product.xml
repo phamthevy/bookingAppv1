@@ -4,6 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#dadee5"
     android:gravity="center"
     >
 
@@ -19,33 +20,42 @@
 
     </FrameLayout>
 
-    <TextView
-        android:id="@+id/tv_title"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/medium_textsize"
-        tools:text="Are You My Mother"
-        android:textStyle="bold"
-        android:paddingTop="4dp"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        android:gravity="center_horizontal"/>
+        android:layout_marginTop="2dp"
+        android:padding="4dp"
+        android:background="@drawable/product_in_category"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tv_price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/small_textsize"
-        tools:text="Dr. Seuss"
-        android:textColor="@color/colorRed"
-        android:gravity="center_horizontal"/>
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/medium_textsize"
+            tools:text="Are You My Mother"
+            android:textStyle="bold"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:gravity="center_horizontal"/>
 
-    <TextView
-        android:id="@+id/tv_bonus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/small_textsize"
-        tools:text="Dr. Seuss"
-        android:gravity="center_horizontal"/>
+        <TextView
+            android:id="@+id/tv_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/small_textsize"
+            tools:text="Dr. Seuss"
+            android:textColor="@color/colorRed"
+            android:gravity="center_horizontal"/>
+
+        <TextView
+            android:id="@+id/tv_bonus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/small_textsize"
+            tools:text="Dr. Seuss"
+            android:gravity="center_horizontal"/>
+
+    </LinearLayout>
 
 </LinearLayout>
