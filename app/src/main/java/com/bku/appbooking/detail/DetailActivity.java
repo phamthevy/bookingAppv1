@@ -25,11 +25,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bku.appbooking.R;
-import com.bku.appbooking.category.CategoryActivity;
 import com.bku.appbooking.common.InCartProduct;
 import com.bku.appbooking.common.Product;
 import com.bku.appbooking.main.MainActivity;
-import com.bku.appbooking.search.SearchActivity;
 import com.bku.appbooking.ultis.Cart;
 import com.bku.appbooking.ultis.CountDrawable;
 import com.squareup.picasso.Picasso;
@@ -60,7 +58,6 @@ public class DetailActivity extends AppCompatActivity {
             public void onClick(View arg0) {
                 final Dialog dialog = new Dialog(DetailActivity.this);
                 dialog.setContentView(R.layout.dialog_add_to_cart);
-                dialog.setTitle("Xac nhan");
                 dialog.setCanceledOnTouchOutside(false);
                 edtNum = (EditText) dialog.findViewById(R.id.edtNumProduct);
                 Button btnCancel = (Button) dialog.findViewById(R.id.btnCancalAddProduct);
@@ -92,7 +89,7 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     private void getContentTextView(String productId){
-        String requestStr= "https://style.vihey.com/api/product.php?id="+"4"; //+productId
+        String requestStr= "https://style.vihey.com/api/product.php?id="+productId;
         StringRequest request = new StringRequest(requestStr, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
