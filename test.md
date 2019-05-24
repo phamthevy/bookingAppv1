@@ -37,7 +37,7 @@ Nhóm sử dụng một server đơn giản viết bằng PHP để xử lý cá
 * http://booking.vihey.com/api/searchPost.php
 
 # Một số hình ảnh của ứng dụng
-<img src="https://www.overleaf.com/project/5cd79ab38752566f525dc381/file/5cdc38a14714557a451050e7" width="200" style="float:left; padding: 10px">
+<img src="image/category.jpg" width="200" style="float:left; padding: 10px">
 <img src="https://www.overleaf.com/project/5cd79ab38752566f525dc381/file/5cdc38a14714557a451050e7" width="200" style="float:left; padding: 10px">
 
 
