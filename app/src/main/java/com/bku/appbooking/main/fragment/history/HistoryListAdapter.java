@@ -1,11 +1,13 @@
 package com.bku.appbooking.main.fragment.history;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -120,7 +122,22 @@ public class HistoryListAdapter extends BaseAdapter {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(context, "Không tải được dữ liệu", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "Không tải được dữ liệu", Toast.LENGTH_SHORT).show();
+
+                final Dialog dialog = new Dialog(context);
+                dialog.setContentView(R.layout.dialog_infomation);
+                dialog.setCanceledOnTouchOutside(false);
+
+                Button btnConfirm = (Button) dialog.findViewById(R.id.btnConfirm);
+                TextView content = dialog.findViewById(R.id.dialog_content);
+                content.setText("Tính năng chỉ dành cho người dùng đã đăng nhập");
+                btnConfirm.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+                dialog.show();
             }
         });
         CentralRequestQueue.getInstance().add(stringRequest);
