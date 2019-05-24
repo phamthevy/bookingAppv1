@@ -52,9 +52,17 @@ public class HistoryListAdapter extends BaseAdapter {
                             JSONObject bill = object.getJSONObject(key);
                             int productId = Integer.valueOf(key);
                             String createDate = bill.optString("ngaytao");
+                            Log.e("date", createDate);
                             String description = bill.optString("ghichu");
                             String status = bill.optString("trangthai");
-                            JSONObject productsJson = bill.getJSONObject("sanpham");
+                            JSONObject productsJson;
+                            try{
+                                productsJson = bill.getJSONObject("sanpham");
+                            } catch (Exception e){
+                                continue;
+                            }
+                            if (productsJson == null || productsJson.length() == 0) continue;
+                            Log.e("length", "length: " + productsJson.length());
                             Iterator<String> products = productsJson.keys();
                             while (products.hasNext()) {
                                 String id = products.next();
