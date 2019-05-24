@@ -89,7 +89,7 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     private void getContentTextView(String productId){
-        String requestStr= "https://style.vihey.com/api/product.php?id="+productId;
+        String requestStr= "http://booking.vihey.com/api/product.php?id="+productId;
         StringRequest request = new StringRequest(requestStr, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {

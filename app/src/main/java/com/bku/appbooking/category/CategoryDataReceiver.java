@@ -44,7 +44,7 @@ public class CategoryDataReceiver {
     }
 
     public CategoryDataReceiver(Context context, int categoryId) {
-        this(context, "https://style.vihey.com/api" ,categoryId);
+        this(context, "http://booking.vihey.com/api/category.php" ,categoryId);
     }
 
     public void setLinkedAdapter(BaseAdapter linkedAdapter) {
