@@ -38,9 +38,9 @@ Nhóm sử dụng một server đơn giản viết bằng PHP để xử lý cá
 
 # Một số hình ảnh của ứng dụng
 <div>
+<img src="image/home.jpg" width="200" style="float:left; padding: 10px">
 <img src="image/category.jpg" width="200" style="float:left; padding: 10px">
 <img src="image/history.jpg" width="200" style="float:left; padding: 10px">
-<img src="image/home.jpg" width="200" style="float:left; padding: 10px">
 <img src="image/order1.jpg" width="200" style="float:left; padding: 10px">
 <img src="image/slidebar.jpg" width="200" style="float:left; padding: 10px">
 </div>
