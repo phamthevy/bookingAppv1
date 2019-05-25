@@ -27,8 +27,10 @@ import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Stack;
 
 public class HistoryListAdapter extends BaseAdapter {
     private List<HistoryItem> historyItems;
@@ -45,8 +47,13 @@ public class HistoryListAdapter extends BaseAdapter {
                     response=new String(response.getBytes("ISO-8859-1"), "UTF-8");
                     JSONObject object =  new JSONObject(response);
                     Iterator<String> keys = object.keys();
-                    while (keys.hasNext()) {
-                        String key = keys.next();
+                    Stack<String> stack = new Stack();
+                    while (keys.hasNext()){
+                        stack.push(keys.next());
+                    }
+//                    keys = stack.iterator();
+                    while (!stack.isEmpty()) {
+                        String key = stack.pop();
                         Log.v("list key", key);
                         if(object.get(key) instanceof JSONObject) {
                             JSONObject bill = object.getJSONObject(key);
@@ -67,7 +74,10 @@ public class HistoryListAdapter extends BaseAdapter {
                             while (products.hasNext()) {
                                 String id = products.next();
                                 int amount = productsJson.optInt(id);
-                                completeLoadHistoryItem(new HistoryItem(new Product(Integer.valueOf(id)), amount, createDate, description, status));
+                                HistoryItem historyItem = new HistoryItem(new Product(Integer.valueOf(id)), amount, createDate, description, status);
+                                historyItems.add(historyItem);
+                                completeLoadHistoryItem(historyItem);
+                                notifyDataSetChanged();
                             }
                         } else if (object.get(key) instanceof String){
                             String value = object.getString("type");
@@ -112,7 +122,7 @@ public class HistoryListAdapter extends BaseAdapter {
                                     Log.v("key = type", "value = " + value);
                                 }
                             }
-                            historyItems.add(historyItem);
+//                            historyItems.add(historyItem);
                             notifyDataSetChanged();
                             Log.e("hiiiiiiiiiiii", historyItem.getProduct().getTitle());
                         } catch (Exception e) {
@@ -194,7 +204,8 @@ public class HistoryListAdapter extends BaseAdapter {
         TextView itemPriceView = historyItemHodler.getProductPrice();
         TextView dateCreatedView = historyItemHodler.getDateCreated();
         TextView statusView = historyItemHodler.getStatus();
-        Picasso.with(context).load(historyItem.getProduct().getImageUrl()).into(imageView);
+        if (historyItem.getProduct().getImageUrl() != "")
+            Picasso.with(context).load(historyItem.getProduct().getImageUrl()).into(imageView);
         itemTitleView.setText(historyItem.getProduct().getTitle());
         itemAmountView.setText("Số lượng: " + String.valueOf(historyItem.getAmount()));
         itemPriceView.setText("Giá bán: " + historyItem.getProduct().getPrice());
