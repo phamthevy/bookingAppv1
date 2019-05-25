@@ -230,7 +230,7 @@ public class CartFragment extends Fragment {
                         }
                         else {
 
-                            String urlString = "http://booking.vihey.com/api/booking.php";
+                            String urlString = "http://booking.vihey.com/api/booking2.php";
                             int countCartSelect= 0;
                             int currentCartSelect = getSelectCart();
                             dialog.dismiss();
@@ -460,6 +460,7 @@ public class CartFragment extends Fragment {
                 MyData.put("ghichu", ghichu);
                 MyData.put("soluong", soluong);
                 MyData.put("productid", productid);
+                MyData.put("accesstoken", UserInfo.getInstance().getAccessToken());
                 return MyData;
             }
 

@@ -84,7 +84,7 @@ public class HistoryListAdapter extends BaseAdapter {
 
             private void completeLoadHistoryItem(final HistoryItem historyItem){
                 final Product product = historyItem.getProduct();
-                String requestStr= "https://booking.vihey.com/api/product.php?id="+"1"; //+productId
+                String requestStr= "https://booking.vihey.com/api/product.php?id="+product.getId(); //+productId
                 StringRequest request = new StringRequest(requestStr, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
